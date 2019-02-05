@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.general")
 @section("page_styles")
     <style>
         .emp-profile {
