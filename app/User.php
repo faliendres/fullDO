@@ -17,7 +17,7 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($model) {
-            $model->usuario_creaction = auth()->id();
+            $model->usuario_creacion = auth()->id();
         });
     }
 
