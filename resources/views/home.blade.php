@@ -64,7 +64,33 @@
     <script type="text/javascript" src="{{asset("OrgChart-master/demo/js/jquery.orgchart.js")}}"></script>
     <script type="text/javascript">
         jQuery(function () {
+            let datasource;
+            jQuery.ajax({
+                type: "GET",
+                url: "/cargos",
+                beforeSend: function () { 
+                },
+                success: function (result) {
+                    datasource = result;
+                    var nodeTemplate = function (data) {
+                        return `
+                                <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
+                                <div class="nombre" style="border-radius:unset !important;">${data.name}</div>
+                                <div class="cargo">${data.title}</div>
+                                <div class="departamento">${data.office}</div>
+                              `;
+                    };
 
+                    var oc = jQuery('#chart-container').orgchart({
+                        'data': datasource,
+                        'nodeTemplate': nodeTemplate,
+                        'pan': true,
+                        //'zoom': true
+                        //'visibleLevel': 2
+                    });
+                }
+            });
+            /*
             var datasource = {
                 'avatar': 'admin.jpg',
                 'name': 'John Doe',
@@ -93,28 +119,12 @@
                         'office': 'Administración'
                     },
                     {'avatar': '1.jpg', 'name': 'John Lee', 'title': 'Gerente Riesgo', 'office': 'Riesgo'}
-                    /*{ 'name': 'Yu Wei', 'title': 'department manager', 'office': '长春' },
-                    { 'name': 'Chun Miao', 'title': 'department manager', 'office': '长春' },
-                    { 'name': 'Yu Tie', 'title': 'department manager', 'office': '长春' }*/
+                    
                 ]
-            };
+            };*/
 
-            var nodeTemplate = function (data) {
-                return `
-        <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
-        <div class="nombre" style="border-radius:unset !important;">${data.name}</div>
-        <div class="cargo">${data.title}</div>
-        <div class="departamento">${data.office}</div>
-      `;
-            };
 
-            var oc = jQuery('#chart-container').orgchart({
-                'data': datasource,
-                'nodeTemplate': nodeTemplate,
-                'pan': true,
-                //'zoom': true
-                //'visibleLevel': 2
-            });
+            
 
         });
     </script>

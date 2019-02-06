@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+
+
         $this->truncateTables([
             'ma_holding',
             'ma_empresa',
@@ -23,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(HoldingTableSeeder::class);
         $this->call(EmpresaTableSeeder::class);
         $this->call(GerenciaTableSeeder::class);
+        $this->call('FuncionariosSeeder');
     }
 
     public function truncateTables(array $tables)

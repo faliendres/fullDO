@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FullDO - Laravel</title>
+    <title>FullDO</title>
     <meta name="description" content="FullDO - Demo">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
