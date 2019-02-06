@@ -21,6 +21,7 @@ class CreateMaholdingTable extends Migration
             $table->string('color', 32)->nullable();
             $table->integer('estado')->default(1);
             $table->date('fecha_creacion')->useCurrent();
+            $table->timestamps();
         });
     }
 

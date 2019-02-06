@@ -25,6 +25,7 @@ class CreateMacargoTable extends Migration
             $table->date('hasta')->nullable();
             $table->string('color', 32)->nullable();
             $table->integer('estado')->default(1);
+            $table->timestamps();
         });
         Schema::table('ma_cargo', function (Blueprint $table) {
             $table->foreign('id_empresa')->references('id')->on('ma_empresa')->onDelete('cascade');
