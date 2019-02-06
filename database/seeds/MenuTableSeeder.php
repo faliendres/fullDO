@@ -24,7 +24,7 @@ class MenuTableSeeder extends Seeder
         ]);
         $users=Menu::create( [
             "parent_id"=>$admin->id,
-            "title"=>"Users",
+            "title"=>"Usuarios",
             "order"=>0
         ]);
         Menu::create( [
