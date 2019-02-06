@@ -14,7 +14,7 @@ class CreateMagerenciaTable extends Migration
     public function up()
     {
         Schema::create('ma_gerencia', function (Blueprint $table) {
-                $table->increments('id_gerencia')->unsigned();
+                $table->increments('id')->unsigned();
                 $table->integer('id_empresa')->unsigned()->nullable();
                 $table->string('nombre', 128)->nullable();
                 $table->string('descripcion', 512)->nullable();
@@ -24,7 +24,7 @@ class CreateMagerenciaTable extends Migration
                 $table->integer('estado')->unsigned()->default(1);
             });
             Schema::table('ma_gerencia', function (Blueprint $table) {
-                $table->foreign('id_empresa')->references('id_empresa')->on('ma_empresa');
+                $table->foreign('id_empresa')->references('id')->on('ma_empresa');
                 });
 
     }

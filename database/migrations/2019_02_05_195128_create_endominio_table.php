@@ -14,7 +14,7 @@ class CreateEndominioTable extends Migration
     public function up()
     {
         Schema::create('en_dominio', function (Blueprint $table) {
-            $table->increments('id_dominio');
+            $table->increments('id');
             $table->string('nombre', 128)->nullable();
             $table->date('fecha_creacion')->nullable();
             $table->integer('estado')->nullable();

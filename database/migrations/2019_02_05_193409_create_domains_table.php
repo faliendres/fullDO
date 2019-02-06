@@ -14,7 +14,7 @@ class CreateDomainsTable extends Migration
     public function up()
     {
         Schema::create('de_dominio', function (Blueprint $table) {
-            $table->integer('id_dominio');
+            $table->integer('id');
             $table->integer('id_valor');
             $table->string('descripcion', 256)->nullable();
             $table->date('fecha_creacion')->nullable();

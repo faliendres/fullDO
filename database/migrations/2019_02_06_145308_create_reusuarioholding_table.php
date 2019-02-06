@@ -23,10 +23,10 @@ class CreateReusuarioholdingTable extends Migration
             $table->primary(['id_relacion', 'id_usuario', 'id_holding']);
         });
         Schema::table('re_usuario_holding', function (Blueprint $table) {
-            $table->foreign('id_empresa')->references('id_empresa')->on('ma_empresa');
-            $table->foreign('id_holding')->references('id_holding')->on('ma_holding');
-            $table->foreign('id_gerencia')->references('id_gerencia')->on('ma_gerencia');
-            $table->foreign('id_usuario')->references('id_usuario')->on('ma_usuario');
+            $table->foreign('id_empresa')->references('id')->on('ma_empresa');
+            $table->foreign('id_holding')->references('id')->on('ma_holding');
+            $table->foreign('id_gerencia')->references('id')->on('ma_gerencia');
+            $table->foreign('id_usuario')->references('id')->on('ma_usuario');
 
         });
     }
