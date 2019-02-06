@@ -14,7 +14,7 @@ class CreateMaholdingTable extends Migration
     public function up()
     {
         Schema::create('ma_holding', function (Blueprint $table) {
-            $table->increments('id_holding');
+            $table->increments('id');
             $table->string('nombre', 256)->nullable();
             $table->string('descripcion', 512)->nullable();
             $table->string('logo', 256)->nullable();

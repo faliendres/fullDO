@@ -14,7 +14,7 @@ class CreateMaempresaTable extends Migration
     public function up()
     {
         Schema::create('ma_empresa', function (Blueprint $table) {
-                $table->increments('id_empresa');
+                $table->increments('id');
                 $table->string('nombre', 256)->nullable();
                 $table->string('rut', 12)->nullable();
                 $table->string('descripcion', 512)->nullable();
@@ -25,7 +25,7 @@ class CreateMaempresaTable extends Migration
                 $table->date('hasta')->nullable();
                 $table->date('fecha_creacion')->nullable();
                 $table->integer('estado')->unsigned()->default(1);
-                $table->foreign('id_holding')->references('id_holding')->on('ma_holding');
+                $table->foreign('id_holding')->references('id')->on('ma_holding');
         });
     }
 

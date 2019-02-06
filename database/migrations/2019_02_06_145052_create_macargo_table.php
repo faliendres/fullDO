@@ -14,7 +14,7 @@ class CreateMacargoTable extends Migration
     public function up()
     {
         Schema::create('ma_cargo', function (Blueprint $table) {
-            $table->increments('id_cargo');
+            $table->increments('id');
             $table->string('nombre', 128)->nullable();
             $table->string('descripcion', 512)->nullable();
             $table->integer('id_empresa')->unsigned()->nullable();
@@ -27,9 +27,9 @@ class CreateMacargoTable extends Migration
             $table->integer('estado')->default(1);
         });
         Schema::table('ma_cargo', function (Blueprint $table) {
-            $table->foreign('id_empresa')->references('id_empresa')->on('ma_empresa')->onDelete('cascade');
-            $table->foreign('id_funcionario')->references('id_funcionario')->on('ma_funcionario')->onDelete('cascade');
-            $table->foreign('id_jefatura')->references('id_gerencia')->on('ma_gerencia')->onDelete('cascade');
+            $table->foreign('id_empresa')->references('id')->on('ma_empresa')->onDelete('cascade');
+            $table->foreign('id_funcionario')->references('id')->on('ma_funcionario')->onDelete('cascade');
+            $table->foreign('id_jefatura')->references('id')->on('ma_gerencia')->onDelete('cascade');
 
         });
     }
