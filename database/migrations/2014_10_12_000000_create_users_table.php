@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->integer('perfil')->nullable();
             $table->integer('usuario_creacion')->nullable();
             $table->integer('estado')->default(1);
+            $table->unsignedInteger('gerencia_id')->nullable();
+            $table->unsignedInteger('empresa_id')->nullable();
+            $table->unsignedInteger('holding_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
