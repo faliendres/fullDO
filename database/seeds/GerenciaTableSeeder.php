@@ -24,7 +24,7 @@ class GerenciaTableSeeder extends Seeder
                 'descripcion' => $faker->paragraph(),
                 'color' => $faker->colorName,
                 'fecha_creacion' => $faker->dateTime(),
-                'usuario_creacion' => $faker->name,
+                'usuario_creacion' => $faker->firstName,
                 'id_empresa' => $empresa_id,
             ]);
         }
