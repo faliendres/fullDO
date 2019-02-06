@@ -3,7 +3,7 @@
 use App\Menu;
 use Illuminate\Database\Seeder;
 
-class MenusTableSeeder extends Seeder
+class MenuTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

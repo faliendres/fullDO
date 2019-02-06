@@ -18,8 +18,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Ejecutar los seeders:
-        $this->call(UsersTableSeeder::class);
-        $this->call(MenusTableSeeder::class);
+        $this->call(MenuTableSeeder::class);
         $this->call(UserTableSeeder::class);
         $this->call(HoldingTableSeeder::class);
         $this->call(EmpresaTableSeeder::class);

@@ -8,13 +8,3 @@ if (!function_exists('menu')) {
         return $menu->get();
     }
 }
-
-if (!function_exists('re')) {
-
-    function menu()
-    {
-        request()->routeIs();
-        $menu = \App\Menu::query()->whereNull("parent_id");
-        return $menu->get();
-    }
-}
