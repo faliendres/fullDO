@@ -15,8 +15,8 @@
                                 <ul class="sub-menu children dropdown-menu">
                                     @foreach($subItem->subItems as $sub)
                                         <li>
-                                            <i class="{{$sub->icon }}"></i><a
-                                                    href="{{$sub->target()}}">{{$sub->title}}</a>
+                                            <i class="{{$sub->icon }}"></i>
+                                            <a href="{{$sub->target()}}">{{$sub->title}}</a>
                                         </li>
                                     @endforeach
                                 </ul>

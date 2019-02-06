@@ -50,7 +50,8 @@ class Menu extends Model
             else $this->params = [];
             $this->_target = route($this->route, $this->params);
         }
-        $this->_target = $this->url;
+        else
+            $this->_target = $this->url;
         if (!$this->_target)
             $this->_target = '#';
         return $this->_target;
