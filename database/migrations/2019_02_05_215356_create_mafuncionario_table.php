@@ -23,6 +23,7 @@ class CreateMafuncionarioTable extends Migration
             $table->integer('telefono')->nullable();
             $table->string('foto', 256)->nullable();
             $table->integer('estado')->default(1);
+            $table->timestamps();
         });
     }
 
