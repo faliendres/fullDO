@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
 
         // Ejecutar los seeders:
         $this->call(MenuTableSeeder::class);
-        $this->call(UserTableSeeder::class);
         $this->call(HoldingTableSeeder::class);
         $this->call(EmpresaTableSeeder::class);
         $this->call(GerenciaTableSeeder::class);
-        $this->call('FuncionariosSeeder');
+        $this->call(FuncionariosSeeder::class);
+        $this->call(UserTableSeeder::class);
     }
 
     public function truncateTables(array $tables)

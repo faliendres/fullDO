@@ -25,7 +25,7 @@ class UserTableSeeder extends Seeder
             ]
         )->save();
 
-        $users = factory(User::class,5)->make();
+        $users = factory(User::class,35)->make();
         foreach ($users as $user) {
             $user->save();
         }
