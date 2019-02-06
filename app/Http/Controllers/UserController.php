@@ -10,7 +10,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax())
-            return (new \Yajra\DataTables\DataTables)->eloquent(User::query())->make(true);
+            return (new \Yajra\DataTables\DataTables)->eloquent(User::query()->with(["holding","empresa","gerencia"]))
+                ->make(true);
         return view("users.index");
     }
 }

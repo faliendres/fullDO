@@ -12,6 +12,15 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->usuario_creaction = auth()->id();
+        });
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -20,11 +29,22 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'apellido', 'email', 'password',
         "perfil", "usuario_creacion", "estado", "rut",
-        'gerencia_id','empresa_id','holding_id'   ];
+        'gerencia_id', 'empresa_id', 'holding_id'];
 
 
     public function gerencia()
     {
+        return $this->belongsTo(Gerencia::class, "gerencia_id", "id");
+    }
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, "empresa_id", "id");
+    }
+
+    public function holding()
+    {
+        return $this->belongsTo(Holding::class, "holding_id", "id");
     }
 
     /**

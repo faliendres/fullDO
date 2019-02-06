@@ -12,12 +12,22 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'name'     => 'Super',
-            'apellido'     => 'Admin',
+
+        $user = User::firstOrNew([
             'email'    => 'superadmin@gmail.com',
-            'password' => bcrypt('123456')
         ]);
-        $user->save();
+        if(!$user->exists)
+        $user->fill(
+            [
+                'name'     => 'Super',
+                'apellido'     => 'Admin',
+                'password' => bcrypt('123456')
+            ]
+        )->save();
+
+        $users = factory(User::class,5)->make();
+        foreach ($users as $user) {
+            $user->save();
+        }
     }
 }
