@@ -26,7 +26,7 @@ class CreateReusuarioholdingTable extends Migration
             $table->foreign('id_empresa')->references('id')->on('ma_empresa');
             $table->foreign('id_holding')->references('id')->on('ma_holding');
             $table->foreign('id_gerencia')->references('id')->on('ma_gerencia');
-            $table->foreign('id_usuario')->references('id')->on('ma_usuario');
+            $table->foreign('id_usuario')->references('id')->on('users');
 
         });
     }
