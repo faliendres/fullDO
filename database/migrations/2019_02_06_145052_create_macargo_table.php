@@ -17,7 +17,7 @@ class CreateMacargoTable extends Migration
             $table->increments('id');
             $table->string('nombre', 128)->nullable();
             $table->string('descripcion', 512)->nullable();
-            $table->integer('id_empresa')->unsigned()->nullable();
+            $table->integer('id_gerencia')->unsigned()->nullable();
             $table->string('area', 256)->nullable();
             $table->integer('id_funcionario')->unsigned()->nullable();
             $table->integer('id_jefatura')->unsigned()->nullable();
@@ -28,10 +28,9 @@ class CreateMacargoTable extends Migration
             $table->timestamps();
         });
         Schema::table('ma_cargo', function (Blueprint $table) {
-            $table->foreign('id_empresa')->references('id')->on('ma_empresa')->onDelete('cascade');
+            $table->foreign('id_gerencia')->references('id')->on('ma_gerencia')->onDelete('cascade');
             $table->foreign('id_funcionario')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('id_jefatura')->references('id')->on('ma_gerencia')->onDelete('cascade');
-
+            $table->foreign('id_jefatura')->references('id')->on('ma_cargo')->onDelete('cascade');
         });
     }
 

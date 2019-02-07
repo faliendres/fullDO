@@ -57,9 +57,6 @@
                     {"data": "name", "title": "Nombre"},
                     {"data": "apellido", "title": "Apellido"},
                     {"data": "email", "title": "Email"},
-                    {"data": "holding.nombre", "title": "Holding"},
-                    {"data": "empresa.nombre", "title": "Empresa"},
-                    {"data": "gerencia.nombre", "title": "Gerencia"},
                     {
                         "data": "id", "title": "Acciones",
                         "render":function (data,row) {

@@ -15,4 +15,7 @@ class Gerencia extends Model
             $query=$query->where("id",$user->gerencia_id);
         return $query;
     }
+    public function empresa(){
+        return $this->belongsTo(Empresa::class,"id_empresa","id");
+    }
 }
