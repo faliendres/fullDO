@@ -18,7 +18,7 @@ class HoldingTableSeeder extends Seeder
 
         foreach (range(1,3) as $index) {
             DB::table('ma_holding')->insert([
-                'nombre' => $faker->company. " Holding",
+                'nombre' => " Holding ".$faker->company,
                 'descripcion' => $faker->paragraph(),
                 'logo' => $faker->imageUrl(),
                 'color' => $faker->colorName,
