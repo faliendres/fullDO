@@ -20,8 +20,8 @@ $factory->define(App\User::class, function (Faker $faker) {
     $empresa = null;
     $gerencia = null;
     if ($faker->boolean) {
-
-        $empresa = \App\Empresa::query()->where("id_holding", $holding->id)
+        $empresa = \App\Empresa::query()
+            ->where("id_holding", $holding->id)
             ->inRandomOrder()->first();
         if ($empresa && $faker->boolean) {
             $gerencia = \App\Gerencia::query()

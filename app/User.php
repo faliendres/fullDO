@@ -21,6 +21,23 @@ class User extends Authenticatable
         });
     }
 
+    public static function query()
+    {
+        $query = (new static)->newQuery();
+        $user = auth()->user();
+        if ($user) {
+            if ($user->holding_id) {
+                $query = $query->where("holding_id", $user->holding_id);
+                if ($user->empresa_id) {
+                    $query = $query->where("empresa_id", $user->empresa_id);
+                    if ($user->gerencia_id)
+                        $query = $query->where("gerencia_id", $user->gerencia_id);
+                }
+            }
+        }
+        return $query;
+    }
+
     /**
      * The attributes that are mass assignable.
      *

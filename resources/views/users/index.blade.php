@@ -11,12 +11,13 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="box-title">User </h4>
+                        <h4 class="box-title">Usuarios </h4>
                     </div>
                     <div class="row">
 
                         <div class="col-lg-12">
                             <div class="card-body">
+                                <a href="{{route("users.create")}}" class="btn btn-primary">Nuevo Usuario</a>
                                 <table class="table table-striped table-responsive">
                                     <thead></thead>
                                     <tbody></tbody>
@@ -46,21 +47,55 @@
 
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('table').DataTable({
+        $(document).ready(function () {
+            let $table=$('table').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "ajax": "{{request()->url()}}",
                 "columns": [
-                    { "data": "id","title":"Id" },
-                    { "data": "name","title":"Nombre" },
-                    { "data": "email","title":"Email"},
-                    { "data": "holding.nombre","title":"Holding"},
-                    { "data": "empresa.nombre","title":"Empresa"},
-                    { "data": "gerencia.nombre","title":"Gerencia"},
+                    {"data": "id", "title": "Id"},
+                    {"data": "name", "title": "Nombre"},
+                    {"data": "apellido", "title": "Apellido"},
+                    {"data": "email", "title": "Email"},
+                    {"data": "holding.nombre", "title": "Holding"},
+                    {"data": "empresa.nombre", "title": "Empresa"},
+                    {"data": "gerencia.nombre", "title": "Gerencia"},
+                    {
+                        "data": "id", "title": "Acciones",
+                        "render":function (data,row) {
+                            return `<button class="btn btn-danger" data-id="${data}"><i class="fa fa-times"></i></button>`;
+                        }
+                    },
                 ]
-            } );
-        } );
+            });
+            $(this).on("click" ,".btn-danger",function (e) {
+                let data=$(this).data("id");
+                let route="{{route("users.destroy",["_id"])}}".replace("_id",data);
+                if(confirm("¿Esta seguro?")){
+                    let $row=$(this).parents("tr").first();
+                $.ajax(
+                    {
+                        url:route,
+                        type:"DELETE",
+                        headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}"
+                        },
+                        success:result=>
+                        {
+                            $table.row( $row )
+                            .remove()
+                            .draw();
+                        },
+                        error:response=>{
+                            alert(response.responseJSON.message);
+                        }
+                    }
+                )
+                }
+
+            });
+
+        });
     </script>
 
 @endsection

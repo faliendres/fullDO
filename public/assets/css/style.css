@@ -2502,5 +2502,7 @@ footer.site-footer {
   #cellPaiChart #pieLabel0 {
     left: inherit !important;
     right: 20px !important; }
-
+  a.navbar-brand {
+    height: 0;
+  }
 /*# sourceMappingURL=style.css.map */

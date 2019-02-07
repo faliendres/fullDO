@@ -8,3 +8,22 @@ if (!function_exists('menu')) {
         return $menu->get();
     }
 }
+
+
+if (!function_exists('toOptions')) {
+
+    function toOptions(\Illuminate\Database\Eloquent\Builder $query, $key = "id", $value = "nombre", $selected = null)
+    {
+        $options = $query->get()->map(function ($item) use ($key, $value, $selected) {
+            return
+                [
+                    "text" => $item->$value,
+                    "selected" => ($item->$key == $selected),
+                    "id" => $item->$key
+                ];
+        });
+//        dd($options);
+        return $options;
+    }
+}
+
