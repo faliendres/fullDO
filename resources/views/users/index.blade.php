@@ -55,6 +55,9 @@
                     { "data": "id","title":"Id" },
                     { "data": "name","title":"Nombre" },
                     { "data": "email","title":"Email"},
+                    { "data": "holding.nombre","title":"Holding"},
+                    { "data": "empresa.nombre","title":"Empresa"},
+                    { "data": "gerencia.nombre","title":"Gerencia"},
                 ]
             } );
         } );
