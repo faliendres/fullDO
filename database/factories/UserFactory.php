@@ -20,9 +20,13 @@ $factory->define(App\User::class, function (Faker $faker) {
     $empresa = null;
     $gerencia = null;
     if ($faker->boolean) {
-        $empresa = \App\Empresa::query()->where("id_holding", $holding->id)->inRandomOrder()->first();
-        if ($faker->boolean && isset($empresa->id)){
-            $gerencia = \App\Gerencia::query()->where("id_empresa", $empresa->id)->inRandomOrder()->first();
+
+        $empresa = \App\Empresa::query()->where("id_holding", $holding->id)
+            ->inRandomOrder()->first();
+        if ($empresa && $faker->boolean) {
+            $gerencia = \App\Gerencia::query()
+                ->where("id_empresa", $empresa->id)
+                ->inRandomOrder()->first();
         }
     }
     return [
@@ -35,5 +39,8 @@ $factory->define(App\User::class, function (Faker $faker) {
         'holding_id' => $holding->id,
         'empresa_id' => isset($empresa) ? $empresa->id : null,
         'gerencia_id' => isset($gerencia) ? $gerencia->id : null,
+        'usuario_creacion'=> \App\User::first()->id,
+        'perfil'=> 1,
+        'rut'=> $faker->numerify("#######")
     ];
 });
