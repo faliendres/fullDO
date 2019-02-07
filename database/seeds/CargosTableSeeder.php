@@ -57,7 +57,6 @@ class CargosTableSeeder extends Seeder
 					[	'nombre' => 'Gerente RRHH',
 						'id_gerencia' => 2,
 						'area' => 'Recursos Humanos',
-						'id_jefatura' => 1,
                         'id_funcionario' => 3,
                         'estado' => 1
 					],
