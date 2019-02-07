@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\Cargo;
-use App\Funcionario;
 use Faker\Factory as Faker;
 
-class FuncionariosSeeder extends Seeder
+class CargosTableSeeder extends Seeder
 {
 	/**
      * Run the database seeds.
@@ -13,20 +12,7 @@ class FuncionariosSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-    	DB::statement('SET FOREIGN_KEY_CHECKS=0');
-		DB::table('ma_funcionario')->truncate();
-		$faker = Faker::create();
-		Funcionario::query()->delete();
-		for ($i=0; $i < 5; $i++) {
-		    \DB::table('ma_funcionario')->insert(array(
-		           'nombre' => $faker->firstName,
-		           'apellido'  => $faker->lastName,
-		           'foto'  => $faker->unique()->randomElement(['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','64-1.jpg','64-2.jpg']) 
-		    ));
-		}
-
-		
+    {	
 		DB::table('ma_cargo')->truncate();
 		$cargos = [
 					[	'nombre' => 'Gerente General',

@@ -29,7 +29,7 @@ class CreateMacargoTable extends Migration
         });
         Schema::table('ma_cargo', function (Blueprint $table) {
             $table->foreign('id_empresa')->references('id')->on('ma_empresa')->onDelete('cascade');
-            $table->foreign('id_funcionario')->references('id')->on('ma_funcionario')->onDelete('cascade');
+            $table->foreign('id_funcionario')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('id_jefatura')->references('id')->on('ma_gerencia')->onDelete('cascade');
 
         });

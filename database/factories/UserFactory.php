@@ -16,12 +16,14 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
 
     $holding = \App\Holding::query()->inRandomOrder()->first();
+
     $empresa = null;
     $gerencia = null;
     if ($faker->boolean) {
         $empresa = \App\Empresa::query()->where("id_holding", $holding->id)->inRandomOrder()->first();
-        if ($faker->boolean)
+        if ($faker->boolean && isset($empresa->id)){
             $gerencia = \App\Gerencia::query()->where("id_empresa", $empresa->id)->inRandomOrder()->first();
+        }
     }
     return [
         'name' => $faker->name,

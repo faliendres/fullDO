@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cargo;
-use App\Funcionario;
+use App\User;
 
 class CargoController extends Controller
 {
@@ -16,7 +16,7 @@ class CargoController extends Controller
 
     public function getArbol($cargo,$father = null){
     	if(isset($cargo->id_funcionario)){
-    		$func = Funcionario::where('id',$cargo->id_funcionario)->first();
+    		$func = User::where('id',$cargo->id_funcionario)->first();
     		$name = $func->nombre . ' ' . $func->apellido;
     		$avatar = $func->foto;
     	}else{
