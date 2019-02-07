@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FullDO - Laravel</title>
+    <title>FullDO</title>
     <meta name="description" content="FullDO - Demo">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,59 +26,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="{{asset("assets/css/cs-skin-elastic.css")}}">
     <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
     @yield("page_styles")
 </head>
 <body>
 <!-- Left Panel -->
 <aside id="left-panel" class="left-panel">
-    <nav class="navbar navbar-expand-sm navbar-default">
-        <div id="main-menu" class="main-menu collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Demo </a>
-                </li>
-                <li class="menu-title">Menu 1</li><!-- /.menu-title -->
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Submenu 1</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-puzzle-piece"></i><a href="#">Extra 1</a></li>
-                        <li><i class="fa fa-id-badge"></i><a href="#">Extra 2</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Submenu 2</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="#">Extra 1</a></li>
-                        <li><i class="fa fa-table"></i><a href="#">Extra 2</a></li>
-                    </ul>
-                </li>
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Submenu 3</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-th"></i><a href="#">Extra 1</a></li>
-                        <li><i class="menu-icon fa fa-th"></i><a href="#">Extra 2</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-title">Menu 2</li><!-- /.menu-title -->
-
-                <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Submenu 1</a>
-                    <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-fort-awesome"></i><a href="#">Extra 1</a></li>
-                        <li><i class="menu-icon ti-themify-logo"></i><a href="#">Extra 2</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"> <i class="menu-icon ti-email"></i>Submenu 2 </a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </nav>
+    <!-- main-menu -->
+    @include("partials.main_menu")
+    <!-- /#main-menu -->
 </aside>
 <!-- /#left-panel -->
 <!-- Right Panel -->
@@ -105,14 +63,11 @@
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="{{route("profile")}}"><i class="fa fa- user"></i>Perfil</a>
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fa fa-power -off"></i>Cerrar Sesión</a>
-                                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-
-
-    
-
+                                                     document.getElementById('logout-form').submit();"><i
+                                        class="fa fa-power -off"></i>Cerrar Sesión</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
 
 
                         </div>

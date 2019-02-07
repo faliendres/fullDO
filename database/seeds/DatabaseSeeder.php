@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+
+
         $this->truncateTables([
             'ma_holding',
             'ma_empresa',
@@ -18,9 +21,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Ejecutar los seeders:
+        
+        $this->call(MenuTableSeeder::class);
         $this->call(HoldingTableSeeder::class);
         $this->call(EmpresaTableSeeder::class);
         $this->call(GerenciaTableSeeder::class);
+        $this->call(UserTableSeeder::class);
+        $this->call(CargosTableSeeder::class);
     }
 
     public function truncateTables(array $tables)
@@ -32,5 +39,6 @@ class DatabaseSeeder extends Seeder
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
+
     }
 }

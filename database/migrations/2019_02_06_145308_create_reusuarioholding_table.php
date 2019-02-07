@@ -21,12 +21,13 @@ class CreateReusuarioholdingTable extends Migration
             $table->unsignedInteger('id_gerencia')->nullable();
             $table->integer('tipo_permiso')->nullable();
             $table->primary(['id_relacion', 'id_usuario', 'id_holding']);
+            $table->timestamps();
         });
         Schema::table('re_usuario_holding', function (Blueprint $table) {
             $table->foreign('id_empresa')->references('id')->on('ma_empresa');
             $table->foreign('id_holding')->references('id')->on('ma_holding');
             $table->foreign('id_gerencia')->references('id')->on('ma_gerencia');
-            $table->foreign('id_usuario')->references('id')->on('ma_usuario');
+            $table->foreign('id_usuario')->references('id')->on('users');
 
         });
     }

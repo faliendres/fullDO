@@ -22,6 +22,7 @@ class CreateMagerenciaTable extends Migration
                 $table->date('fecha_creacion')->nullable();
                 $table->string('usuario_creacion', 20)->nullable();
                 $table->integer('estado')->unsigned()->default(1);
+                $table->timestamps();
             });
             Schema::table('ma_gerencia', function (Blueprint $table) {
                 $table->foreign('id_empresa')->references('id')->on('ma_empresa');

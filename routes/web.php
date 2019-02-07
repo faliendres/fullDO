@@ -13,11 +13,13 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 Route::get('profile', function () {
     return view('profile');
 })->name("profile");
 
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get("/users","UserController@index")->name('users.index');
+Route::get('/cargos', 'CargoController@getEstructura')->name('getEstructura');

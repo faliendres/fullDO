@@ -26,6 +26,7 @@ class CreateMaempresaTable extends Migration
                 $table->date('fecha_creacion')->nullable();
                 $table->integer('estado')->unsigned()->default(1);
                 $table->foreign('id_holding')->references('id')->on('ma_holding');
+                $table->timestamps();
         });
     }
 
