@@ -59,14 +59,19 @@ class User extends Authenticatable
         $query = (new static)->newQuery();
         $user = auth()->user();
         if ($user) {
-            if ($user->holding_id) {
+            /**
+             * $user->perfil
+             * 0: ROOT
+             * 1: Holding Admin
+             * 2: Empresa Admin
+             * 3: Gerencia Admin
+             */
+            if ($user->perfil > 0)
                 $query = $query->where("holding_id", $user->holding_id);
-                if ($user->empresa_id) {
-                    $query = $query->where("empresa_id", $user->empresa_id);
-                    if ($user->gerencia_id)
-                        $query = $query->where("gerencia_id", $user->gerencia_id);
-                }
-            }
+            if ($user->perfil > 1)
+                $query = $query->where("empresa_id", $user->empresa_id);
+            if ($user->perfil > 2)
+                $query = $query->where("gerencia_id", $user->gerencia_id);
         }
         return $query;
     }
