@@ -22,7 +22,10 @@ class CreateUsersTable extends Migration
             $table->string('rut', 12)->nullable();
             $table->string('password');
             $table->integer('perfil')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
             $table->integer('usuario_creacion')->nullable();
+            $table->integer('telefono')->nullable();
+            $table->string('foto', 256)->nullable();
             $table->integer('estado')->default(1);
             $table->unsignedInteger('gerencia_id')->nullable();
             $table->unsignedInteger('empresa_id')->nullable();
