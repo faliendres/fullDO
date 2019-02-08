@@ -45,4 +45,13 @@ class Cargo extends Model
 
     }
 
+    public static function query()
+    {
+        $query = (new static)->newQuery();
+        $user = auth()->user();
+        if($user && $user->perfil>2 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
+            $query=$query->where("id_gerencia",$user->gerencia_id);
+        return $query;
+    }
+
 }

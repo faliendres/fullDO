@@ -12,7 +12,7 @@ class Holding extends Model
     {
         $query = (new static)->newQuery();
         $user = auth()->user();
-        if ($user && $user->holding_id)
+        if ($user && $user->perfil > 0 &&$user->holding_id)
             $query = $query->where("id", $user->holding_id);
         return $query;
 

@@ -8,6 +8,9 @@ use App\User;
 
 class CargoController extends Controller
 {
+    protected $clazz = Cargo::class;
+    protected $resource ="cargos";
+
     public function getEstructura(){
     	$cargo = Cargo::where('id_jefatura',null)->first();
     	$result = $this->getArbol($cargo);

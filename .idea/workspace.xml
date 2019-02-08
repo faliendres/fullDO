@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/database/migrations/2019_02_06_145052_create_macargo_table.php" line="30" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="eebcbb09-2364-4823-9f0a-3c3befb52674" name="Default" comment="Faker Users">
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/field.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/partials/select.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/users/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list id="6103e08a-909f-409c-b72d-970e481d7efc" name="idea" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1.xml" afterDir="false" />
+    </list>
+    <list default="true" id="eebcbb09-2364-4823-9f0a-3c3befb52674" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/GerenciaController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/HoldingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Cargo.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cargo.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Empresa.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Empresa.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Gerencia.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Gerencia.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/helpers.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Holding.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Holding.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CargoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CargoController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/scss/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/scss/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_02_06_145052_create_macargo_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_02_06_145052_create_macargo_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/general.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/general.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partials/select.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/select.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/users/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/users/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -61,58 +69,45 @@
         <item name="fulldo@192.168.10.10" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="fulldo: schema" type="c314c289:MysqlImplModel$Schema" />
-        <item name="ma_holding: table" type="98d5ac3d:MysqlImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="fulldo@192.168.10.10" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="fulldo: schema" type="c314c289:MysqlImplModel$Schema" />
-        <item name="users: table" type="98d5ac3d:MysqlImplModel$Table" />
+        <item name="ma_gerencia: table" type="98d5ac3d:MysqlImplModel$Table" />
       </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="33" column="59" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="59" />
-              <folding>
-                <element signature="e#23#63#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-              <folding>
-                <element signature="e#40#53#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/users/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
+            <state relative-caret-position="272">
+              <caret line="86" column="29" lean-forward="true" selection-start-line="79" selection-start-column="28" selection-end-line="86" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/users/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+            <state relative-caret-position="105">
+              <caret line="127" column="46" selection-start-line="127" selection-start-column="46" selection-end-line="127" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gerencia.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Gerencia.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="58" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="14" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmpresaController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -120,26 +115,20 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="26" column="53" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+            <state relative-caret-position="435">
+              <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Handler.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
+      <file leaf-file-name="Controller.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserFactory.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="170">
+              <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+              <folding>
+                <element signature="e#40#68#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,6 +155,7 @@
       <find>Data</find>
       <find>bootstrap-data-table</find>
       <find>bootstrap-data-table-export</find>
+      <find>rr</find>
     </findStrings>
     <replaceStrings>
       <replace>mail</replace>
@@ -212,28 +202,39 @@
         <option value="$PROJECT_DIR$/database/seeds/MenusTableSeeder.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/database/migrations/2019_02_06_145109_create_menus_table.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/user/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Menu.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/main_menu.blade.php" />
         <option value="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" />
         <option value="$PROJECT_DIR$/app/Helpers/helpers.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/general.blade.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/app/Gerencia.php" />
-        <option value="$PROJECT_DIR$/app/Empresa.php" />
-        <option value="$PROJECT_DIR$/app/Holding.php" />
-        <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/EmpresaTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/GerenciaTableSeeder.php" />
-        <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeds/MenuTableSeeder.php" />
-        <option value="$PROJECT_DIR$/database/factories/UserFactory.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-        <option value="$PROJECT_DIR$/resources/views/users/index.blade.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/database/factories/UserFactory.php" />
+        <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/1861bfec-a193-4071-b4bf-2cf9a4b978f1/console.sql" />
+        <option value="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+        <option value="$PROJECT_DIR$/database/seeds/CargosTableSeeder.php" />
+        <option value="$PROJECT_DIR$/app/User.php" />
+        <option value="$PROJECT_DIR$/app/Empresa.php" />
+        <option value="$PROJECT_DIR$/app/Gerencia.php" />
+        <option value="$PROJECT_DIR$/app/Holding.php" />
+        <option value="$PROJECT_DIR$/app/Cargo.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/general.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/partials/select.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_02_06_145052_create_macargo_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php" />
+        <option value="$PROJECT_DIR$/resources/views/users/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/HoldingController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/CargoController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/GerenciaController.php" />
+        <option value="$PROJECT_DIR$/resources/views/users/create.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
       </list>
     </option>
   </component>
@@ -345,10 +346,10 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="-7" />
+    <option name="y" value="7" />
+    <option name="width" value="782" />
+    <option name="height" value="728" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -374,6 +375,29 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Exceptions" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="fulldo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fulldo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fulldo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fulldo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="factories" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fulldo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fulldo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="migrations" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="fulldo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fulldo" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="seeds" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -392,7 +416,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="index&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/users/index.blade.php&#10;userC&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Http/Controllers/UserController.php&#10;web&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/routes/web.php&#10;User&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/database/seeds/UserTableSeeder.php&#10;createUse&#9;null&#9;null&#10;app.&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/config/app.php&#10;user&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Http/Controllers/UserController.php&#10;tables-data&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/public/source/tables-data.html&#10;hel&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Helpers/helpers.php&#10;gen&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/layouts/general.blade.php&#10;Me&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Menu.php&#10;Menu&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Menu.php&#10;composer.j&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/composer.json&#10;menu&#9;null&#9;null&#10;2019_02_06_145109_create_menus_table&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/database/migrations/2019_02_06_145109_create_menus_table.php&#10;HomeC&#9;null&#9;null&#10;MD5HashProvider&#9;null&#9;null&#10;AuthMan&#9;null&#9;null&#10;.env&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/users/create.blade.php&#10;we&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/routes/web.php&#10;Gerenc&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Gerencia.php&#10;geren&#9;null&#9;null&#10;CargoC&#9;null&#9;null&#10;EmpresaC&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Http/Controllers/EmpresaController.php&#10;Hold&#9;null&#9;null&#10;UserC&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Http/Controllers/UserController.php&#10;in&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/users/index.blade.php&#10;index&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/users/index.blade.php&#10;emp&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Http/Controllers/EmpresaController.php&#10;User&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Http/Controllers/UserController.php&#10;web&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/routes/web.php&#10;Ca&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/database/migrations/2019_02_06_145052_create_macargo_table.php&#10;Gerencia&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Gerencia.php&#10;Cargo&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Cargo.php&#10;Gere&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Gerencia.php&#10;Empre&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Empresa.php&#10;cre&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/users/create.blade.php&#10;create&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/users/create.blade.php&#10;U&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/User.php&#10;Carg&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Cargo.php&#10;d&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/database/seeds/DatabaseSeeder.php&#10;USer&#9;null&#9;null&#10;i&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/users/index.blade.php&#10;use&#9;null&#9;null&#10;f&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/database/factories/UserFactory.php&#10;userC&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Http/Controllers/UserController.php&#10;createUse&#9;null&#9;null&#10;app.&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/config/app.php&#10;user&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Http/Controllers/UserController.php&#10;tables-data&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/public/source/tables-data.html&#10;hel&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Helpers/helpers.php&#10;gen&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/resources/views/layouts/general.blade.php&#10;Me&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Menu.php&#10;Menu&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/app/Menu.php&#10;composer.j&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/composer.json&#10;menu&#9;null&#9;null&#10;2019_02_06_145109_create_menus_table&#9;FILE&#9;file://C:/Users/FreddyAliendresHP1/Code/fulldo/database/migrations/2019_02_06_145109_create_menus_table.php&#10;HomeC&#9;null&#9;null&#10;MD5HashProvider&#9;null&#9;null&#10;AuthMan&#9;null&#9;null&#10;.env&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/profile.blade.php" />
@@ -548,11 +572,46 @@
       <option name="project" value="LOCAL" />
       <updated>1549489607319</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="ignore .idea">
+      <created>1549569739110</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1549569739110</updated>
+    </task>
+    <task id="LOCAL-00018" summary="ignore .idea">
+      <created>1549569747059</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1549569747059</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Fix Type and add trigger on update funtionary">
+      <created>1549579077805</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1549579077806</updated>
+    </task>
+    <task id="LOCAL-00020" summary="RRHH en otra gerencia">
+      <created>1549579150709</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1549579150709</updated>
+    </task>
+    <task id="LOCAL-00021" summary="nivel de acceso definido en el perfil&#10;* 0: ROOT&#10;* 1: Holding Admin&#10;* 2: Empresa Admin&#10;* 3: Gerencia Admin">
+      <created>1549580110006</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1549580110006</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37148000" />
+    <option name="totallyTimeSpent" value="59057000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -565,9 +624,10 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.7609682" weight="0.9248366" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24205749" />
+      <window_info anchor="bottom" id="Database Console" order="8" weight="0.32843137" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24205749" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.32980332" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -590,34 +650,33 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.23903178" side_tool="true" weight="0.9248366" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Database Console" order="8" weight="0.32843137" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
       <window_info anchor="bottom" id="Messages" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32843137" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" weight="0.6928105" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32843137" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32843137" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
+      <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.32980332" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.7609682" weight="0.9248366" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.23903178" side_tool="true" weight="0.9248366" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.6928105" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Messages" order="12" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -670,106 +729,13 @@
     <MESSAGE value="add relation fields" />
     <MESSAGE value="User" />
     <MESSAGE value="Faker Users" />
-    <option name="LAST_COMMIT_MESSAGE" value="Faker Users" />
+    <MESSAGE value="ignore .idea" />
+    <MESSAGE value="Fix Type and add trigger on update funtionary" />
+    <MESSAGE value="RRHH en otra gerencia" />
+    <MESSAGE value="nivel de acceso definido en el perfil&#10;* 0: ROOT&#10;* 1: Holding Admin&#10;* 2: Empresa Admin&#10;* 3: Gerencia Admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="nivel de acceso definido en el perfil&#10;* 0: ROOT&#10;* 1: Holding Admin&#10;* 2: Empresa Admin&#10;* 3: Gerencia Admin" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/field.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="15" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="26" column="53" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/logs/laravel-2019-02-07.log">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
-          <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/users/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-116">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_06_145109_create_menus_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/menus">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Routing/Route.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="681" column="7" selection-start-line="681" selection-start-column="7" selection-end-line="681" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Http/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="203" column="52" selection-start-line="203" selection-start-column="52" selection-end-line="203" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/main_menu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" />
     <entry file="file://$PROJECT_DIR$/app/Helpers/helpers.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -789,13 +755,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="224">
           <caret line="670" column="7" selection-start-line="670" selection-end-line="670" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/general.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-898">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
     </entry>
@@ -826,22 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="26" column="63" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="63" />
-          <caret line="27" column="62" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="62" />
-          <caret line="28" column="62" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Cargo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_06_144440_create_magerencia_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -849,23 +792,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Gerencia.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_05_215727_create_maempresa_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-119" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Empresa.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-        </state>
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/Core/Core.php">
@@ -882,20 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Holding.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="26" column="53" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/fzaninotto/faker/src/Faker/Generator.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
@@ -904,13 +819,6 @@
       </provider>
     </entry>
     <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/ma_funcionario">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/ma_gerencia">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -938,20 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/ma_empresa">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/ma_holding">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -966,27 +860,147 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/User.php">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="33" column="59" selection-start-line="33" selection-start-column="48" selection-end-line="33" selection-end-column="59" />
+        <state relative-caret-position="6">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/ma_gerencia">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9469">
+          <caret line="197" column="30" selection-start-line="197" selection-start-column="30" selection-end-line="197" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="29" column="23" lean-forward="true" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/CargosTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
           <folding>
-            <element signature="e#23#63#0#PHP" expanded="true" />
+            <element signature="e#7#38#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="30" column="9" lean-forward="true" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
+        <state relative-caret-position="578">
+          <caret line="41" column="1" lean-forward="true" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/factories/UserFactory.php">
+    <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="306">
+          <caret line="109" column="62" selection-start-line="109" selection-start-column="62" selection-end-line="109" selection-end-column="62" />
+          <folding>
+            <element signature="e#384#1824#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Holding.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Empresa.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Cargo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="52" column="45" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
+          <folding>
+            <element signature="e#151#260#0#PHP" />
+            <element signature="e#266#1218#0#PHP" />
+            <element signature="e#335#512#0#PHP" />
+            <element signature="e#352#511#2#PHP" />
+            <element signature="e#384#464#0#PHP" />
+            <element signature="e#384#500#0#PHP" />
+            <element signature="e#522#741#0#PHP" />
+            <element signature="e#534#740#2#PHP" />
+            <element signature="e#622#730#0#PHP" />
+            <element signature="e#752#977#0#PHP" />
+            <element signature="e#769#976#2#PHP" />
+            <element signature="e#801#863#0#PHP" />
+            <element signature="e#801#929#0#PHP" />
+            <element signature="e#801#965#0#PHP" />
+            <element signature="e#987#1210#0#PHP" />
+            <element signature="e#1003#1209#2#PHP" />
+            <element signature="e#1091#1199#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/general.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="734">
+          <caret line="110" selection-start-line="110" selection-end-line="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/partials/select.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_06_145052_create_macargo_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="31" column="88" lean-forward="true" selection-start-line="31" selection-start-column="88" selection-end-line="31" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/re_usuario_holding">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/ma_cargo">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -997,27 +1011,106 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle/src/DataTables.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/ma_empresa">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1861bfec-a193-4071-b4bf-2cf9a4b978f1/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" lean-forward="true" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="41" column="5" lean-forward="true" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="136">
+          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
           <folding>
-            <element signature="e#40#53#0#PHP" expanded="true" />
+            <element signature="e#40#54#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HoldingController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="e#40#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/CargoController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Gerencia.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="58" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="14" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/GerenciaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+          <folding>
+            <element signature="e#40#57#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/users/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="84" column="44" selection-start-line="84" selection-start-column="44" selection-end-line="84" selection-end-column="44" />
+        <state relative-caret-position="272">
+          <caret line="86" column="29" lean-forward="true" selection-start-line="79" selection-start-column="28" selection-end-line="86" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/resources/views/users/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        <state relative-caret-position="105">
+          <caret line="127" column="46" selection-start-line="127" selection-start-column="46" selection-end-line="127" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="64" column="28" selection-start-line="64" selection-start-column="28" selection-end-line="64" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
