@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -28,6 +29,19 @@ class UserController extends Controller
         $cargo->id_funcionario = $user->id;
         $cargo->update();
         return redirect()->route("users.index");
+    }
+
+    public function changepassword(Request $request)
+    {
+        $data = $request->only(['password','repassword'] );
+        $user = Auth::user();
+        $user = User::find($user->getAuthIdentifier());
+
+        $user->password = Hash::make($data['password']);
+        $user->password_changed_at = date('Y-m-d H:i:s');
+
+        return response()->json(['success' =>  $user->save()], 200);
+
     }
 
 }
