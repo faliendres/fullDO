@@ -12,18 +12,28 @@ if (!function_exists('menu')) {
 
 if (!function_exists('toOptions')) {
 
-    function toOptions(\Illuminate\Database\Eloquent\Builder $query, $key = "id", $value = "nombre", $selected = null)
+    function toOptions(\Illuminate\Database\Eloquent\Builder $query, $key = "id", $value = "nombre")
     {
-        $options = $query->get()->map(function ($item) use ($key, $value, $selected) {
+        $options = $query->get()->map(function ($item) use ($key, $value) {
             return
                 [
                     "text" => $item->$value,
-                    "selected" => ($item->$key == $selected),
                     "id" => $item->$key
                 ];
         });
-//        dd($options);
         return $options;
+    }
+}
+if (!function_exists('toOption')) {
+
+    function toOption($object, $key = "id", $value = "nombre")
+    {
+        if ($object)
+            return
+                [
+                    "text" => $object->$value,
+                    "id" => $object->$key
+                ];
     }
 }
 

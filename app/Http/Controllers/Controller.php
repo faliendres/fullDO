@@ -38,9 +38,12 @@ class Controller extends BaseController
 
     public function show($id, Request $request)
     {
-        $user = $this->clazz::find($id);
-        if ($user) {
-            return response()->json($user, 200);
+        $instance = $this->clazz::find($id);
+        $readonly=true;
+        if ($instance) {
+            if($request->ajax())
+                return response()->json($instance, 200);
+            return view("$this->resource.show",compact("instance","readonly"));
         }
         throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
     }
@@ -56,8 +59,7 @@ class Controller extends BaseController
 
     public function store(Request $request)
     {
-        $user = $this->clazz::create($request->all());
-
+        $this->clazz::create($request->all());
         return redirect()->route("$this->resource.index");
     }
 

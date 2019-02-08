@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/usuarios", "UserController@index")->name('users.index');
     Route::get("/usuarios/create", "UserController@create")->name('users.create');
     Route::get("/usuarios/{id}", "UserController@show")->name('users.show');
+    Route::put("/usuarios/{id}", "UserController@update")->name('users.update');
     Route::get("/usuarios/edit/{id}", "UserController@edit")->name('users.edit');
     Route::post("/usuarios", "UserController@store")->name('users.store');
 
@@ -36,6 +37,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/holdings", "HoldingController@index")->name('holdings.index');
     Route::get("/holdings/create", "HoldingController@create")->name('holdings.create');
     Route::get("/holdings/{id}", "HoldingController@show")->name('holdings.show');
+    Route::put("/holdings/{id}", "HoldingController@update")->name('holdings.update');
     Route::get("/holdings/edit/{id}", "HoldingController@edit")->name('holdings.edit');
     Route::post("/holdings", "HoldingController@store")->name('holdings.store');
 
@@ -43,6 +45,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/empresas", "EmpresaController@index")->name('empresas.index');
     Route::get("/empresas/create", "EmpresaController@create")->name('empresas.create');
     Route::get("/empresas/{id}", "EmpresaController@show")->name('empresas.show');
+    Route::put("/empresas/{id}", "EmpresaController@update")->name('empresas.update');
     Route::get("/empresas/edit/{id}", "EmpresaController@edit")->name('empresas.edit');
     Route::post("/empresas", "EmpresaController@store")->name('empresas.store');
 
@@ -50,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/gerencias", "GerenciaController@index")->name('gerencias.index');
     Route::get("/gerencias/create", "GerenciaController@create")->name('gerencias.create');
     Route::get("/gerencias/{id}", "GerenciaController@show")->name('gerencias.show');
+    Route::put("/gerencias/{id}", "GerenciaController@update")->name('gerencias.update');
     Route::get("/gerencias/edit/{id}", "GerenciaController@edit")->name('gerencias.edit');
     Route::post("/gerencias", "GerenciaController@store")->name('gerencias.store');
 
@@ -59,6 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/cargos", "CargoController@index")->name('cargos.index');
     Route::get("/cargos/create", "CargoController@create")->name('cargos.create');
     Route::get("/cargos/{id}", "CargoController@show")->name('cargos.show');
+    Route::put("/cargos/{id}", "CargoController@update")->name('cargos.update');
     Route::get("/cargos/edit/{id}", "CargoController@edit")->name('cargos.edit');
     Route::post("/cargos", "CargoController@store")->name('cargos.store');
 

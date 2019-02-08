@@ -12,7 +12,8 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
-    public $gerencia, $empresa, $holding;
+//    protected $with=["gerencia", "empresa", "holding", "cargo"];
+    public $gerencia, $empresa, $holding,$cargo;
 
 //    public $gerencia_id, $empresa_id, $holding_id;
 
@@ -82,7 +83,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'apellido', 'email', 'password',
+        'name', 'apellido', 'email', 'password',"foto",
         "perfil", "usuario_creacion", "estado", "rut",
         'gerencia_id', 'empresa_id', 'holding_id'];
 
@@ -90,6 +91,21 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cargo::class, "id_funcionario", "id");
     }
+    public function gerencia()
+    {
+        return $this->belongsTo(Gerencia::class, "gerencia_id", "id");
+    }
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class, "empresa_id", "id");
+    }
+
+    public function holding()
+    {
+        return $this->belongsTo(Holding::class, "holding_id", "id");
+    }
+
 
     public function autoload()
     {
