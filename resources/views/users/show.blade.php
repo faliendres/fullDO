@@ -55,7 +55,7 @@
                                 @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                 @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
                                 @include("partials.field",["name"=>"rut","title"=>"RUT"])
-                                @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil","stable"=>$user->cargo_id,"options"=>$perfiles])
+                                @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
                                 @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto"])
                             </div>
                         </div>

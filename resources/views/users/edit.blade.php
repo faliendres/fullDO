@@ -9,14 +9,14 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="box-title">Modificar Usuario</h4>
+                        <h4 class="box-title">Nuevo Usuario</h4>
                     </div>
                     <div class="row">
+
                         <div class="col-lg-12">
                             <div class="card-body">
-                                <form id="create_form" action="{{route("users.update")}}" method="POST">
+                                <form id="create_form" action="{{route("users.store")}}" method="POST">
                                     {{csrf_field()}}
-                                    @method("put")
                                     @php
                                         $user=auth()->user();
                                         $holdings=toOptions(\App\Holding::query());
@@ -34,15 +34,15 @@
                                             $cargos=collect([]);
                                         $perfiles=[];
                                         if(!isset($user->perfil))
-                                            $perfiles[]=["text"=>"ROOT","id"=>0];
+                                            $perfiles[]=["text"=>"Super Admin","id"=>0,"selected"=>false];
                                         if($user->perfil<1)
-                                            $perfiles[]=["text"=>"Global","id"=>1];
+                                            $perfiles[]=["text"=>"Holding","id"=>1,"selected"=>false];
                                         if($user->perfil<2)
-                                            $perfiles[]=["text"=>"Empresarial","id"=>2];
+                                            $perfiles[]=["text"=>"Empresarial","id"=>2,"selected"=>false];
                                         if($user->perfil<3)
-                                            $perfiles[]=["text"=>"Gerencial","id"=>3];
+                                            $perfiles[]=["text"=>"Gerencial","id"=>3,"selected"=>false];
                                         if($user->perfil<4)
-                                            $perfiles[]=["text"=>"Funcional","id"=>4];
+                                            $perfiles[]=["text"=>"Funcional","id"=>4,"selected"=>false];
                                     @endphp
 
                                     @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
@@ -54,7 +54,7 @@
                                     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
                                     @include("partials.field",["name"=>"rut","title"=>"RUT"])
-                                    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil","stable"=>$user->cargo_id,"options"=>$perfiles])
+                                    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fa fa-save"></i> Guardar
@@ -88,10 +88,10 @@
                 $.ajax({
                     url: route,
                     success: result => {
-                        let $select = $("#create_form select[name='empresa_id']");
+                        let $select=$("#create_form select[name='empresa_id']");
                         $select.empty();
                         $select.append(`<option value="" selected disabled>Seleccione por favor</option>`)
-                        result.data.forEach((item) => {
+                        result.data.forEach((item)=> {
                             $select.append(`<option value="${item.id}">${item.nombre}</option>`)
                         });
                     },
@@ -112,10 +112,10 @@
                 $.ajax({
                     url: route,
                     success: result => {
-                        let $select = $("#create_form select[name='gerencia_id']");
+                        let $select=$("#create_form select[name='gerencia_id']");
                         $select.empty();
                         $select.append(`<option value="" selected disabled>Seleccione por favor</option>`)
-                        result.data.forEach((item) => {
+                        result.data.forEach((item)=> {
                             $select.append(`<option value="${item.id}">${item.nombre}</option>`)
                         });
                     },
@@ -124,6 +124,7 @@
                 });
             });
             $("#create_form select[name='gerencia_id']").change(function (e) {
+                debugger;
                 let route = "{!! route("cargos.index",[
                 "filter"=>[
                     [
@@ -136,10 +137,10 @@
                 $.ajax({
                     url: route,
                     success: result => {
-                        let $select = $("#create_form select[name='cargo_id']");
+                        let $select=$("#create_form select[name='cargo_id']");
                         $select.empty();
                         $select.append(`<option value="" selected disabled>Seleccione por favor</option>`)
-                        result.data.forEach((item) => {
+                        result.data.forEach((item)=> {
                             $select.append(`<option value="${item.id}">${item.nombre}</option>`)
                         });
                     },

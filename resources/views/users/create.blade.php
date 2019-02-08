@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="box-title">Modificar Usuario</h4>
+                        <h4 class="box-title">Nuevo Usuario</h4>
                     </div>
                     <div class="row">
 
@@ -34,9 +34,9 @@
                                             $cargos=collect([]);
                                         $perfiles=[];
                                         if(!isset($user->perfil))
-                                            $perfiles[]=["text"=>"ROOT","id"=>0];
+                                            $perfiles[]=["text"=>"Super Admin","id"=>0];
                                         if($user->perfil<1)
-                                            $perfiles[]=["text"=>"Global","id"=>1];
+                                            $perfiles[]=["text"=>"Holding","id"=>1];
                                         if($user->perfil<2)
                                             $perfiles[]=["text"=>"Empresarial","id"=>2];
                                         if($user->perfil<3)
@@ -53,7 +53,7 @@
                                     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
                                     @include("partials.field",["required"=>true,"name"=>"rut","title"=>"RUT"])
-                                    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil","stable"=>$user->cargo_id,"options"=>$perfiles])
+                                    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
                                     @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto"])
                                     @include("partials.field",["required"=>true,"name"=>"password","title"=>"Contraseña",
                                     "placeholder"=>"123456","type"=>"password"])

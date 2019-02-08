@@ -50,6 +50,26 @@
 
 @section("content")
     <!--  All Content  -->
+    <div class="row" style="margin-bottom: 1em;">
+        <div class="col-md-4">
+            <label>Seleccione holding</label>
+            <select class="form-control" name="holdings" id="holdings">
+                <option>Seleccione...</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Seleccione empresa</label>
+            <select class="form-control" name="empresas" id="empresas" disabled>
+                <option>Seleccione...</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label>Seleccione gerencia</label>
+            <select class="form-control" name="gerencias" id="gerencias" disabled>
+                <option>Seleccione...</option>
+            </select>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div id="chart-container"></div>
@@ -64,6 +84,68 @@
     <script type="text/javascript" src="{{asset("OrgChart-master/demo/js/jquery.orgchart.js")}}"></script>
     <script type="text/javascript">
         jQuery(function () {
+
+            // LLenar los select
+            jQuery.ajax({
+                type: "GET",
+                url: "/holdings",
+                beforeSend: function () { 
+                    jQuery("#empresas").attr("disabled");
+                    jQuery("#gerencias").attr("disabled");
+                },
+                success: function (result) {
+                    let options = '';
+                    Object.values(result.data).forEach( k =>{
+                        options += `<option value="${k.id}">${k.nombre}</option>`;
+                    });
+                    jQuery("#holdings").append(options);
+                }
+            });
+
+            jQuery(document).on('change','#holdings',function(){
+                let holding = jQuery(this).find("option:selected").attr('value');
+                let route = "{{route("getEmpresasByHolding",["_id"])}}".replace("_id", holding);
+                jQuery.ajax({
+                    type: "GET",
+                    url: route,
+                    beforeSend: function () { 
+                        jQuery("#empresas").empty();
+                        jQuery("#empresas").attr("disabled");
+                        jQuery("#empresas").append(`<option>Seleccione...</option>`);
+                    },
+                    success: function (result) {
+                        let options = '';
+                        Object.keys(result).forEach( k =>{
+                            options += `<option value="${k}">${result[k]}</option>`;
+                        });
+                        jQuery("#empresas").append(options);
+                        jQuery("#empresas").removeAttr( "disabled" );
+                    }
+                });
+            });
+
+            jQuery(document).on('change','#empresas',function(){
+                let empresa = jQuery(this).find("option:selected").attr('value');
+                let route = "{{route("getGerenciasbyEmpresa",["_id"])}}".replace("_id", empresa);
+                jQuery.ajax({
+                    type: "GET",
+                    url: route,
+                    beforeSend: function () { 
+                        jQuery("#gerencias").empty();
+                        jQuery("#gerencias").attr("disabled");
+                        jQuery("#gerencias").append(`<option>Seleccione...</option>`);
+                    },
+                    success: function (result) {
+                        let options = '';
+                        Object.keys(result).forEach( k =>{
+                            options += `<option value="${k}">${result[k]}</option>`;
+                        });
+                        jQuery("#gerencias").append(options);
+                        jQuery("#gerencias").removeAttr( "disabled" );
+                    }
+                });
+            });
+
             let datasource;
             jQuery.ajax({
                 type: "GET",
@@ -90,41 +172,6 @@
                     });
                 }
             });
-            /*
-            var datasource = {
-                'avatar': 'admin.jpg',
-                'name': 'John Doe',
-                'title': 'Gerente General',
-                'office': 'Gerencia General',
-                'children': [
-                    {
-                        'avatar': '2.jpg',
-                        'name': 'John Smith',
-                        'title': 'Gerente Comercial',
-                        'office': 'Gerencia Comercial'
-                    },
-                    {
-                        'avatar': '3.jpg', 'name': 'John Neo', 'title': 'Gerente TI', 'office': 'TI',
-                        'children': [
-                            {'avatar': '4.jpg', 'name': 'John Hua', 'title': 'Ingeniero Experto', 'office': 'TI'},
-                            {'avatar': '5.jpg', 'name': 'John Hei', 'title': 'Ingeniero Experto', 'office': 'TI'}
-                        ]
-                    },
-                    {'avatar': '6.jpg', 'name': 'John Jie', 'title': 'Gerente Finanzas', 'office': 'Finanzas'},
-                    {'avatar': '64-1.jpg', 'name': 'John Li', 'title': 'Gerente RRHH', 'office': 'Recursos Humanos'},
-                    {
-                        'avatar': '64-2.jpg',
-                        'name': 'John Miao',
-                        'title': 'Gerente Administración',
-                        'office': 'Administración'
-                    },
-                    {'avatar': '1.jpg', 'name': 'John Lee', 'title': 'Gerente Riesgo', 'office': 'Riesgo'}
-                    
-                ]
-            };*/
-
-
-            
 
         });
     </script>

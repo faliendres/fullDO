@@ -32,7 +32,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get("/usuarios/edit/{id}", "UserController@edit")->name('users.edit');
     Route::post("/usuarios", "UserController@store")->name('users.store');
 
-
     Route::delete("/holdings/{id}", "HoldingController@destroy")->name('holdings.destroy');
     Route::get("/holdings", "HoldingController@index")->name('holdings.index');
     Route::get("/holdings/create", "HoldingController@create")->name('holdings.create');
@@ -40,6 +39,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put("/holdings/{id}", "HoldingController@update")->name('holdings.update');
     Route::get("/holdings/edit/{id}", "HoldingController@edit")->name('holdings.edit');
     Route::post("/holdings", "HoldingController@store")->name('holdings.store');
+    Route::get('/holdings/{holding}/empresas', 'HoldingController@getEmpresasByHolding')->name('getEmpresasByHolding');
 
     Route::delete("/empresas/{id}", "EmpresaController@destroy")->name('empresas.destroy');
     Route::get("/empresas", "EmpresaController@index")->name('empresas.index');
@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put("/empresas/{id}", "EmpresaController@update")->name('empresas.update');
     Route::get("/empresas/edit/{id}", "EmpresaController@edit")->name('empresas.edit');
     Route::post("/empresas", "EmpresaController@store")->name('empresas.store');
+    Route::get('/empresas/{empresa}/gerencias', 'EmpresaController@getGerenciasbyEmpresa')->name('getGerenciasbyEmpresa');
 
     Route::delete("/gerencias/{id}", "GerenciaController@destroy")->name('gerencias.destroy');
     Route::get("/gerencias", "GerenciaController@index")->name('gerencias.index');
@@ -66,7 +67,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put("/cargos/{id}", "CargoController@update")->name('cargos.update');
     Route::get("/cargos/edit/{id}", "CargoController@edit")->name('cargos.edit');
     Route::post("/cargos", "CargoController@store")->name('cargos.store');
-
-
-
 });
