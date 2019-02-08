@@ -50,7 +50,7 @@
 
 @section("content")
     <!--  All Content  -->
-    <div class="row" style="margin-bottom: 1em;">
+    <div class="row" style="margin-bottom: 1em;display:none;">
         <div class="col-md-4">
             <label>Seleccione holding</label>
             <select class="form-control" name="holdings" id="holdings">
