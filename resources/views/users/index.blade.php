@@ -2,11 +2,10 @@
 @section("index_scripts")
     <script type="text/javascript">
         var columns = [
-            {"data": "id", "title": "Id"},
+            {"data": "rut", "title": "Rut"},
             {"data": "name", "title": "Nombre"},
             {"data": "apellido", "title": "Apellido"},
             {"data": "email", "title": "Email"},
-            {"data": "perfil", "title": "Perfil"},
             {
                 "data": "id", "title": "Acciones",
                 "render": function (data, row) {

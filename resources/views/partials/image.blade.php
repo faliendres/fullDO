@@ -28,7 +28,11 @@
                 <input type="file" id="{{$auxId}}" name="{{$name}}_file"
                        {{($required??false)?"required":""}}
                        accept="image/*" class="form-control-file">
-                <small class="form-text text-muted">{{$help??""}}</small>
+                @if ($errors->has("$name"))
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first("$name") }}</strong>
+                </span>
+                @endif
             </div>
         </div>
     @endif

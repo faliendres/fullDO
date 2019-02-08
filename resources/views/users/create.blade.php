@@ -45,20 +45,20 @@
                                             $perfiles[]=["text"=>"Funcional","id"=>4];
                                     @endphp
 
-                                    @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
-                                    @include("partials.select",["required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas])
-                                    @include("partials.select",["required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias])
-                                    @include("partials.select",["required"=>true, "name"=>"cargo_id","title"=>"Cargo","stable"=>$cargos->count()==1,"options"=>$cargos])
-                                    @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
+                                    @include("partials.select",["name"=>"holding_id","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
+                                    @include("partials.select",["name"=>"empresa_id","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas])
+                                    @include("partials.select",["name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias])
+                                    @include("partials.select",["name"=>"cargo_id","title"=>"Cargo","stable"=>$cargos->count()==1,"options"=>$cargos])
+                                    @include("partials.field",["name"=>"name","title"=>"Nombre"])
                                     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
                                     @include("partials.field",["required"=>true,"name"=>"rut","title"=>"RUT"])
-                                    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
-                                    @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto"])
-                                    @include("partials.field",["required"=>true,"name"=>"password","title"=>"Contraseña",
+                                    @include("partials.select",["name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
+                                    @include("partials.image",["name"=>"foto","title"=>"Foto"])
+                                    @include("partials.field",["name"=>"password","title"=>"Contraseña",
                                     "placeholder"=>"123456","type"=>"password"])
                                     @if(!isset($readonly)||!$readonly)
-                                        @include("partials.field",["required"=>true,"name"=>"confirm.password","title"=>"Confirmar Contraseña",
+                                        @include("partials.field",["name"=>"password_confirmation","title"=>"Confirmar Contraseña",
                                         "placeholder"=>"123456","type"=>"password"])
                                         <div class="form-actions">
                                             <button type="submit" class="btn btn-primary">

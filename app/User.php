@@ -12,10 +12,7 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
-//    protected $with=["gerencia", "empresa", "holding", "cargo"];
-    public $gerencia, $empresa, $holding,$cargo;
-
-//    public $gerencia_id, $empresa_id, $holding_id;
+    public $gerencia, $empresa, $holding, $cargo;
 
     public static function boot()
     {
@@ -23,22 +20,9 @@ class User extends Authenticatable
 
         static::creating(function ($model) {
             $model->usuario_creacion = auth()->id();
-            if ($model->cargo)
-                $model->gerencia = $model->cargo->gerencia;
-            if ($model->gerencia) {
-                $model->gerencia_id = $model->gerencia->id;
-                $model->empresa = $model->cargo->gerencia->empresa;
-                if ($model->empresa) {
-                    $model->empresa_id = $model->empresa->id;
-                    $model->holding = $model->cargo->gerencia->empresa->holding;
-                    if ($model->holding)
-                        $model->holding_id = $model->holding->id;
-                }
-            }
         });
 
         static::updating(function ($model) {
-            $model->usuario_creacion = auth()->id();
             if ($model->cargo)
                 $model->gerencia = $model->cargo->gerencia;
             if ($model->gerencia) {
@@ -83,7 +67,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'apellido', 'email', 'password',"foto",
+        'name', 'apellido', 'email', 'password', "foto",
         "perfil", "usuario_creacion", "estado", "rut",
         'gerencia_id', 'empresa_id', 'holding_id'];
 
@@ -121,9 +105,9 @@ class User extends Authenticatable
     }
 
 
-
-    public static function find($id){
-        return User::query()->where("id",$id)->get()->first();
+    public static function find($id)
+    {
+        return User::query()->where("id", $id)->get()->first();
     }
 
     /**
