@@ -71,6 +71,11 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12 text-center">
+            <h3 class="nombre-empresa"></h3>       
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12 col-md-12">
             <div id="chart-container"></div>
         </div>
@@ -206,6 +211,24 @@
                         //'zoom': true
                         //'visibleLevel': 2
                     });
+                }
+            });
+            let url = "{{route("gerencias.show",["_id"])}}".replace("_id", 1);
+            jQuery.ajax({
+                type: "GET",
+                url: url,
+                beforeSend: function () { },
+                success: function (result) {
+                    url = "{{route("empresas.show",["_id"])}}".replace("_id", result.id_empresa);
+                    jQuery.ajax({
+                        type: "GET",
+                        url: url,
+                        beforeSend: function () { },
+                        success: function (response) {
+                            $(".nombre-empresa").html(response.nombre);
+                        }
+                    });
+
                 }
             });
 
