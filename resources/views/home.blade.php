@@ -104,9 +104,10 @@
 
             jQuery(document).on('change','#holdings',function(){
                 let holding = jQuery(this).find("option:selected").attr('value');
+                let route = "{{route("getEmpresasByHolding",["_id"])}}".replace("_id", holding);
                 jQuery.ajax({
                     type: "GET",
-                    url: "/holdings/" + holding + "/empresas",
+                    url: route,
                     beforeSend: function () { 
                         jQuery("#empresas").empty();
                         jQuery("#empresas").attr("disabled");
@@ -125,9 +126,10 @@
 
             jQuery(document).on('change','#empresas',function(){
                 let empresa = jQuery(this).find("option:selected").attr('value');
+                let route = "{{route("getGerenciasbyEmpresa",["_id"])}}".replace("_id", empresa);
                 jQuery.ajax({
                     type: "GET",
-                    url: "/empresas/" + empresa + "/gerencias",
+                    url: route,
                     beforeSend: function () { 
                         jQuery("#gerencias").empty();
                         jQuery("#gerencias").attr("disabled");
