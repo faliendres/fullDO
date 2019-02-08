@@ -32,4 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post("/users", "UserController@store")->name('users.store');
 
     Route::get('/cargos', 'CargoController@getEstructura')->name('getEstructura');
+    Route::get('/holdings', 'HoldingController@getHoldings')->name('getHoldings');
+    Route::get('/holdings/{holding}/empresas', 'HoldingController@getEmpresasByHolding')->name('getEmpresasByHolding');
+
+    Route::get('/empresas/{empresa}/gerencias', 'EmpresaController@getGerenciasbyEmpresa')->name('getGerenciasbyEmpresa');
 });

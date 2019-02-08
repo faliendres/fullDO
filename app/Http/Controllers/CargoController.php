@@ -14,7 +14,7 @@ class CargoController extends Controller
     	return response()->json($result, 200);
     }
 
-    public function getArbol($cargo,$father = null){
+    public function getArbol($cargo){
     	if(isset($cargo->id_funcionario)){
     		$func = User::where('id',$cargo->id_funcionario)->first();
     		$name = $func->nombre . ' ' . $func->apellido;
