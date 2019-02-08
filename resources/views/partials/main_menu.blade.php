@@ -1,8 +1,11 @@
 <nav class="navbar navbar-expand-sm navbar-default">
     <div id="main-menu" class="main-menu collapse navbar-collapse">
         <ul class="nav navbar-nav">
-
+            @php
+                $user=auth()->user();
+            @endphp
             @foreach(menu() as $item)
+                @if($item->title != 'Admin' || $user->perfil != 4)
                 @if($item->subItems->count())
                     <li class="menu-title">{{$item->title}}</li>
                     @foreach($item->subItems as $subItem)
@@ -27,6 +30,7 @@
                     <li class="">
                         <a href="{{$item->target()}}"><i class="menu-icon {{$item->icon }}"></i>{{$item->title}}</a>
                     </li>
+                @endif
                 @endif
             @endforeach
         </ul>

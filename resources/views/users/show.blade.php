@@ -32,9 +32,9 @@
                                         $cargos=collect([]);
                                     $perfiles=[];
                                     if(!isset($user->perfil))
-                                        $perfiles[]=["text"=>"ROOT","id"=>0,"selected"=>false];
+                                        $perfiles[]=["text"=>"Super Admin","id"=>0,"selected"=>false];
                                     if($user->perfil<1)
-                                        $perfiles[]=["text"=>"Global","id"=>1,"selected"=>false];
+                                        $perfiles[]=["text"=>"Holding","id"=>1,"selected"=>false];
                                     if($user->perfil<2)
                                         $perfiles[]=["text"=>"Empresarial","id"=>2,"selected"=>false];
                                     if($user->perfil<3)
@@ -50,7 +50,6 @@
                                     "required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias])
                                 @include("partials.select",["selected"=>toOptions(\App\Cargo::query()->where("id_funcionario",$instance->id)),
                                     "required"=>true, "name"=>"cargo_id","title"=>"Cargo","stable"=>$cargos->count()==1,"options"=>$cargos])
-                                @include("partials.field",["required"=>true,"name"=>"password","title"=>"Contraseña","type"=>"hidden"])
                                 @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
                                 @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                 @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
