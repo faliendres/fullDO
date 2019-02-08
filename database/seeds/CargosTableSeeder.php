@@ -18,7 +18,6 @@ class CargosTableSeeder extends Seeder
 					[	'nombre' => 'Gerente General',
 						'id_gerencia' => 1,
 						'area' => 'Gerencia General',
-						'id_funcionario' => 6,
 						'id_jefatura' => null,
 						'estado'=>1
 					],
@@ -31,14 +30,12 @@ class CargosTableSeeder extends Seeder
 					[	'nombre' => 'Gerente TI',
 						'id_gerencia' => 1,
 						'area' => 'TI',
-						'id_funcionario' => 2,
 						'id_jefatura' => 1,
 						'estado' => 1
 					],
 					[	'nombre' => 'Ingeniero Experto',
 						'id_gerencia' => 1,
 						'area' => 'TI',
-						'id_funcionario' => 4,
 						'id_jefatura' => 3,
 						'estado' => 1
 					],
@@ -57,13 +54,11 @@ class CargosTableSeeder extends Seeder
 					[	'nombre' => 'Gerente RRHH',
 						'id_gerencia' => 2,
 						'area' => 'Recursos Humanos',
-                        'id_funcionario' => 3,
                         'estado' => 1
 					],
 					[	'nombre' => 'Gerente Administración',
 						'id_gerencia' => 1,
 						'area' => 'Administración',
-						'id_funcionario' => 5,
 						'id_jefatura' => 1,
 						'estado' => 1
 					],

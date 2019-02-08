@@ -67,6 +67,8 @@ class User extends Authenticatable
              * 2: Empresa Admin
              * 3: Gerencia Admin
              */
+            if ($user->perfil)
+                $query = $query->where("perfil", '>=',$user->perfil);
             if ($user->perfil > 0)
                 $query = $query->where("holding_id", $user->holding_id);
             if ($user->perfil > 1)
