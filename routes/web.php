@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put("/usuarios/{id}", "UserController@update")->name('users.update');
     Route::get("/usuarios/edit/{id}", "UserController@edit")->name('users.edit');
     Route::post("/usuarios", "UserController@store")->name('users.store');
+    Route::post("/usuarios/changepassword", "UserController@changepassword")->name('users.changepassword');
 
     Route::delete("/holdings/{id}", "HoldingController@destroy")->name('holdings.destroy');
     Route::get("/holdings", "HoldingController@index")->name('holdings.index');
@@ -67,4 +68,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put("/cargos/{id}", "CargoController@update")->name('cargos.update');
     Route::get("/cargos/edit/{id}", "CargoController@edit")->name('cargos.edit');
     Route::post("/cargos", "CargoController@store")->name('cargos.store');
+
 });
