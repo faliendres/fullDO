@@ -20,7 +20,7 @@
         <div class="col-12 col-md-9">
             <select name="{{$name}}" id="{{$auxId}}" {{($required??false)?"required":""}} class="form-control-lg form-control">
                 @if(count($options)>1)
-                <option selected value="" disabled>Seleccione por favor</option>
+                    <option selected value="" disabled>Seleccione por favor</option>
                 @endif
                 @foreach($options as $option)
                     <option value="{{$option["id"]}}"
