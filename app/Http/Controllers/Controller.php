@@ -24,7 +24,7 @@ class Controller extends BaseController
             foreach ($f as $filter)
                 $query = $query->where($filter["field"], $filter["op"] ?? "=", $filter["value"]);
             if (!$request->get("draw", false))
-                return response()->json(["data" => []]);
+                return response()->json(["data" => $query->get()]);
             return (new \Yajra\DataTables\DataTables)->eloquent($query)
                 ->make(true);
         }

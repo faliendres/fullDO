@@ -124,7 +124,6 @@
                 });
             });
             $("#create_form select[name='gerencia_id']").change(function (e) {
-                debugger;
                 let route = "{!! route("cargos.index",[
                 "filter"=>[
                     [

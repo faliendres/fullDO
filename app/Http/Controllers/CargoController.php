@@ -12,7 +12,7 @@ class CargoController extends Controller
     protected $resource ="cargos";
 
     public function getEstructura(){
-    	$cargo = Cargo::where('id_jefatura',null)->first();
+    	$cargo = Cargo::query()->where('id_jefatura',null)->get()->first();
     	$result = $this->getArbol($cargo);
     	return response()->json($result, 200);
     }
