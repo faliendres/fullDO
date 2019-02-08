@@ -67,7 +67,7 @@
             let datasource;
             jQuery.ajax({
                 type: "GET",
-                url: "/cargos",
+                url: "{{route("getEstructura")}}",
                 beforeSend: function () { 
                 },
                 success: function (result) {
