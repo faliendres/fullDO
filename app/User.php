@@ -75,6 +75,8 @@ class User extends Authenticatable
                 $query = $query->where("empresa_id", $user->empresa_id);
             if ($user->perfil > 2)
                 $query = $query->where("gerencia_id", $user->gerencia_id);
+            if ($user->perfil > 3)
+                $query = $query->where("id", $user->id);
         }
         return $query;
     }
