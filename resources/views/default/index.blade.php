@@ -54,7 +54,7 @@
                 "ajax": route,
                 "columns": columns
             });
-            $(table).on("click", ".btn-danger", function (e) {
+            $table.on("click", ".btn-danger", function (e) {
                 let data = $(this).data("id");
                 let route = "{{route("users.destroy",["_id"])}}".replace("_id", data);
                 if (confirm("¿Esta seguro?")) {

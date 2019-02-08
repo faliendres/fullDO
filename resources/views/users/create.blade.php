@@ -15,8 +15,10 @@
 
                         <div class="col-lg-12">
                             <div class="card-body">
-                                <form id="create_form" action="{{route("users.store")}}" method="POST" enctype="multipart/form-data">
+                                <form id="create_form" action="{{route("users.store")}}" method="POST"
+                                      enctype="multipart/form-data">
                                     {{csrf_field()}}
+                                    <input type="hidden" id="validated">
                                     @php
                                         $user=auth()->user();
                                         $holdings=toOptions(\App\Holding::query());
@@ -81,7 +83,55 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#create_form select[name='holding_id']").change(function (e) {
+            let $form = $("#create_form");
+
+            let $validated = $form.find("#validated");
+            $form.on("submit", function (e) {
+                if ($validated.val())
+                    return true;
+                e.preventDefault();
+
+                let route = "{!! route("cargos.index",[
+                "filter"=>[
+                    [
+                        "field"=>"id",
+                        "op"=>"=",
+                        "value"=>"_id"
+                    ]
+                ]
+                ]) !!}".replace("_id", $(this).find("[name='cargo_id']").val());
+                $.ajax({
+                    url: route,
+                    success: result => {
+                        if (result.data.length && result.data[0].id_funcionario) {
+                            Swal.fire({
+                                title: 'Cargo ocupado!',
+                                text: "¿Seguro que desea reemplazarlo?",
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                cancelButtonText: 'Cancelar',
+                                confirmButtonText: 'Sí'
+                            }).then((result) => {
+                                if (result.value) {
+                                    $validated.val(1);
+                                    $form.trigger("submit");
+                                }
+                            });
+                        }
+                        else {
+                            $validated.val(1);
+                            $form.trigger("submit");
+                        }
+
+                    },
+                    error: response => {
+                    }
+                });
+            });
+
+            $form.find("select[name='holding_id']").change(function (e) {
                 let route = "{!! route("empresas.index",[
                 "filter"=>[
                     [
@@ -94,7 +144,7 @@
                 $.ajax({
                     url: route,
                     success: result => {
-                        let $select = $("#create_form select[name='empresa_id']");
+                        let $select = $form.find("select[name='empresa_id']");
                         $select.empty();
                         $select.append(`<option value="" selected disabled>Seleccione por favor</option>`)
                         result.data.forEach((item) => {
@@ -105,7 +155,7 @@
                     }
                 });
             });
-            $("#create_form select[name='empresa_id']").change(function (e) {
+            $form.find("select[name='empresa_id']").change(function (e) {
                 let route = "{!! route("gerencias.index",[
                 "filter"=>[
                     [
@@ -118,7 +168,7 @@
                 $.ajax({
                     url: route,
                     success: result => {
-                        let $select = $("#create_form select[name='gerencia_id']");
+                        let $select = $form.find("select[name='gerencia_id']");
                         $select.empty();
                         $select.append(`<option value="" selected disabled>Seleccione por favor</option>`)
                         result.data.forEach((item) => {
@@ -129,7 +179,7 @@
                     }
                 });
             });
-            $("#create_form select[name='gerencia_id']").change(function (e) {
+            $form.find("select[name='gerencia_id']").change(function (e) {
                 let route = "{!! route("cargos.index",[
                 "filter"=>[
                     [
@@ -153,6 +203,7 @@
                     }
                 });
             });
+
         });
     </script>
 
