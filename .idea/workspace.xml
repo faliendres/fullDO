@@ -4,17 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/database/migrations/2019_02_06_145052_create_macargo_table.php" line="30" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eebcbb09-2364-4823-9f0a-3c3befb52674" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/general.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/general.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
     <list id="6103e08a-909f-409c-b72d-970e481d7efc" name="idea" comment="" />
+    <list default="true" id="eebcbb09-2364-4823-9f0a-3c3befb52674" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +60,7 @@
       <file leaf-file-name="Controller.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="561">
               <caret line="38" selection-start-line="38" selection-end-line="49" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
@@ -79,11 +72,12 @@
       <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="118" column="24" lean-forward="true" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+            <state relative-caret-position="284">
+              <caret line="137" column="17" lean-forward="true" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
               <folding>
-                <element signature="e#2435#2455#0#HTML" expanded="true" />
-                <element signature="e#2591#2598#1#HTML" expanded="true" />
+                <element signature="e#2436#2456#0#HTML" expanded="true" />
+                <element signature="e#2585#2592#1#HTML" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,8 +95,8 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="40" column="57" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="57" />
+            <state relative-caret-position="493">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
               <folding>
                 <element signature="e#40#54#0#PHP" expanded="true" />
               </folding>
@@ -113,20 +107,10 @@
       <file leaf-file-name="UserTableSeeder.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="27" column="131" selection-start-line="27" selection-start-column="131" selection-end-line="27" selection-end-column="131" />
+            <state relative-caret-position="408">
+              <caret line="27" column="130" selection-start-line="27" selection-start-column="130" selection-end-line="27" selection-end-column="130" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MenuTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/MenuTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="HoldingTableSeeder.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/seeds/HoldingTableSeeder.php">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -177,7 +161,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="spatie" />
+        <entry key="$PROJECT_DIR$" value="Change-Password-Validation" />
       </map>
     </option>
     <option name="RESET_MODE" value="HARD" />
@@ -398,15 +382,15 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/resources/views/profile.blade.php" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\FreddyAliendres\Homestead\Code\fullDO\resources\views" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\FreddyAliendresHP1\Code\fulldo\resources\views\partials" />
       <recent name="C:\Users\FreddyAliendresHP1\Code\fulldo\resources\views\users" />
       <recent name="C:\Users\FreddyAliendresHP1\Code\fulldo\resources\views" />
       <recent name="C:\Users\FreddyAliendresHP1\Code\fulldo\app" />
       <recent name="C:\Users\FreddyAliendresHP1\Code\fulldo\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\FreddyAliendres\Homestead\Code\fullDO\resources\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -618,24 +602,31 @@
       <option name="project" value="LOCAL" />
       <updated>1549640536262</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Merge branches 'Change-Password-Validation' and 'master' of https://github.com/faliendres/fullDO&#10;&#10;# Conflicts:&#10;#&#9;database/seeds/UserTableSeeder.php">
+      <created>1549659484561</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1549659484561</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84069000" />
+    <option name="totallyTimeSpent" value="84501000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="1382" height="744" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.23903178" side_tool="true" weight="0.9248366" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.6914191" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.7609682" weight="0.9240924" />
-      <window_info active="true" anchor="bottom" id="Database Console" order="8" visible="true" weight="0.32838285" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2647504" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
@@ -663,6 +654,8 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.23903178" side_tool="true" weight="0.9248366" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Database Console" order="8" visible="true" weight="0.32838285" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.7609682" weight="0.9248366" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout>
@@ -671,25 +664,25 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="3" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.6928105" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32843137" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="0" weight="0.32843137" />
       <window_info active="true" anchor="right" id="Database" order="3" visible="true" weight="0.32980332" />
+      <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.7609682" weight="0.9248366" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.23903178" side_tool="true" weight="0.9248366" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.6928105" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Messages" order="13" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26096824" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -761,9 +754,70 @@
     <MESSAGE value="fix organigrama" />
     <MESSAGE value="new password" />
     <MESSAGE value="Show and create with image" />
-    <option name="LAST_COMMIT_MESSAGE" value="Show and create with image" />
+    <MESSAGE value="Merge branches 'Change-Password-Validation' and 'master' of https://github.com/faliendres/fullDO&#10;&#10;# Conflicts:&#10;#&#9;database/seeds/UserTableSeeder.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branches 'Change-Password-Validation' and 'master' of https://github.com/faliendres/fullDO&#10;&#10;# Conflicts:&#10;#&#9;database/seeds/UserTableSeeder.php" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/resources/views/users/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="59" column="34" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/users/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="81" column="35" lean-forward="true" selection-start-line="81" selection-start-column="35" selection-end-line="81" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://1861bfec-a193-4071-b4bf-2cf9a4b978f1/schema/fulldo/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#54#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="27" column="130" selection-start-line="27" selection-start-column="130" selection-end-line="27" selection-end-column="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" selection-start-line="38" selection-end-line="49" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="82" column="24" lean-forward="true" selection-start-line="82" selection-start-column="24" selection-end-line="82" selection-end-column="24" />
+          <folding>
+            <element signature="e#2436#2456#0#HTML" expanded="true" />
+            <element signature="e#2585#2592#1#HTML" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_06_145052_create_macargo_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -940,9 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_06_145109_create_menus_table.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_08_175224_add_password_changeddate_user_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -956,9 +1007,6 @@
           <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_02_05_202400_create_permission_tables.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -985,9 +1033,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="e#40#57#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -995,9 +1040,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3638" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmpresaController.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -1015,7 +1057,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
+        <state relative-caret-position="561">
           <caret line="38" selection-start-line="38" selection-end-line="49" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
@@ -1023,17 +1065,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/changepassword.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" lean-forward="true" selection-start-line="1" selection-start-column="4" selection-end-line="34" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#394#401#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/changepassword.blade.php" />
     <entry file="file://$PROJECT_DIR$/app/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1122">
@@ -1048,12 +1080,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/console.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/MenuTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/EmpresaTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1061,16 +1087,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/GerenciaTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/HoldingTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="40" column="57" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="57" />
+        <state relative-caret-position="493">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
           <folding>
             <element signature="e#40#54#0#PHP" expanded="true" />
           </folding>
@@ -1079,8 +1099,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="27" column="131" selection-start-line="27" selection-start-column="131" selection-end-line="27" selection-end-column="131" />
+        <state relative-caret-position="408">
+          <caret line="27" column="130" selection-start-line="27" selection-start-column="130" selection-end-line="27" selection-end-column="130" />
         </state>
       </provider>
     </entry>
@@ -1093,11 +1113,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="118" column="24" lean-forward="true" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+        <state relative-caret-position="284">
+          <caret line="137" column="17" lean-forward="true" selection-start-line="137" selection-start-column="17" selection-end-line="137" selection-end-column="17" />
           <folding>
-            <element signature="e#2435#2455#0#HTML" expanded="true" />
-            <element signature="e#2591#2598#1#HTML" expanded="true" />
+            <element signature="e#2436#2456#0#HTML" expanded="true" />
+            <element signature="e#2585#2592#1#HTML" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
