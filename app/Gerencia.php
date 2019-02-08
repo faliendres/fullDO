@@ -11,8 +11,11 @@ class Gerencia extends Model
     {
         $query= (new static)->newQuery();
         $user=auth()->user();
-        if($user && $user->holding_id && $user->empresa_id && $user->gerencia_id)
+        if($user && $user->perfil>2 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
             $query=$query->where("id",$user->gerencia_id);
         return $query;
+    }
+    public function empresa(){
+        return $this->belongsTo(Empresa::class,"id_empresa","id");
     }
 }

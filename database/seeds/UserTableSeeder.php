@@ -38,10 +38,5 @@ class UserTableSeeder extends Seeder
             ));
         }
 
-        // 35 USUARIOS ALEATORIOS
-        $users = factory(User::class,35)->make();
-        foreach ($users as $user) {
-            $user->save();
-        }
     }
 }

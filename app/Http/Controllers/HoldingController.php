@@ -8,6 +8,9 @@ use App\Empresa;
 
 class HoldingController extends Controller
 {
+    protected $clazz = Holding::class;
+    protected $resource ="holdings";
+    
     public function getHoldings(){
     	$allHoldings = Holding::get();
     	$result = array();

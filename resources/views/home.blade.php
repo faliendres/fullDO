@@ -95,8 +95,8 @@
                 },
                 success: function (result) {
                     let options = '';
-                    Object.keys(result).forEach( k =>{
-                        options += `<option value="${k}">${result[k]}</option>`;
+                    Object.values(result.data).forEach( k =>{
+                        options += `<option value="${k.id}">${k.nombre}</option>`;
                     });
                     jQuery("#holdings").append(options);
                 }
@@ -147,7 +147,7 @@
             let datasource;
             jQuery.ajax({
                 type: "GET",
-                url: "/cargos",
+                url: "{{route("getEstructura")}}",
                 beforeSend: function () { 
                 },
                 success: function (result) {

@@ -16,6 +16,7 @@ class MenuTableSeeder extends Seeder
         Menu::create( [
             "title"=>"Organigrama",
             "route"=>"home",
+            "icon"=>"fa fa-sitemap",
             "order"=>0
         ]);
         $admin=Menu::create( [
@@ -25,6 +26,7 @@ class MenuTableSeeder extends Seeder
         $users=Menu::create( [
             "parent_id"=>$admin->id,
             "title"=>"Usuarios",
+            "icon"=>"fa fa-users",
             "order"=>0
         ]);
         Menu::create( [

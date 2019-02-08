@@ -20,7 +20,7 @@ class EmpresaTableSeeder extends Seeder
         foreach (range(1,3) as $index) {
             $holding_id = $faker->randomElement($holding);
             DB::table('ma_empresa')->insert([
-                'nombre' => $faker->company,
+                'nombre' => "Empresa ".$faker->company,
                 'rut' => $faker->numerify("##########"),
                 'descripcion' => $faker->paragraph(),
                 'logo' => $faker->imageUrl(),
