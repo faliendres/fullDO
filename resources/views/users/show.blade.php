@@ -34,9 +34,9 @@
                                             $cargos=collect([]);
                                         $perfiles=[];
                                         if(!isset($user->perfil))
-                                            $perfiles[]=["text"=>"ROOT","id"=>0,"selected"=>false];
+                                            $perfiles[]=["text"=>"Super Admin","id"=>0,"selected"=>false];
                                         if($user->perfil<1)
-                                            $perfiles[]=["text"=>"Global","id"=>1,"selected"=>false];
+                                            $perfiles[]=["text"=>"Holding","id"=>1,"selected"=>false];
                                         if($user->perfil<2)
                                             $perfiles[]=["text"=>"Empresarial","id"=>2,"selected"=>false];
                                         if($user->perfil<3)
@@ -54,7 +54,7 @@
                                     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
                                     @include("partials.field",["name"=>"rut","title"=>"RUT"])
-                                    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil","stable"=>$user->cargo_id,"options"=>$perfiles])
+                                    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fa fa-save"></i> Guardar
