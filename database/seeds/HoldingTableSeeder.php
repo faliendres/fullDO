@@ -22,7 +22,6 @@ class HoldingTableSeeder extends Seeder
                 'descripcion' => $faker->paragraph(),
                 'logo' => $faker->imageUrl(),
                 'color' => $faker->colorName,
-                'fecha_creacion' => $faker->dateTime(),
             ]);
         }
 

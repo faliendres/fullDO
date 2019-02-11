@@ -28,7 +28,8 @@ class Controller extends BaseController
             return (new \Yajra\DataTables\DataTables)->eloquent($query)
                 ->make(true);
         }
-        return view("$this->resource.index");
+        $resource=$this->resource;
+        return view("$this->resource.index",compact("resource"));
     }
 
     public function create(Request $request)
