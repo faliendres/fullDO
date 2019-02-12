@@ -22,18 +22,18 @@
                     let show = "{{route("holdings.show",["_id"])}}".replace("_id", data);
                     let edit = "{{route("holdings.edit",["_id"])}}".replace("_id", data);
                     return `
-                    <div class="btn-group" style="display:none;">
-    <a class="btn btn-primary" data-id="${data}" href="${show}">
-        <i class="fa fa-search"></i>
-    </a>
-    <a class="btn btn-warning white-color" data-id="${data}" href="${edit}">
-        <i class="fa fa-edit"></i>
-    </a>
-    <button class="btn btn-danger" data-id="${data}">
-        <i class="fa fa-times"></i>
-    </button>
-</div>
-`;
+                    <div class="btn-group" >
+                    <a class="btn btn-primary" data-id="${data}" href="${show}">
+                        <i class="fa fa-search"></i>
+                    </a>
+                    <a style="display:none;" class="btn btn-warning white-color" data-id="${data}" href="${edit}">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <button style="display:none;" class="btn btn-danger" data-id="${data}">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                `;
                 }
             },
         ];

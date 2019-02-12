@@ -2,6 +2,11 @@
     $auxId=uniqid($name);
     if(!isset($value)||!$value)
         $value=$instance->$name??"";
+    if(!isset($folder))
+        $folder='avatar';
+    $imagesrc = "/images/$folder/$value";
+    if (substr($value, 0, 4 ) === "http")
+        $imagesrc=$value;
 @endphp
 @if(isset($readonly)&&$readonly)
     <div class="row form-group">
@@ -11,7 +16,7 @@
         <div class="col-12 col-md-9">
             <div class="col-md-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{asset("/images/avatar/$value")}}" id="{{$auxId}}" alt="foto" >
+                    <img class="card-img-top" src="{{asset($imagesrc)}}" id="{{$auxId}}" alt="foto" >
                 </div>
             </div>
         </div>

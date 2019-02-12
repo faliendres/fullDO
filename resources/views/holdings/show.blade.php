@@ -3,16 +3,14 @@
 @section("content")
 
     <div class="animated fadeIn">
-
         <!--  Traffic  -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="box-title">Mostrar Usuario</h4>
+                        <h4 class="box-title">Mostrar Holding</h4>
                     </div>
                     <div class="row">
-
                         <div class="col-lg-12">
                             <div class="card-body">
                                 @php
@@ -43,19 +41,11 @@
                                         $perfiles[]=["text"=>"Funcional","id"=>4,"selected"=>false];
                                 @endphp
 
-                                @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
-                                @include("partials.select",["selected"=>toOptions(\App\Empresa::query()->where("id",$instance->empresa_id)),
-                                    "required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas])
-                                @include("partials.select",["selected"=>toOptions(\App\Gerencia::query()->where("id",$instance->gerencia_id)),
-                                    "required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias])
-                                @include("partials.select",["selected"=>toOptions(\App\Cargo::query()->where("id_funcionario",$instance->id)),
-                                    "required"=>true, "name"=>"cargo_id","title"=>"Cargo","stable"=>$cargos->count()==1,"options"=>$cargos])
-                                @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
-                                @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
-                                @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
-                                @include("partials.field",["name"=>"rut","title"=>"RUT"])
-                                @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
-                                @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto"])
+                                @include("partials.field",["required"=>true,"name"=>"nombre","title"=>"Nombre"])
+
+                                @include("partials.field",["name"=>"descripcion","title"=>"Descripcion"])
+
+                                @include("partials.image",["required"=>true, "name"=>"logo","title"=>"Logo","folder"=>"holdings"])
                             </div>
                         </div>
                     </div> <!-- /.row -->
