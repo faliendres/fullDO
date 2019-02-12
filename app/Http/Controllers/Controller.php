@@ -80,6 +80,7 @@ class Controller extends BaseController
 
     public function update($id, Request $request)
     {
+        $this->uploadFile($request);
         $instance = $this->clazz::find($id);
         if ($instance) {
             $data=$request->except(["_token","_method"]);

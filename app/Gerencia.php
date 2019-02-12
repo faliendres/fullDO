@@ -8,6 +8,8 @@ class Gerencia extends Model
 {
     protected $table="ma_gerencia";
     protected $with=["empresa"];
+
+    protected $fillable=["nombre","descripcion","color","id_empresa"];
     public static function query()
     {
         $query= (new static)->newQuery();
