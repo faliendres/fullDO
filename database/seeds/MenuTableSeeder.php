@@ -35,6 +35,18 @@ class MenuTableSeeder extends Seeder
             "route"=>"users.index",
             "order"=>0
         ]);
+        $holdings=Menu::create( [
+            "parent_id"=>$admin->id,
+            "title"=>"Holdings",
+            "icon"=>"fa fa-university",
+            "order"=>0
+        ]);
+        Menu::create( [
+            "parent_id"=>$holdings->id,
+            "title"=>"Listado",
+            "route"=>"holdings.index",
+            "order"=>0
+        ]);
 
     }
 }
