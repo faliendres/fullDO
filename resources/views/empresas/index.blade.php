@@ -1,7 +1,7 @@
 @extends("default.index")
 @section("index_scripts")
     <script type="text/javascript">
-        var base_logos="{{asset("/$resource")}}"
+        var base_logos="{{image_asset($resource)}}";
         var columns = [
             {
                 "data": "logo",
@@ -9,9 +9,9 @@
                     if(!data)
                         return "";
                     if (!data.startsWith("http")){
-                        data=base_logos+"/"+base_logos;
+                        data=base_logos+"/"+data;
                     }
-                    return `<img class="rounded-circle" style="width:85px;height:85px;" alt="log" src="${data}">`;
+                    return `<img class="rounded-circle" style="width:85px;height:85px;" alt="logo" src="${data}">`;
                 }
             },
             {"data": "rut", "title": "RUT"},

@@ -7,7 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Empresa extends Model
 {
     protected $table = "ma_empresa";
-    protected $with=["holding"];
+    protected $fillable = ["rut",
+        "nombre",
+        "descripcion",
+        "color",
+        "desde",
+        "hasta",
+        "logo",
+        "id_holding"];
+    protected $with = ["holding"];
     public static function query()
     {
         $query = (new static)->newQuery();

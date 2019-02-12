@@ -48,7 +48,7 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'avatar' => [
+        'users' => [
             'driver' => 'local',
             'root' => public_path('images/avatar'),
             'url' => env('APP_URL').'/images/avatar',

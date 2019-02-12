@@ -7,6 +7,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class Controller extends BaseController
@@ -15,6 +17,23 @@ class Controller extends BaseController
 
     protected $clazz;
     protected $resource;
+
+
+    /**
+     * Execute an action on the controller.
+     *
+     * @param  string  $method
+     * @param  array   $parameters
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function callAction($method, $parameters)
+    {
+        $response=call_user_func_array([$this, $method], $parameters);
+        if($response instanceof View)
+            return $response->with(["resource"=>$this->resource]);
+        return $response;
+    }
+
 
     public function index(Request $request)
     {
@@ -28,8 +47,7 @@ class Controller extends BaseController
             return (new \Yajra\DataTables\DataTables)->eloquent($query)
                 ->make(true);
         }
-        $resource=$this->resource;
-        return view("$this->resource.index",compact("resource"));
+        return view("$this->resource.index");
     }
 
     public function create(Request $request)
@@ -49,26 +67,58 @@ class Controller extends BaseController
         throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
     }
 
-    public function edit($user, Request $request)
+    public function edit($id, Request $request)
     {
-        $user = $this->clazz::find($user);
-        if ($user) {
-            return response()->json($user, 200);
+        $instance = $this->clazz::find($id);
+        if ($instance) {
+            if($request->ajax())
+                return response()->json($instance, 200);
+            return view("$this->resource.edit",compact("instance"));
+        }
+        throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
+    }
+
+    public function update($id, Request $request)
+    {
+        $instance = $this->clazz::find($id);
+        if ($instance) {
+            $data=$request->except(["_token","_method"]);
+            foreach ($data as $field=>$value)
+            if($instance->$field!=$value)
+                $instance->$field=$value;
+            $instance->update();
+            if($request->ajax())
+                return response()->json($instance, 200);
+            return redirect()->route("$this->resource.show",["id"=>$instance->id]);
         }
         throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
     }
 
     public function store(Request $request)
     {
-        $this->clazz::create($request->all());
+        $this->uploadFile($request);
+        $this->clazz::create($request->except(["_token"]));
         return redirect()->route("$this->resource.index");
     }
 
-    public function destroy($user, Request $request)
+    protected function uploadFile(Request &$request){
+        $files=$request->files;
+        foreach ($files as $name=>$nameF){
+            $file=$request->file($name);
+            if ($file) {
+                $foto = uniqid() . "." . $file->extension();
+                Storage::disk($this->resource)->put($foto, $file->get());
+                $request->merge([str_replace("_file","",$name) => $foto]);
+            }
+        }
+    }
+
+
+    public function destroy($id, Request $request)
     {
-        $user = $this->clazz::find($user);
-        if ($user && $user->id !== auth()->user()->id) {
-            $user->delete();
+        $id = $this->clazz::find($id);
+        if ($id ) {
+            $id->delete();
             return response()->json([], 204);
         }
         throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));

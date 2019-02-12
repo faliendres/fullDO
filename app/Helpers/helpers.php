@@ -39,8 +39,11 @@ if (!function_exists('toOption')) {
 
 if (!function_exists('image_asset')) {
 
-    function image_asset($type = "avatar", $file = "")
+    function image_asset($type = "users", $file = "")
     {
+        if (substr($file, 0, 4 ) === "http")
+            return $file;
+
         $base = config("filesystems.disks.$type.url");
         if (!$file)
             return $base;

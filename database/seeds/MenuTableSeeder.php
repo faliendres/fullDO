@@ -51,7 +51,7 @@ class MenuTableSeeder extends Seeder
             "route" => "holdings.index",
             "order" => 0
         ]);
-        $holdings = Menu::create([
+        $empresas = Menu::create([
             "parent_id" => $admin->id,
             "title" => "Empresas",
             "permissions" => 1,
@@ -59,22 +59,35 @@ class MenuTableSeeder extends Seeder
             "order" => 2
         ]);
         Menu::create([
-            "parent_id" => $holdings->id,
+            "parent_id" => $empresas->id,
             "title" => "Listado",
             "route" => "empresas.index",
             "order" => 0
         ]);
-        $holdings = Menu::create([
+        $gerencias = Menu::create([
             "parent_id" => $admin->id,
             "title" => "Gerencias",
-            "permissions" => 1,
+            "permissions" => 2,
             "icon" => "fa fa-group",
             "order" => 2
         ]);
         Menu::create([
-            "parent_id" => $holdings->id,
+            "parent_id" => $gerencias->id,
             "title" => "Listado",
             "route" => "gerencias.index",
+            "order" => 0
+        ]);
+        $cargos = Menu::create([
+            "parent_id" => $admin->id,
+            "title" => "Cargos",
+            "permissions" => 3,
+            "icon" => "fa fa-laptop",
+            "order" => 3
+        ]);
+        Menu::create([
+            "parent_id" => $cargos->id,
+            "title" => "Listado",
+            "route" => "cargos.index",
             "order" => 0
         ]);
 
