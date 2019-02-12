@@ -15,22 +15,20 @@ class EmpresaTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        $holding = [1,2,3];
-
-        foreach (range(1,3) as $index) {
-            $holding_id = $faker->randomElement($holding);
-            DB::table('ma_empresa')->insert([
-                'nombre' => "Empresa ".$faker->company,
-                'rut' => $faker->numerify("##########"),
-                'descripcion' => $faker->paragraph(),
-                'logo' => $faker->imageUrl(),
-                'color' => $faker->colorName,
-                'fecha_creacion' => $faker->dateTime(),
-                'desde' => $faker->dateTime(),
-                'hasta' => $faker->dateTime(),
-                'id_holding' => $holding_id,
-            ]);
-        }
-
+        for($i=1; $i<3; $i++) {
+            foreach (range(1,3) as $index) {
+                DB::table('ma_empresa')->insert([
+                    'nombre' => "Empresa ".$faker->company,
+                    'rut' => $faker->numerify("##########"),
+                    'descripcion' => $faker->paragraph(),
+                    'logo' => $faker->imageUrl(),
+                    'color' => $faker->colorName,
+                    'fecha_creacion' => $faker->dateTime(),
+                    'desde' => $faker->dateTime(),
+                    'hasta' => $faker->dateTime(),
+                    'id_holding' => $i,
+                ]);
+            }
+        }       
     }
 }

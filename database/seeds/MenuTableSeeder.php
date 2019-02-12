@@ -16,16 +16,19 @@ class MenuTableSeeder extends Seeder
         Menu::create( [
             "title"=>"Organigrama",
             "route"=>"home",
+            "permissions"=>4,
             "icon"=>"fa fa-sitemap",
             "order"=>0
         ]);
         $admin=Menu::create( [
             "title"=>"Admin",
+            "permissions"=>3,
             "order"=>1
         ]);
         $users=Menu::create( [
             "parent_id"=>$admin->id,
             "title"=>"Usuarios",
+            "permissions"=>3,
             "icon"=>"fa fa-users",
             "order"=>0
         ]);
@@ -38,6 +41,7 @@ class MenuTableSeeder extends Seeder
         $holdings=Menu::create( [
             "parent_id"=>$admin->id,
             "title"=>"Holdings",
+            "permissions"=>0,
             "icon"=>"fa fa-university",
             "order"=>0
         ]);

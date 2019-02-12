@@ -14,66 +14,63 @@ class CargosTableSeeder extends Seeder
     public function run()
     {	
 		DB::table('ma_cargo')->truncate();
-		$cargos = [
+		for($i=1; $i<2; $i++) {
+			$cargos = [
 					[	'nombre' => 'Gerente General',
-						'id_gerencia' => 1,
+						'id_gerencia' => $i,
 						'area' => 'Gerencia General',
 						'id_jefatura' => null,
 						'estado'=>1
 					],
 					[	'nombre' => 'Gerente Comercial',
-						'id_gerencia' => 1,
+						'id_gerencia' => $i,
 						'area' => 'Gerencia Comercial',
 						'id_jefatura' => 1,
 						'estado' => 1
 					],
 					[	'nombre' => 'Gerente TI',
-						'id_gerencia' => 1,
+						'id_gerencia' => $i,
 						'area' => 'TI',
 						'id_jefatura' => 1,
 						'estado' => 1
 					],
 					[	'nombre' => 'Ingeniero Experto',
-						'id_gerencia' => 1,
+						'id_gerencia' => $i,
 						'area' => 'TI',
 						'id_jefatura' => 3,
 						'estado' => 1
 					],
 					[	'nombre' => 'Ingeniero Experto II',
-						'id_gerencia' => 1,
+						'id_gerencia' => $i,
 						'area' => 'TI',
 						'id_jefatura' => 3,
 						'estado' => 1
 					],
 					[	'nombre' => 'Gerente Finanzas',
-						'id_gerencia' => 1,
+						'id_gerencia' => $i,
 						'area' => 'Finanzas',
 						'id_jefatura' => 1,
 						'estado' => 1
 					],
-					[	'nombre' => 'Gerente RRHH',
-						'id_gerencia' => 2,
-						'area' => 'Recursos Humanos',
-                        'estado' => 1
-					],
 					[	'nombre' => 'Gerente Administración',
-						'id_gerencia' => 1,
+						'id_gerencia' => $i,
 						'area' => 'Administración',
 						'id_jefatura' => 1,
 						'estado' => 1
 					],
 					[	'nombre' => 'Gerente de Riesgo',
-						'id_gerencia' => 1,
+						'id_gerencia' => $i,
 						'area' => 'Riesgo',
 						'id_jefatura' => 1,
 						'estado' => 1
 					]
 				];
-		foreach ($cargos as $cargo){
-            $s= Cargo::firstOrNew($cargo);
-            if(!$s->exists){
-                $s->save();
-            }
+			foreach ($cargos as $cargo){
+	            $s= Cargo::firstOrNew($cargo);
+	            if(!$s->exists){
+	                $s->save();
+	            }
+	        }
         }
 	}
 }
