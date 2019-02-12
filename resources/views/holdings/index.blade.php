@@ -22,7 +22,7 @@
                     let show = "{{route("holdings.show",["_id"])}}".replace("_id", data);
                     let edit = "{{route("holdings.edit",["_id"])}}".replace("_id", data);
                     return `
-                    <div class="btn-group">
+                    <div class="btn-group" style="display:none;">
     <a class="btn btn-primary" data-id="${data}" href="${show}">
         <i class="fa fa-search"></i>
     </a>
