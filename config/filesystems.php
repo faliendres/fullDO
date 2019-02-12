@@ -55,6 +55,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'holdings' => [
+            'driver' => 'local',
+            'root' => public_path('images/holdings'),
+            'url' => env('APP_URL').'/images/holdings',
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

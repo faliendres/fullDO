@@ -1,9 +1,9 @@
 <?php
 
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Faker\Factory as Faker;
 
 class HoldingTableSeeder extends Seeder
 {
@@ -15,16 +15,13 @@ class HoldingTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-
         foreach (range(1,3) as $index) {
             DB::table('ma_holding')->insert([
-                'nombre' => " Holding ".$faker->company,
+                'nombre' => "Holding ".$faker->company,
                 'descripcion' => $faker->paragraph(),
                 'logo' => $faker->imageUrl(),
                 'color' => $faker->colorName,
             ]);
         }
-
-
     }
 }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Holding;
 use App\Empresa;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HoldingController extends Controller
 {
@@ -19,10 +20,10 @@ class HoldingController extends Controller
             'descripcion' => 'max:255',
         ]);
 
-        $file = $request->file("foto_file");
+        $file = $request->file("logo_file");
         if ($file) {
             $foto = uniqid().".".$file->extension();
-            Storage::disk('logo')->put("holdings/".$foto, $file->get());
+            Storage::disk('holdings')->put($foto, $file->get());
             $request->merge(["logo" => $foto]);
         }
 
