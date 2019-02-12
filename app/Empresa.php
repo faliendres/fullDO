@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Empresa extends Model
 {
     protected $table = "ma_empresa";
-
+    protected $with=["holding"];
     public static function query()
     {
         $query = (new static)->newQuery();

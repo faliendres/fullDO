@@ -37,3 +37,13 @@ if (!function_exists('toOption')) {
     }
 }
 
+if (!function_exists('image_asset')) {
+
+    function image_asset($type = "avatar", $file = "")
+    {
+        $base = config("filesystems.disks.$type.url");
+        if (!$file)
+            return $base;
+        return "$base/$file";
+    }
+}

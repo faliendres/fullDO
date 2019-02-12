@@ -16,8 +16,8 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="card-body" >
-                                <table class="table table-striped table-responsive" >
+                            <div class="card-body">
+                                <table class="table table-striped table-responsive">
                                     <thead></thead>
                                     <tbody></tbody>
                                 </table>
@@ -56,27 +56,39 @@
             });
             $table.on("click", ".btn-danger", function (e) {
                 let data = $(this).data("id");
-                let route = "{{route("users.destroy",["_id"])}}".replace("_id", data);
-                if (confirm("¿Esta seguro?")) {
-                    let $row = $(this).parents("tr").first();
-                    $.ajax(
-                        {
-                            url: route,
-                            type: "DELETE",
-                            headers: {
-                                'X-CSRF-TOKEN': "{{csrf_token()}}"
-                            },
-                            success: result => {
-                                $table.row($row)
-                                    .remove()
-                                    .draw();
-                            },
-                            error: response => {
-                                alert(response.responseJSON.message);
+                let route = "{{route("$resource.destroy",["_id"])}}".replace("_id", data);
+                let $row = $(this).parents("tr").first();
+                Swal.fire({
+                    title: '¿Esta seguro?',
+                    text: "Esta accion no podra ser revertida",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Sí'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax(
+                            {
+                                url: route,
+                                type: "DELETE",
+                                headers: {
+                                    'X-CSRF-TOKEN': "{{csrf_token()}}"
+                                },
+                                success: result => {
+                                    $table.row($row)
+                                        .remove()
+                                        .draw();
+                                },
+                                error: response => {
+                                    alert(response.responseJSON.message);
+                                }
                             }
-                        }
-                    )
-                }
+                        )
+                    }
+
+                });
 
             });
         });

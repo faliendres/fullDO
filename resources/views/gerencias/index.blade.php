@@ -3,19 +3,11 @@
     <script type="text/javascript">
         var base_logos="{{image_asset($resource)}}";
         var columns = [
-            {
-                "data": "logo",
-                "render": function (data, row) {
-                    if(!data)
-                        return "";
-                    if (!data.startsWith("http")){
-                        data=base_logos+"/"+data;
-                    }
-                    return `<img class="rounded-circle" style="width:85px;height:85px;" alt="logo" src="${data}">`;
-                }
-            },
+
             {"data": "nombre", "title": "Nombre"},
-            {"data": "estado", "title": "Estado"},
+            {"data": "empresa.nombre", "title": "Empresa"},
+            {"data": "empresa.holding.nombre", "title": "Holding"},
+
             {
                 "data": "id", "title": "Acciones",
                 "render": function (data, row) {

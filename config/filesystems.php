@@ -62,6 +62,20 @@ return [
             'visibility' => 'public',
         ],
 
+        'empresas' => [
+            'driver' => 'local',
+            'root' => public_path('images/empresas'),
+            'url' => env('APP_URL').'/images/empresas',
+            'visibility' => 'public',
+        ],
+
+        'gerencias' => [
+            'driver' => 'local',
+            'root' => public_path('images/gerencias'),
+            'url' => env('APP_URL').'/images/gerencias',
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

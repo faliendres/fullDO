@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gerencia extends Model
 {
     protected $table="ma_gerencia";
+    protected $with=["empresa"];
     public static function query()
     {
         $query= (new static)->newQuery();
