@@ -1,7 +1,19 @@
 @extends("default.index")
 @section("index_scripts")
     <script type="text/javascript">
+        var base_logos="{{image_asset($resource)}}";
+
         var columns = [
+            {"data": "foto", "title": "Avatar",
+                "render": function (data, row) {
+                    if(!data)
+                        return "";
+                    if (!data.startsWith("http")){
+                        data=base_logos+"/"+data;
+                    }
+                    return `<img class="rounded-circle" style="width:85px;height:85px;" alt="avatar" src="${data}">`;
+                }
+            },
             {"data": "rut", "title": "Rut"},
             {"data": "name", "title": "Nombre"},
             {"data": "apellido", "title": "Apellido"},

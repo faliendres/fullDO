@@ -19,16 +19,7 @@ class HoldingController extends Controller
             'logo_file' => 'file|image| max:1000',
             'descripcion' => 'max:255',
         ]);
-
-        $file = $request->file("logo_file");
-        if ($file) {
-            $foto = uniqid().".".$file->extension();
-            Storage::disk('holdings')->put($foto, $file->get());
-            $request->merge(["logo" => $foto]);
-        }
-
-        $user = Holding::create($request->all());
-        return redirect()->route("holdings.index");
+        return parent::store($request);
     }
 
     public function getHoldings(){

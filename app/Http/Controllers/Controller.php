@@ -97,7 +97,9 @@ class Controller extends BaseController
     public function store(Request $request)
     {
         $this->uploadFile($request);
-        $this->clazz::create($request->except(["_token"]));
+        $new=$this->clazz::create($request->except(["_token"]));
+        if($new&&$new->id)
+            $request->merge(["new_id"=>$new->id]);
         return redirect()->route("$this->resource.index");
     }
 

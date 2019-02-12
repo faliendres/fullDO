@@ -31,20 +31,13 @@ class UserController extends Controller
         ]);
 
         $request->merge(["password" => Hash::make($request->get("password", "123456"))]);
-        $file = $request->file("foto_file");
-        if ($file) {
-            $foto = uniqid() . "." . $file->extension();
-            Storage::disk('users')->put($foto, $file->get());
-            $request->merge(["foto" => $foto]);
-        }
-
-        $user = User::create($request->all());
+        $result = parent::store($request);
         $cargo = Cargo::find($request->get("cargo_id"));
         if ($cargo) {
-            $cargo->id_funcionario = $user->id;
+            $cargo->id_funcionario = $request->new_id;
             $cargo->update();
         }
-        return redirect()->route("users.index");
+        return $result;
     }
 
     public function changepassword(Request $request)
@@ -72,30 +65,12 @@ class UserController extends Controller
 
     public function update($id, Request $request)
     {
-        $instance = $this->clazz::find($id);
         $this->validate($request, [
+            "id" => "required|unique:users",
             "email" => "required|email|unique:users",
             "rut" => 'required|max:12|unique:users',
             'foto_file' => 'file|image| max:1000',
         ]);
-
-        if ($instance) {
-            $data=$request->except(["_token","_method"]);
-            $file = $request->file("foto_file");
-            if ($file) {
-                $foto = uniqid() . "." . $file->extension();
-                Storage::disk('users')->put($foto, $file->get());
-                $request->merge(["foto" => $foto]);
-            }
-
-            foreach ($data as $field=>$value)
-                if($instance->$field!=$value)
-                    $instance->$field=$value;
-            $instance->update();
-            if($request->ajax())
-                return response()->json($instance, 200);
-            return redirect()->route("$this->resource.show",["id"=>$instance->id]);
-        }
-        throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
+        parent::update($id, $request);
     }
 }
