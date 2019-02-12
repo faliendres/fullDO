@@ -19,7 +19,7 @@
                                       enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     @include("partials.field",["required"=>true,"name"=>"nombre","title"=>"Nombre"])
-                                    @include("partials.textArea",["name"=>"descripccion","title"=>"Descripcion"])
+                                    @include("partials.textArea",["name"=>"descripcion","title"=>"Descripcion"])
                                     @include("partials.image",["name"=>"logo","title"=>"logo"])
                                     @include("partials.field",["type"=>"color","name"=>"color","title"=>"Color"])
                                 @if(!isset($readonly)||!$readonly)
