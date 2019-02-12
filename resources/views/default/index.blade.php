@@ -12,7 +12,13 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="box-title">{{__($resource)}} </h4>
-                        <a href="{{route("$resource.create")}}" class="btn btn-primary">Nuevo</a>
+                        @php
+                            $style='';
+                            if($resource=='gerencias' || $resource=='cargos')
+                                $style="style=display:none;"
+                        @endphp
+
+                        <a {{$style}} href="{{route("$resource.create")}}" class="btn btn-primary">Nuevo</a>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
