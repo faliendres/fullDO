@@ -12,7 +12,7 @@ class HoldingController extends Controller
     protected $clazz = Holding::class;
     protected $resource ="holdings";
     protected $rules =[
-        "nombre" => "required|unique:ma_holding",
+        "nombre" => "required|unique:ma_holding,nombre,{id},id",
         'logo_file' => 'file|image| max:1000',
         'descripcion' => 'max:255',
     ];

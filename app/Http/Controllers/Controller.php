@@ -80,8 +80,10 @@ class Controller extends BaseController
 
     public function update($id, Request $request)
     {
-        //TODO add except in ingnore rules
-        $this->validate($request, $this->rules);
+        $rules=collect($this->rules)->map(function ($item)use($id){
+            return str_replace("{id}",$id,$item);
+        })->all();
+        $this->validate($request, $rules);
         $this->uploadFile($request);
         $instance = $this->clazz::find($id);
         if ($instance) {
