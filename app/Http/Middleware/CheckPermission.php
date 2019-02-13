@@ -18,9 +18,9 @@ class CheckPermission
     {
         $user = auth()->user();
         if(isset($user->perfil)){
-            $row = Menu::query()->where('route',$request->route()->getName())->first();
-            //dd($row->id);
-            $menuItem = Menu::query()->find($row->parent_id);
+            $uri = $request->route()->uri();
+            $resource = explode("/", $uri)[0];
+            $menuItem = Menu::query()->where('title',ucwords($resource))->first();
             if($user->perfil > $menuItem->permissions){
                 return redirect('home');
             }
