@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['middleware' => ['auth','check.permission']], function () {
+
     Route::delete("/usuarios/{id}", "UserController@destroy")->name('users.destroy');
     Route::get("/usuarios", "UserController@index")->name('users.index');
     Route::get("/usuarios/create", "UserController@create")->name('users.create');
@@ -68,5 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put("/cargos/{id}", "CargoController@update")->name('cargos.update');
     Route::get("/cargos/edit/{id}", "CargoController@edit")->name('cargos.edit');
     Route::post("/cargos", "CargoController@store")->name('cargos.store');
+
+});
 
 });

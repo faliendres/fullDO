@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="box-title">Mostrar {{__($resource)}}</h4>
-                        <a href="{{route("$resource.edit",["id"=>$instance->id])}}" class="btn btn-warning pull-right"><i class="fa fa-edit"></i>Modificar</a>
+                        <a style="display:none;" href="{{route("$resource.edit",["id"=>$instance->id])}}" class="btn btn-warning pull-right"><i class="fa fa-edit"></i>Modificar</a>
                     </div>
                     <div class="row">
 

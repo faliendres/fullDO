@@ -11,16 +11,12 @@ class HoldingController extends Controller
 {
     protected $clazz = Holding::class;
     protected $resource ="holdings";
+    protected $rules =[
+        "nombre" => "required|unique:ma_holding",
+        'logo_file' => 'file|image| max:1000',
+        'descripcion' => 'max:255',
+    ];
 
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            "nombre" => "required|unique:ma_holding",
-            'logo_file' => 'file|image| max:1000',
-            'descripcion' => 'max:255',
-        ]);
-        return parent::store($request);
-    }
 
     public function getHoldings(){
     	$allHoldings = Holding::get();

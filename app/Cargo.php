@@ -9,7 +9,7 @@ class Cargo extends Model
 {
     protected $table = 'ma_cargo';
     protected $with = ["jefatura", "gerencia", "funcionario"];
-
+protected $fillable=["nombre","descripcion","id_jefatura","id_funcionario","id_gerencia","area","desde","hasta","color"];
     public function jefatura()
     {
         return $this->belongsTo(Cargo::class, "id_jefatura", "id");

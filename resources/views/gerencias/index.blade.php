@@ -15,7 +15,7 @@
                     let edit = "{{route("$resource.edit",["_id"])}}".replace("_id", data);
                     return `
                     <div class="btn-group" >
-                    <a class="btn btn-primary" data-id="${data}" href="${show}">
+                    <a style="display:none;" class="btn btn-primary" data-id="${data}" href="${show}">
                         <i class="fa fa-search"></i>
                     </a>
                     <a style="display:none;" class="btn btn-warning white-color" data-id="${data}" href="${edit}">

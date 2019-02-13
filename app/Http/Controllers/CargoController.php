@@ -10,6 +10,15 @@ class CargoController extends Controller
 {
     protected $clazz = Cargo::class;
     protected $resource ="cargos";
+    protected $rules =[
+        "nombre" => "required|unique:ma_empresa",
+        'descripcion' => 'max:255',
+        'id_gerencia' => 'required|exists:ma_empresa,id',
+        'id_funcionario' => 'nullable|exists:users,id',
+        'id_jefatura' => 'nullable|exists:ma_cargo,id',
+        'desde' => 'nullable|date',
+        'hasta' => 'nullable|date',
+    ];
 
     public function getEstructura(){
     	$cargo = Cargo::query()->where('id_jefatura',null)->get()->first();
@@ -19,7 +28,7 @@ class CargoController extends Controller
 
     protected function getArbol($cargo){
     	if(isset($cargo->id_funcionario)){
-    		$func = User::where('id',$cargo->id_funcionario)->first();
+    		$func = User::query()->where('id',$cargo->id_funcionario)->first();
     		$name = $func->nombre . ' ' . $func->apellido;
     		$avatar = $func->foto;
     	}else{
@@ -32,7 +41,7 @@ class CargoController extends Controller
 			'title' => $cargo->nombre,
 			'office' => $cargo->area,
     	);
-    	$childrens = Cargo::where('id_jefatura',$cargo->id)->get();
+    	$childrens = Cargo::query()->where('id_jefatura',$cargo->id)->get();
     	if(count($childrens)>0)
     		foreach ($childrens as $child) {
     			$node['children'][] = $this->getArbol($child);
