@@ -82,7 +82,12 @@
                                         .draw();
                                 },
                                 error: response => {
-                                    alert(response.responseJSON.message);
+                                    Swal.fire({
+                                        title: 'Ha ocurrido un error',
+                                        text: response.responseJSON.message,
+                                        type: 'error'
+                                    });
+
                                 }
                             }
                         )
