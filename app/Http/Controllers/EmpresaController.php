@@ -11,9 +11,18 @@ class EmpresaController extends Controller
 {
 	protected $clazz = Empresa::class;
     protected $resource ="empresas";
+    protected $rules =[
+        "rut" => "required|unique:ma_empresa",
+        "nombre" => "required|unique:ma_empresa",
+        'logo_file' => 'file|image| max:1000',
+        'descripcion' => 'max:255',
+        'id_holding' => 'required|exists:ma_holding,id',
+        'desde' => 'nullable|date',
+        'hasta' => 'nullable|date',
+    ];
 
     public function getGerenciasbyEmpresa($empresaId){
-    	$gerencias = Gerencia::where('id_empresa',$empresaId)->get();
+    	$gerencias = Gerencia::query()->where('id_empresa',$empresaId)->get();
     	$result = array();
     	if(count($gerencias)>0)
     		foreach ($gerencias as $gerencia) {
