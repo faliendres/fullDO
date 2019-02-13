@@ -26,9 +26,26 @@ class EmpresaController extends Controller
     	$result = array();
     	if(count($gerencias)>0)
     		foreach ($gerencias as $gerencia) {
-    			$result[$gerencia->id] = $gerencia->nombre; 
+    			$result[$gerencia->id] = $gerencia->nombre;
     		}
 
     	return response()->json($result,200);
+    }
+
+
+    public function destroy($id, Request $request)
+    {
+        $id = Empresa::find($id);
+        $counter =  Gerencia::where('id_empresa',$id->id)->count();
+
+        if ($counter == 0 ) {
+            if ($id) {
+                $id->delete();
+                return response()->json([], 204);
+            } else {
+                throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
+            }
+        }
+        throw new \RuntimeException("El id especificado tiene ".$counter." registros asociados ");
     }
 }
