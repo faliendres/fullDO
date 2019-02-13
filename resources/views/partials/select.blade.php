@@ -22,7 +22,7 @@
         </div>
     </div>
 @else
-    @if($stable)
+    @if(isset($stable)&&$stable)
         <div class="row form-group">
             <div class="col col-md-3">
                 <label class="form-control-label">{{$title??""}}</label>
@@ -41,7 +41,7 @@
                 <select name="{{$name}}" id="{{$auxId}}"
                         {{($required??false)?"required":""}} class="form-control-lg form-control {{ $errors->has("$name") ? ' is-invalid' : '' }}">
                     @if(count($options)>1)
-                        <option selected value="" disabled>Seleccione por favor</option>
+                        <option selected value="" {{(isset($required)&&$required)?"disabled":""}}  >Seleccione por favor</option>
                     @endif
                     @foreach($options as $option)
                         <option value="{{$option["id"]}}"
