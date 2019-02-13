@@ -28,9 +28,9 @@ class CreateMacargoTable extends Migration
             $table->timestamps();
         });
         Schema::table('ma_cargo', function (Blueprint $table) {
-            $table->foreign('id_gerencia')->references('id')->on('ma_gerencia')->onDelete('cascade');
+            $table->foreign('id_gerencia')->references('id')->on('ma_gerencia');//->onDelete('cascade');
             $table->foreign('id_funcionario')->references('id')->on('users')->onDelete('SET NULL');
-            $table->foreign('id_jefatura')->references('id')->on('ma_cargo')->onDelete('cascade');
+            $table->foreign('id_jefatura')->references('id')->on('ma_cargo');//->onDelete('cascade');
         });
     }
 
