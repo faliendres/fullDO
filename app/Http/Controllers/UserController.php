@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cargo;
+use App\Exceptions\SelfDeleteException;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,11 @@ class UserController extends Controller
 {
     protected $clazz = User::class;
     protected $resource = "users";
-
+    protected $rules =[
+        "email" => "required|email|unique:users",
+        "rut" => 'required|max:12|unique:users',
+        'foto_file' => 'file|image| max:1000',
+    ];
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -24,9 +29,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "email" => "required|email|unique:users",
-            "rut" => 'required|max:12|unique:users',
-            'foto_file' => 'file|image| max:1000',
             'password' => 'confirmed',
         ]);
 
@@ -55,22 +57,10 @@ class UserController extends Controller
 
     public function destroy($id, Request $request)
     {
-        $id = $this->clazz::find($id);
-        if ($id && $id->id !== auth()->user()->id) {
-            $id->delete();
-            return response()->json([], 204);
+        if ($id == auth()->user()->id) {
+            throw new SelfDeleteException();
         }
-        throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
+        return parent::destroy($id,  $request);
     }
 
-    public function update($id, Request $request)
-    {
-        $this->validate($request, [
-            "id" => "required|unique:users",
-            "email" => "required|email|unique:users",
-            "rut" => 'required|max:12|unique:users',
-            'foto_file' => 'file|image| max:1000',
-        ]);
-        parent::update($id, $request);
-    }
 }

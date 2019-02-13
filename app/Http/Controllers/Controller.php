@@ -17,7 +17,7 @@ class Controller extends BaseController
 
     protected $clazz;
     protected $resource;
-
+    protected $rules =[];
 
     /**
      * Execute an action on the controller.
@@ -97,6 +97,7 @@ class Controller extends BaseController
 
     public function store(Request $request)
     {
+        $this->validate($request, $this->rules);
         $this->uploadFile($request);
         $new=$this->clazz::create($request->except(["_token"]));
         if($new&&$new->id)
@@ -105,6 +106,7 @@ class Controller extends BaseController
     }
 
     protected function uploadFile(Request &$request){
+        $this->validate($request, $this->rules);
         $files=$request->files;
         foreach ($files as $name=>$nameF){
             $file=$request->file($name);
