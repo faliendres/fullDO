@@ -19,10 +19,10 @@ class CheckPermission
         $user = auth()->user();
         if(isset($user->perfil)){
             $row = Menu::query()->where('route',$request->route()->getName())->first();
-            //dd($row->id);
-            $menuItem = Menu::query()->find($row->parent_id);
-            if($user->perfil > $menuItem->permissions){
-                return redirect('home');
+            if($row) {
+                if ($user->perfil > $row->permissions) {
+                    return redirect('home');
+                }
             }
         }
         return $next($request);

@@ -15,7 +15,7 @@ class CargoController extends Controller
         'descripcion' => 'max:255',
         'id_gerencia' => 'required|exists:ma_empresa,id',
         'id_funcionario' => 'nullable|exists:users,id',
-        'id_jefatura' => 'nulllable|exists:ma_cargo,id',
+        'id_jefatura' => 'nullable|exists:ma_cargo,id',
         'desde' => 'nullable|date',
         'hasta' => 'nullable|date',
     ];
