@@ -24,7 +24,7 @@
     @include("partials.field",["type"=>"color","name"=>"color","title"=>"Color"])
     @include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde"])
     @include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta"])
-    @include("partials.select",["name"=>"id_funcionario","title"=>"Funcionario","options"=>toOptions(\App\User::query(),"id","name") ])
+    
 
     @include("partials.select",["required"=>true,"name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
     @include("partials.select",["required"=>true,"name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])

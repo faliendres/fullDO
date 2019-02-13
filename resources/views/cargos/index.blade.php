@@ -37,7 +37,7 @@
                     <a style="display:none;" class="btn btn-warning white-color" data-id="${data}" href="${edit}">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <button class="btn btn-danger" data-id="${data}">
+                    <button style="display:none;" class="btn btn-danger" data-id="${data}">
                         <i class="fa fa-times"></i>
                     </button>
                 </div>

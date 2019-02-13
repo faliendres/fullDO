@@ -23,7 +23,6 @@ class EmpresaTableSeeder extends Seeder
                     'descripcion' => $faker->paragraph(),
                     'logo' => $faker->imageUrl(),
                     'color' => $faker->colorName,
-                    'fecha_creacion' => $faker->dateTime(),
                     'desde' => $faker->dateTime(),
                     'hasta' => $faker->dateTime(),
                     'id_holding' => $i,
