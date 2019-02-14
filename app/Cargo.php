@@ -48,7 +48,7 @@ class Cargo extends Model
 
             if($model->id_jefatura){
                 $model->isSubCargo($model->id_jefatura);
-                throw  new LoopReferenceException;
+                //throw  new LoopReferenceException;
             }
 
         });
@@ -66,7 +66,7 @@ class Cargo extends Model
                 ->where("id_funcionario", $model->id_funcionario)->update(["id_funcionario" => null]);
             if($model->id_jefatura){
                 $model->isSubCargo($model->id_jefatura);
-                throw  new LoopReferenceException;
+                //throw  new LoopReferenceException;
             }
 
         });
