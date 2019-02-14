@@ -11,9 +11,9 @@ class GerenciaController extends Controller
     protected $clazz = Gerencia::class;
     protected $resource ="gerencias";
     protected $rules =[
-        "nombre" => "required|unique:ma_empresa",
+        "nombre" => "required|unique:ma_empresa,nombre,{id},id",
         'descripcion' => 'max:255',
-        'id_empresa' => 'required|exists:ma_empresa,id',
+        //'id_empresa' => 'required|exists:ma_empresa,id',
         'desde' => 'nullable|date',
         'hasta' => 'nullable|date',
     ];
