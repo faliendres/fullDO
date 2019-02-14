@@ -35,7 +35,6 @@
     @include("partials.select",["name"=>"cargo_id","value"=>!$instance->cargo?"":$instance->cargo->id,"title"=>"Cargo","options"=>$cargos])
     @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
 
-    @include("partials.field",["required"=>true,"name"=>"password","title"=>"","type"=>"hidden","value"=>"123456"])
     @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])

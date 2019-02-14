@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     protected $clazz = User::class;
     protected $resource = "users";
-    protected $rules =[
+    protected $rules = [
         "email" => "required|email|unique:users,email,{id},id",
         "rut" => 'required|max:12|unique:users,rut,{id},id',
         'holding_id' => 'required|exists:ma_holding,id',
@@ -24,6 +24,7 @@ class UserController extends Controller
         'cargo_id' => 'nullable|exists:ma_cargo,id',
         'foto_file' => 'file|image| max:1000',
     ];
+
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -46,6 +47,36 @@ class UserController extends Controller
         return $result;
     }
 
+    public function update($id, Request $request)
+    {
+        try {
+            $this->validate($request, [
+                'password' => 'nullable|confirmed',
+            ]);
+        } catch (ValidationException $e) {
+            dd($e);
+        }
+        if($request->get("password"))
+            $request->merge(["password" => Hash::make($request->get("password"))]);
+        $result = parent::update($id, $request);
+
+        $cargo_anterior = User::find($id)->cargo;
+        //REMOVE from last cargo
+        if ($cargo_anterior && $cargo_anterior->id != $request->get("cargo_id")) {
+            if ($cargo_anterior) {
+                $cargo_anterior->id_funcionario = null;
+                $cargo_anterior->update();
+            }
+        }
+        //Add to new Cargo
+        $cargo = Cargo::find($request->get("cargo_id"));
+        if ($cargo && $cargo->id_funcionario != $id) {
+            $cargo->id_funcionario = $id;
+            $cargo->update();
+        }
+        return $result;
+    }
+
     public function changepassword(Request $request)
     {
         $data = $request->only(['password', 'repassword']);
@@ -61,7 +92,7 @@ class UserController extends Controller
         if ($id == auth()->user()->id) {
             throw new SelfDeleteException();
         }
-        return parent::destroy($id,  $request);
+        return parent::destroy($id, $request);
     }
 
 }
