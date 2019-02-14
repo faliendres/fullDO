@@ -16,8 +16,8 @@ class UserController extends Controller
     protected $clazz = User::class;
     protected $resource = "users";
     protected $rules =[
-        "email" => "required|email|unique:users",
-        "rut" => 'required|max:12|unique:users',
+        "email" => "required|email|unique:users,email,{id},id",
+        "rut" => 'required|max:12|unique:users,rut,{id},id',
         'foto_file' => 'file|image| max:1000',
     ];
     /**

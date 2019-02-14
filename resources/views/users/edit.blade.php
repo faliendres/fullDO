@@ -19,19 +19,12 @@
                                     {{csrf_field()}}
                                     @php
                                         $user=auth()->user();
+                                        $users=toOptions(\App\User::query(),"id","name");
                                         $holdings=toOptions(\App\Holding::query());
-                                        if($holdings->count()===1)
-                                            $empresas=toOptions(\App\Empresa::query()->where("id_holding",$holdings->first()["id"]));
-                                        else
-                                            $empresas=collect([]);
-                                        if($empresas->count()===1)
-                                            $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$empresas->first()["id"]));
-                                        else
-                                            $gerencias=collect([]);
-                                        if($gerencias->count()===1)
-                                            $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$gerencias->first()["id"]));
-                                        else
-                                            $cargos=collect([]);
+                                        $empresas=toOptions(\App\Empresa::query()->where("id_holding",$instance->holding_id));
+                                        $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$instance->empresa_id));
+                                        $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$instance->gerencia_id));
+
                                         $perfiles=[];
                                         if(!isset($user->perfil))
                                             $perfiles[]=["text"=>"Super Admin","id"=>0,"selected"=>false];
