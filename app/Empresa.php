@@ -14,7 +14,8 @@ class Empresa extends Model
         "desde",
         "hasta",
         "logo",
-        "id_holding"];
+        "id_holding",
+        "estado"];
     protected $with = ["holding"];
     public static function query()
     {

@@ -40,6 +40,7 @@
     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
     @include("partials.field",["name"=>"rut","title"=>"RUT"])
+    @include("partials.switch",["name"=>"estado","title"=>"Estado"])
 
 
 

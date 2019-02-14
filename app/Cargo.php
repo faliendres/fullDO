@@ -10,7 +10,7 @@ class Cargo extends Model
 {
     protected $table = 'ma_cargo';
     protected $with = ["gerencia","funcionario","jefatura"];
-    protected $fillable = ["nombre", "descripcion", "id_jefatura", "id_funcionario", "id_gerencia", "area", "desde", "hasta", "color"];
+    protected $fillable = ["nombre", "descripcion", "id_jefatura", "id_funcionario", "id_gerencia", "area", "desde", "hasta", "color","estado"];
 
     public function jefatura()
     {

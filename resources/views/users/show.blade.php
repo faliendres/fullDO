@@ -56,6 +56,7 @@
                                 @include("partials.field",["name"=>"rut","title"=>"RUT"])
                                 @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
                                 @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto"])
+                                @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])
                             </div>
                         </div>
                     </div> <!-- /.row -->

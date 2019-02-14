@@ -25,7 +25,7 @@
                 <label class="switch">
                 <input type="{{$type??"checkbox"}}" id="{{$auxId}}" name="{{$name}}"
                        {{($required??false)?"required":""}} placeholder="{{$placeholder??""}}"
-                       class="switch form-control{{ $errors->has("$name") ? ' is-invalid' : '' }}" {{$value==1?"checked":""}}>
+                       class="switch form-control{{ $errors->has("$name") ? ' is-invalid' : '' }}" value="1" {{$value==1?"checked":""}}>
                 <span class="slider"></span>
                 </label>
                 @if ($errors->has("$name"))

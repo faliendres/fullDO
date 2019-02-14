@@ -14,4 +14,5 @@
 
     @include("partials.field",["name"=>"id_jefatura","title"=>"Jefatura","value"=>!$instance->jefatura?"":$instance->jefatura->nombre ])
     @include("partials.field",["name"=>"id_funcionario","title"=>"Funcionario","value"=>!$instance->funcionario?"":$instance->funcionario->name ])
+    @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])
 @endsection
