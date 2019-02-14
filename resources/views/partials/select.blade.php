@@ -1,5 +1,6 @@
 @php
     $auxId=uniqid($name);
+    if(!isset($value))
     $value=isset($instance->$name);
 
     if(!isset($selected)||!$selected){
