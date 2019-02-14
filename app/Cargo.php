@@ -9,7 +9,8 @@ class Cargo extends Model
 {
     protected $table = 'ma_cargo';
     protected $with = ["jefatura", "gerencia", "funcionario"];
-protected $fillable=["nombre","descripcion","id_jefatura","id_funcionario","id_gerencia","area","desde","hasta","color"];
+    protected $fillable = ["nombre", "descripcion", "id_jefatura", "id_funcionario", "id_gerencia", "area", "desde", "hasta", "color"];
+
     public function jefatura()
     {
         return $this->belongsTo(Cargo::class, "id_jefatura", "id");
@@ -31,8 +32,14 @@ protected $fillable=["nombre","descripcion","id_jefatura","id_funcionario","id_g
         parent::boot();
 
         static::creating(function ($model) {
-            Cargo::query()
-                ->where("id_funcionario", $model->id_funcionario)->update(["id_funcionario" => null]);
+            if ($model->id_funcionario) {
+                $cargos = Cargo::query()
+                    ->where("id_funcionario", $model->id_funcionario)->get();
+                foreach ($cargos as $cargo) {
+                    $cargo->id_funcionario = null;
+                    $cargo->update();
+                }
+            }
         });
         self::saved(function ($model) {
             $user = User::find($model->id_funcionario);
