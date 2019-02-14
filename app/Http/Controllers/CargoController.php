@@ -49,4 +49,21 @@ class CargoController extends Controller
 
     	return $node;
     }
+
+
+    public function destroy($id, Request $request)
+    {
+        $id = Cargo::find($id);
+        $counter =  Cargo::where('id_jefatura',$id->id)->count();
+
+        if ($counter == 0 ) {
+            if ($id) {
+                $id->delete();
+                return response()->json([], 204);
+            } else {
+                throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
+            }
+        }
+        throw new \RuntimeException("El id especificado tiene ".$counter." registros asociados ");
+    }
 }
