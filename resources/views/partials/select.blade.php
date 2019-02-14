@@ -1,9 +1,9 @@
 @php
     $auxId=uniqid($name);
     if(!isset($value))
-        $value=isset($instance->$name);
+        $value=$instance->$name;
 
-    if(!isset($selected)||!$selected&&$value){
+    if(!isset($selected)||!$selected&&isset($value)){
         $selected=collect($options)->filter(function($item)use($value){
            return $value==$item["id"];
         });

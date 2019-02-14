@@ -49,14 +49,10 @@ class UserController extends Controller
 
     public function update($id, Request $request)
     {
-        try {
-            $this->validate($request, [
-                'password' => 'nullable|confirmed',
-            ]);
-        } catch (ValidationException $e) {
-            dd($e);
-        }
-        if($request->get("password"))
+        $this->validate($request, [
+            'password' => 'nullable|confirmed',
+        ]);
+        if ($request->get("password"))
             $request->merge(["password" => Hash::make($request->get("password"))]);
         $result = parent::update($id, $request);
 
