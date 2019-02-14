@@ -12,28 +12,18 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
-    public $gerencia, $empresa, $holding, $cargo;
-
     public static function boot()
     {
         parent::boot();
-
         static::creating(function ($model) {
             $model->usuario_creacion = auth()->id();
         });
 
         static::updating(function ($model) {
-            if ($model->cargo)
-                $model->gerencia = $model->cargo->gerencia;
-            if ($model->gerencia) {
-                $model->gerencia_id = $model->gerencia->id;
-                $model->empresa = $model->cargo->gerencia->empresa;
-                if ($model->empresa) {
-                    $model->empresa_id = $model->empresa->id;
-                    $model->holding = $model->cargo->gerencia->empresa->holding;
-                    if ($model->holding)
-                        $model->holding_id = $model->holding->id;
-                }
+            if ($model->cargo){
+                $model->gerencia_id = $model->cargo->id_gerencia;
+                $model->empresa_id = $model->cargo->gerencia->id_empresa;
+                $model->holding_id = $model->cargo->gerencia->empresa->id_holding;
             }
         });
 

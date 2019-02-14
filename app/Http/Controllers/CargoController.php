@@ -13,7 +13,7 @@ class CargoController extends Controller
     protected $rules =[
         "nombre" => "required|unique:ma_empresa",
         'descripcion' => 'max:255',
-        'id_gerencia' => 'required|exists:ma_empresa,id',
+        'id_gerencia' => 'required|exists:ma_gerencia,id',
         'id_funcionario' => 'nullable|exists:users,id',
         'id_jefatura' => 'nullable|exists:ma_cargo,id',
         'desde' => 'nullable|date',
