@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Illuminate\Database\Eloquent\Model;
 
 class Controller extends BaseController
 {
@@ -87,7 +88,10 @@ class Controller extends BaseController
         $this->uploadFile($request);
         $instance = $this->clazz::find($id);
         if ($instance) {
-            $data=$request->except(["_token","_method"]);
+            if($instance instanceof Model)
+                $data=collect($request->only($instance->getFillable()))->filter( function($item){
+                    return isset($item);
+                })->all();
             foreach ($data as $field=>$value)
             if($instance->$field!=$value)
                 $instance->$field=$value;
