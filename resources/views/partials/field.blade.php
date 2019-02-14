@@ -14,7 +14,7 @@
     </div>
 @else
     @if(($type??"")=="hidden")
-        <input type="hidden" name="{{$name}}" value="{{$value??""}}">
+        <input type="hidden" name="{{$name}}" id="{{$name}}" value="{{$value??""}}">
     @else
         <div class="row form-group">
             <div class="col col-md-3">

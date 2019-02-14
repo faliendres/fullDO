@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cargo;
 use App\User;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class CargoController extends Controller
 {
@@ -54,7 +55,7 @@ class CargoController extends Controller
     public function destroy($id, Request $request)
     {
         $id = Cargo::find($id);
-        $counter =  Cargo::where('id_jefatura',$id->id)->count();
+        $counter =  Cargo::query()->where('id_jefatura',$id->id)->count();
 
         if ($counter == 0 ) {
             if ($id) {
