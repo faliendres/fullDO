@@ -14,5 +14,5 @@
         @include("partials.field",["required"=>true,"name"=>"nombre","title"=>"Nombre"])
         @include("partials.textArea",["name"=>"descripcion","title"=>"Descripcion"])
         @include("partials.field",["type"=>"color","name"=>"color","title"=>"Color"])
-        
+        @include("partials.switch",["name"=>"estado","title"=>"Estado"])
 @endsection
