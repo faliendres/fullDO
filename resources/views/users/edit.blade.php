@@ -29,6 +29,7 @@
         if($user->perfil<4)
             $perfiles[]=["text"=>"Funcional","id"=>4,"selected"=>false];
     @endphp
+    @include("partials.field",["name"=>'validated',"type"=>"hidden","value"=>""])
     @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>true,"options"=>$holdings, "value"=> $instance->holding_id ])
     @include("partials.select",["required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>true,"options"=>$empresas, "value"=> $instance->empresa_id])
     @include("partials.select",["required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias, "value"=> $instance->gerencia_id])
@@ -45,6 +46,57 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            let $form = $("#create_form");
+
+            let $validated = $form.find("#validated");
+            $form.on("submit", function (e) {
+                if ($validated.val())
+                    return true;
+                e.preventDefault();
+
+                let route = "{!! route("cargos.index",[
+                "filter"=>[
+                    [
+                        "field"=>"id",
+                        "op"=>"=",
+                        "value"=>"_id"
+                    ]
+                ]
+                ]) !!}".replace("_id", $(this).find("[name='cargo_id']").val());
+                $.ajax({
+                    url: route,
+                    success: result => {
+                        if (result.data.length && result.data[0].id_funcionario) {
+                            Swal.fire({
+                                title: 'Cargo ocupado!',
+                                text: "¿Seguro que desea reemplazarlo?",
+                                type: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                cancelButtonText: 'Cancelar',
+                                confirmButtonText: 'Sí'
+                            }).then((result) => {
+                                console.log(result.value);
+                                if (result.value) {
+                                    $validated.val(1);
+                                    $form.trigger("submit");
+                                }
+                            });
+                        }
+                        else {
+                            $validated.val(1);
+                            $form.trigger("submit");
+                        }
+
+                    },
+                    error: response => {
+                    }
+                });
+            });
+
+
+
             $("#create_form select[name='holding_id']").change(function (e) {
 
                 let $select = $("#create_form select[name='empresa_id']");
