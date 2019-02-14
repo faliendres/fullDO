@@ -20,15 +20,15 @@
                                     @php
                                         $user=auth()->user();
                                         $holdings=toOptions(\App\Holding::query());
-                                        if($holdings->count()===1)
+                                        if($holdings->count()>=1)
                                             $empresas=toOptions(\App\Empresa::query()->where("id_holding",$holdings->first()["id"]));
                                         else
                                             $empresas=collect([]);
-                                        if($empresas->count()===1)
+                                        if($empresas->count()>=1)
                                             $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$empresas->first()["id"]));
                                         else
                                             $gerencias=collect([]);
-                                        if($gerencias->count()===1)
+                                        if($gerencias->count()>=1)
                                             $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$gerencias->first()["id"]));
                                         else
                                             $cargos=collect([]);
@@ -43,11 +43,13 @@
                                             $perfiles[]=["text"=>"Gerencial","id"=>3,"selected"=>false];
                                         if($user->perfil<4)
                                             $perfiles[]=["text"=>"Funcional","id"=>4,"selected"=>false];
+
+                                  //  dd($instance);
                                     @endphp
 
-                                    @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
-                                    @include("partials.select",["required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas])
-                                    @include("partials.select",["required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias])
+                                    @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings, "value"=> $instance->holding_id ])
+                                    @include("partials.select",["required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas, "value"=> $instance->empresa_id])
+                                    @include("partials.select",["required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias, "value"=> $instance->gerencia_id])
                                     @include("partials.select",["required"=>true, "name"=>"cargo_id","title"=>"Cargo","stable"=>$cargos->count()==1,"options"=>$cargos])
                                     @include("partials.field",["required"=>true,"name"=>"password","title"=>"","type"=>"hidden","value"=>"123456"])
                                     @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
