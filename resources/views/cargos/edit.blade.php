@@ -1,20 +1,11 @@
-@extends("default.create")
+@extends("default.edit")
 @php
     $user=auth()->user();
     $users=toOptions(\App\User::query(),"id","name");
     $holdings=toOptions(\App\Holding::query());
-    if($holdings->count()===1)
-        $empresas=toOptions(\App\Empresa::query()->where("id_holding",$holdings->first()["id"]));
-    else
-        $empresas=collect([]);
-    if($empresas->count()===1)
-        $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$empresas->first()["id"]));
-    else
-        $gerencias=collect([]);
-    if($gerencias->count()===1)
-        $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$gerencias->first()["id"]));
-    else
-        $cargos=collect([]);
+    $empresas=toOptions(\App\Empresa::query()->where("id_holding",$instance->gerencia->empresa->id_holding));
+    $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$instance->gerencia->id_empresa));
+    $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$instance->id_gerencia));
 @endphp
 
 
@@ -28,8 +19,11 @@
 
     @include("partials.select",["required"=>true,"name"=>"id_funcionario","title"=>"Funcionario","options"=>$users ])
 
-    @include("partials.select",["required"=>true,"name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
-    @include("partials.select",["required"=>true,"name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])
+
+    @include("partials.select",["required"=>true,"value"=>$instance->gerencia->empresa->id_holding,
+        "name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
+    @include("partials.select",["required"=>true,"value"=>$instance->gerencia->id_empresa,
+     "name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])
     @include("partials.select",["required"=>true,"name"=>"id_gerencia","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias ])
     @include("partials.select",["name"=>"id_jefatura","title"=>"Cargo","options"=>$cargos ])
 @endsection

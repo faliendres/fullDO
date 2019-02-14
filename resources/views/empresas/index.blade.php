@@ -16,7 +16,7 @@
             },
             {"data": "rut", "title": "RUT"},
             {"data": "nombre", "title": "Nombre"},
-            {"data": "holding.nombre", "title": "Holding"},
+            {"data": "holding.nombre", "title": "Holding","orderable": false},
             {"data": "desde", "title": "Desde"},
             {"data": "hasta", "title": "Hasta"},
             {
