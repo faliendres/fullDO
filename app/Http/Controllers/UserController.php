@@ -18,6 +18,10 @@ class UserController extends Controller
     protected $rules =[
         "email" => "required|email|unique:users,email,{id},id",
         "rut" => 'required|max:12|unique:users,rut,{id},id',
+        'holding_id' => 'required|exists:ma_holding,id',
+        'empresa_id' => 'required|exists:ma_empresa,id',
+        'gerencia_id' => 'required|exists:ma_gerencia,id',
+        'cargo_id' => 'nullable|exists:ma_cargo,id',
         'foto_file' => 'file|image| max:1000',
     ];
     /**

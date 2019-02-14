@@ -12,12 +12,9 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
-    public $gerencia, $empresa, $holding, $cargo;
-
     public static function boot()
     {
         parent::boot();
-
         static::creating(function ($model) {
             $model->usuario_creacion = auth()->id();
         });
