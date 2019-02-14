@@ -20,16 +20,16 @@
                                     @php
                                         $user=auth()->user();
                                         $holdings=toOptions(\App\Holding::query());
-                                        if($holdings->count()>=1)
-                                            $empresas=toOptions(\App\Empresa::query()->where("id_holding",$holdings->first()["id"]));
+                                        if($instance->holding_id)
+                                            $empresas=toOptions(\App\Empresa::query()->where("id_holding",$instance->holding_id));
                                         else
                                             $empresas=collect([]);
-                                        if($empresas->count()>=1)
-                                            $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$empresas->first()["id"]));
+                                        if($instance->empresa_id)
+                                            $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$instance->empresa_id));
                                         else
                                             $gerencias=collect([]);
-                                        if($gerencias->count()>=1)
-                                            $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$gerencias->first()["id"]));
+                                        if($instance->gerencia_id)
+                                            $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$instance->gerencia_id));
                                         else
                                             $cargos=collect([]);
                                         $perfiles=[];
