@@ -29,7 +29,7 @@
     <a class="btn btn-primary" data-id="${data}" href="${show}">
         <i class="fa fa-search"></i>
     </a>
-    <a style="display:none;" class="btn btn-warning white-color" data-id="${data}" href="${edit}">
+    <a class="btn btn-warning white-color" data-id="${data}" href="${edit}">
         <i class="fa fa-edit"></i>
     </a>
     <button class="btn btn-danger" data-id="${data}">

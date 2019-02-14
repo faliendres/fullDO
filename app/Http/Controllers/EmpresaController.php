@@ -12,8 +12,8 @@ class EmpresaController extends Controller
 	protected $clazz = Empresa::class;
     protected $resource ="empresas";
     protected $rules =[
-        "rut" => "required|unique:ma_empresa",
-        "nombre" => "required|unique:ma_empresa",
+        "rut" => "required|unique:ma_empresa,rut,{id},id",
+        "nombre" => "required|unique:ma_empresa,nombre,{id},id",
         'logo_file' => 'file|image| max:1000',
         'descripcion' => 'max:255',
         'id_holding' => 'required|exists:ma_holding,id',
