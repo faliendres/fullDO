@@ -5,8 +5,8 @@
         var columns = [
 
             {"data": "nombre", "title": "Nombre"},
-            {"data": "empresa.nombre", "title": "Empresa"},
-            {"data": "empresa.holding.nombre", "title": "Holding"},
+            {"data": "empresa.nombre", "title": "Empresa","orderable": false},
+            {"data": "empresa.holding.nombre", "title": "Holding","orderable": false},
 
             {
                 "data": "id", "title": "Acciones",
