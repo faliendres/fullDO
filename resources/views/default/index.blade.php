@@ -52,6 +52,9 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": route,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+                },
                 "columns": columns
             });
             $table.on("click", ".btn-danger", function (e) {
