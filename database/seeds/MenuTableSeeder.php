@@ -21,81 +21,54 @@ class MenuTableSeeder extends Seeder
             "order" => 0
         ]);
         $admin = Menu::create([
-            "title" => "Admin",
+            "title" => "Administracion",
             "permissions" => 3,
             "order" => 1
         ]);
         $users = Menu::create([
-            "parent_id" => $admin->id,
             "title" => "Usuarios",
+            "route" => "users.index",
             "permissions" => 3,
             "icon" => "fa fa-users",
-            "order" => 0
-        ]);
-        Menu::create([
-            "parent_id" => $users->id,
-            "title" => "Listado",
-            "route" => "users.index",
-            "order" => 0
+            "order" => 2
         ]);
         $cargos = Menu::create([
-            "parent_id" => $admin->id,
             "title" => "Cargos",
+            "route" => "cargos.index",
             "permissions" => 3,
             "icon" => "fa fa-laptop",
             "order" => 3
         ]);
-        Menu::create([
-            "parent_id" => $cargos->id,
-            "title" => "Listado",
-            "route" => "cargos.index",
-            "order" => 0
-        ]);
         $admin_estruc = Menu::create([
-            "title" => "Administración de Estructura",
+            "parent_id" => $admin->id,
+            "title" => "Estructura",
             "permissions" => 3,
-            "order" => 2
+            "icon" => "fa fa-server",
+            "order" => 4
         ]);
         $holdings = Menu::create([
             "parent_id" => $admin_estruc->id,
             "title" => "Holdings",
+            "route" => "holdings.index",
             "permissions" => 0,
             "icon" => "fa fa-university",
             "order" => 1
         ]);
-        Menu::create([
-            "parent_id" => $holdings->id,
-            "title" => "Listado",
-            "route" => "holdings.index",
-            "order" => 0
-        ]);
         $empresas = Menu::create([
             "parent_id" => $admin_estruc->id,
             "title" => "Empresas",
+            "route" => "empresas.index",
             "permissions" => 1,
             "icon" => "fa fa-building-o",
             "order" => 2
         ]);
-        Menu::create([
-            "parent_id" => $empresas->id,
-            "title" => "Listado",
-            "route" => "empresas.index",
-            "order" => 0
-        ]);
         $gerencias = Menu::create([
             "parent_id" => $admin_estruc->id,
             "title" => "Gerencias",
+            "route" => "gerencias.index",
             "permissions" => 2,
             "icon" => "fa fa-group",
             "order" => 2
-        ]);
-        Menu::create([
-            "parent_id" => $gerencias->id,
-            "title" => "Listado",
-            "route" => "gerencias.index",
-            "order" => 0
-        ]);
-        
-
+        ]);       
     }
 }
