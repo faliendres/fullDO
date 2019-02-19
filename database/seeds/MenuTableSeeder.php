@@ -32,13 +32,7 @@ class MenuTableSeeder extends Seeder
             "icon" => "fa fa-users",
             "order" => 2
         ]);
-        $cargos = Menu::create([
-            "title" => "Cargos",
-            "route" => "cargos.index",
-            "permissions" => 3,
-            "icon" => "fa fa-laptop",
-            "order" => 3
-        ]);
+        
         $admin_estruc = Menu::create([
             "parent_id" => $admin->id,
             "title" => "Estructura",
@@ -69,6 +63,14 @@ class MenuTableSeeder extends Seeder
             "permissions" => 2,
             "icon" => "fa fa-group",
             "order" => 2
-        ]);       
+        ]);      
+        $cargos = Menu::create([
+            "parent_id" => $admin_estruc->id,
+            "title" => "Cargos",
+            "route" => "cargos.index",
+            "permissions" => 3,
+            "icon" => "fa fa-laptop",
+            "order" => 3
+        ]); 
     }
 }
