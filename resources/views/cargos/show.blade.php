@@ -14,6 +14,7 @@
 
     @include("partials.field",["name"=>"id_jefatura","title"=>"Jefatura","value"=>!$instance->jefatura?"":$instance->jefatura->nombre ])
     @include("partials.field",["name"=>"id_funcionario","title"=>"Funcionario","value"=>!$instance->funcionario?"":$instance->funcionario->name ])
+    {{--@include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])--}}
 
     @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto","value"=>!$instance->funcionario?"":url('/').'/images/avatar/'.$instance->funcionario->foto])
 @endsection

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/fulldo.iml" filepath="$PROJECT_DIR$/.idea/fulldo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/fullDO.iml" filepath="$PROJECT_DIR$/.idea/fullDO.iml" />
     </modules>
   </component>
 </project>

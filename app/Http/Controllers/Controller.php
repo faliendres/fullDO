@@ -74,7 +74,6 @@ class Controller extends BaseController
         if ($instance) {
             if($request->ajax())
                 return response()->json($instance, 200);
-            //dd($instance);
             return view("$this->resource.edit",compact("instance"));
         }
         throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));

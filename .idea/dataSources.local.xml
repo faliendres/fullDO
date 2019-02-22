@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="fulldo@192.168.10.10" uuid="1861bfec-a193-4071-b4bf-2cf9a4b978f1">
-      <database-info product="MySQL" version="5.7.20-0ubuntu0.16.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
+    <data-source name="fulldo@localhost" uuid="07fcbc1d-0d5b-4fdd-a521-efab1689df29">
+      <database-info product="MySQL" version="5.5.5-10.2.14-MariaDB-10.2.14+maria~jessie" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
-      <user-name>homestead</user-name>
+      <user-name>root</user-name>
       <introspection-schemas>*:fulldo</introspection-schemas>
     </data-source>
   </component>

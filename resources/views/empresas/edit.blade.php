@@ -12,5 +12,6 @@
 	@include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde"])
 	@include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta"])
 	@include("partials.image",["name"=>"logo","title"=>"Logo"])
-	@include("partials.select",["name"=>"id_holding","title"=>"Holding","value"=> $instance->id_holding, "stable"=>$user->perfil>0,"options"=>$holdings ])
+	@include("partials.select",["name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
+	@include("partials.switch",["name"=>"estado","title"=>"Estado"])
 @endsection
