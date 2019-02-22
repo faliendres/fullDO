@@ -1,17 +1,16 @@
 @php
     $auxId=uniqid($name);
-    if(!isset($value))
+    if(!isset($value)&&isset($instance))
         $value=$instance->$name;
-
-    if(!isset($selected)||!$selected&&isset($value)){
+    else $value="";
+    if(isset($value)&&(!isset($selected)||!$selected)){
         $selected=collect($options)->filter(function($item)use($value){
            return $value==$item["id"];
         });
-
-    }
     $selected=$selected->first();
     if(!$selected)
             $selected["text"]=$value;
+    }
 @endphp
 @if(isset($readonly)&&$readonly)
     <div class="row form-group">
@@ -42,7 +41,9 @@
                 <select name="{{$name}}" id="{{$auxId}}"
                         {{($required??false)?"required":""}} class="form-control-lg form-control {{ $errors->has("$name") ? ' is-invalid' : '' }}">
                     @if(count($options)>1)
-                        <option selected value="" {{(isset($required)&&$required)?"disabled":""}}  >Seleccione por favor</option>
+                        <option selected value="" {{(isset($required)&&$required)?"disabled":""}} >Seleccione por
+                            favor
+                        </option>
                     @endif
                     @foreach($options as $option)
                         <option value="{{$option["id"]}}"

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Empresa extends Model
@@ -17,6 +18,7 @@ class Empresa extends Model
         "id_holding",
         "estado"];
     protected $with = ["holding"];
+
     public static function query()
     {
         $query = (new static)->newQuery();
@@ -29,5 +31,13 @@ class Empresa extends Model
     public function holding()
     {
         return $this->belongsTo(Holding::class, "id_holding", "id");
+    }
+
+
+    public function getDesdeAttribute($desde){
+        return Carbon::parse($desde)->format('d-m-Y');
+    }
+    public function getHastaAttribute($hasta){
+        return Carbon::parse($hasta)->format('d-m-Y');
     }
 }
