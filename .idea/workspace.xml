@@ -2,50 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7364813b-fd42-4cc3-b546-0ad020a703e8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/Exceptions/LoopReferenceException.php" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/resources/views/partials/switch.blade.php" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/expert.Ku4osw.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/family.ZFuYsw.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/joesprd_db.rm3s9A.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/kitchen.pNf41Q.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/nuevo.t9JEBg.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/portal3.R4Wg6A.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/shamin.Jpokyg.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/stage_fromans.u9WxPQ.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/stage_kitchen.Y2MXNw.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/stage_lorenzos.xyDRTQ.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/stage_orderjoesnow.1uWFlQ.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/stage_regularguys.Yx7GIA.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/test.kkQ2AA.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1861bfec-a193-4071-b4bf-2cf9a4b978f1/storage_v2/_src_/schema/test_2_factor_auth.HmkaNg.meta" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/fulldo.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Cargo.php" afterPath="$PROJECT_DIR$/app/Cargo.php" />
-      <change beforePath="$PROJECT_DIR$/app/Empresa.php" afterPath="$PROJECT_DIR$/app/Empresa.php" />
-      <change beforePath="$PROJECT_DIR$/app/Gerencia.php" afterPath="$PROJECT_DIR$/app/Gerencia.php" />
-      <change beforePath="$PROJECT_DIR$/app/Holding.php" afterPath="$PROJECT_DIR$/app/Holding.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CargoController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CargoController.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" afterPath="$PROJECT_DIR$/public/assets/css/style.css" />
-      <change beforePath="$PROJECT_DIR$/resources/views/cargos/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/cargos/edit.blade.php" />
       <change beforePath="$PROJECT_DIR$/resources/views/cargos/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/cargos/show.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/empresas/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/empresas/edit.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/empresas/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/empresas/show.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/gerencias/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/gerencias/edit.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/gerencias/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/gerencias/show.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/holdings/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/holdings/edit.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/holdings/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/holdings/show.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/select.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/select.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/edit.blade.php" />
-      <change beforePath="$PROJECT_DIR$/resources/views/users/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/users/show.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -317,7 +276,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1550869458323</updated>
-      <workItem from="1550869460035" duration="3062000" />
+      <workItem from="1550869460035" duration="3090000" />
     </task>
     <task id="LOCAL-00001" summary="Upload">
       <created>1550873335538</created>
@@ -326,11 +285,18 @@
       <option name="project" value="LOCAL" />
       <updated>1550873335538</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Merge branches 'development' and 'master' of https://github.com/faliendres/fullDO into development&#10;&#10;# Conflicts:&#10;#&#9;resources/views/cargos/show.blade.php">
+      <created>1550873721716</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1550873721716</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3062000" />
+    <option name="totallyTimeSpent" value="3090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-4" width="1922" height="1085" extended-state="6" />
@@ -367,7 +333,8 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="Upload" />
+    <MESSAGE value="Merge branches 'development' and 'master' of https://github.com/faliendres/fullDO into development&#10;&#10;# Conflicts:&#10;#&#9;resources/views/cargos/show.blade.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branches 'development' and 'master' of https://github.com/faliendres/fullDO into development&#10;&#10;# Conflicts:&#10;#&#9;resources/views/cargos/show.blade.php" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
