@@ -119,17 +119,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="https://i0.wp.com/tricksmaze.com/wp-content/uploads/2017/04/Stylish-Girls-Profile-Pictures-36.jpg?resize=400%2C300&ssl=1"
+                        <img src="images\avatar\{{$user->foto}}"
                              alt=""/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
-                        <h4>Juana Pérez</h4>
-                        <h5>Subgerente Comercial</h5>
-                        <h6>Gerencia Comercial</h6>
-                        <p class="proile-rating">Jefatura: Enrique Henriquez<br/>
-                            Comenzó a trabajar el 24 de Diciembre de 2012</p>
+                        <h4>{{$user->name}} {{$user->apellido}}</h4>
+                        <h5>{{$cargo->nombre}}</h5>
+                        <h6>{{$gerencia->nombre}}</h6>
+                        <p class="proile-rating">Jefatura: {{ }}<br/>
+                            Comenzó a trabajar el {{$user->created_at}}</p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile"
@@ -152,12 +152,6 @@
                     <div class="profile-work">
                         <p>Datos adicionales</p>
                         <a href="#">Perfil del Cargo</a><br/>
-                        <a href="#">Link opcional</a><br/>
-                        <a href="#">Link opcional</a><br/>
-                        <p>Datos adicionales</p>
-                        <a href="#">Link opcional</a><br/>
-                        <a href="#">Link opcional</a><br/>
-                        <a href="#">Link opcional</a><br/>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -192,16 +186,7 @@
                              aria-labelledby="profile-tab">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pharetra
-                                        eleifend nibh, vitae interdum nulla. Donec ac ipsum at eros lacinia aliquet.
-                                        Ut lobortis neque id odio tincidunt egestas. Suspendisse auctor porta nunc
-                                        ac dictum. Vestibulum porttitor nisi eget ante laoreet pretium. Aenean in
-                                        elementum neque. Praesent condimentum maximus neque. Nullam viverra vitae
-                                        lorem ac auctor. Fusce ante felis, semper at consequat facilisis, mollis sed
-                                        eros. Integer condimentum convallis lorem, semper ornare nulla hendrerit
-                                        eget. Suspendisse viverra nisl quis tortor posuere, vel auctor tellus
-                                        ornare. Integer nec metus ac dolor iaculis elementum. Fusce ut elementum
-                                        arcu, at semper enim. Donec imperdiet et nunc nec vehicula.</p>
+                                    <p>{{$gerencia->descripcion}}</p>
                                 </div>
                             </div>
                         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cargo;
+use App\Gerencia;
 use App\Exceptions\SelfDeleteException;
 use App\User;
 use Illuminate\Http\Request;
@@ -93,6 +94,29 @@ class UserController extends Controller
             throw new SelfDeleteException();
         }
         return parent::destroy($id, $request);
+    }
+
+    public function profile(Request $request){
+        $id = $request->only('id');
+        if(count($id))
+            $user = User::query()->find($id);
+        else
+            $user = auth()->user();
+        $cargo = Cargo::query()->where('id_funcionario',$user->id)->first();
+        if(isset($user->gerencia_id)){
+            $gerencia = Gerencia::query()->where('id',$user->gerencia_id)->first();    
+        }else{
+            $gerencia = new Gerencia;
+            $gerencia->nombre = "Super Admin";
+            $gerencia->descripcion = "Super Admin";
+        }
+        
+
+        //dd($user,$cargo,$gerencia);
+        return view('profile', [ 'user' => $user,
+                                'cargo' => $cargo,
+                                'gerencia' => $gerencia
+                            ]);
     }
 
 }

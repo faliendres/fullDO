@@ -61,7 +61,7 @@
                                  alt="User Avatar">
                         </a>
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="{{route("profile")}}"><i class="fa fa- user"></i>Perfil</a>
+                            <a class="nav-link" href="{{ route('perfil') }}"><i class="fa fa- user"></i>Perfil</a>
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i
                                         class="fa fa-power -off"></i>Cerrar Sesión</a>
