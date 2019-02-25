@@ -36,6 +36,7 @@ class CargoController extends Controller
     		$avatar = 'nobody.png';
     	}
     	$node = array(
+            'id' => $cargo->id_funcionario ?: "-1",
     		'avatar' => $avatar,
 			'name' => $name,
 			'title' => $cargo->nombre,

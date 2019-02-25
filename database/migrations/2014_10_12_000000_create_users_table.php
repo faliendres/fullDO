@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->date('fecha_nacimiento')->nullable();
             $table->integer('usuario_creacion')->nullable();
             $table->integer('telefono')->nullable();
+            $table->date('fecha_inicio')->nullable();
             $table->string('foto', 256)->nullable();
             $table->integer('estado')->default(1);
             $table->unsignedInteger('gerencia_id')->nullable();

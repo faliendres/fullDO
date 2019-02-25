@@ -85,5 +85,22 @@ class UserTableSeeder extends Seeder
                'password_changed_at' => date('Y-m-d H:i:s'),
         ));
 
+        for ($i=0; $i < 3; $i++) { 
+            \DB::table('users')->insert(array(
+                 'name' => $faker->firstName,
+                 'apellido'  => $faker->lastName,
+                 'rut'  => $faker->numberBetween($min = 1000, $max = 9000),
+                 'email' => $faker->email,
+                 'password' => bcrypt('123456'),
+                 'perfil' => 4,
+                 'foto'  => $faker->unique()->randomElement(['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','64-1.jpg','64-2.jpg']),
+                 'gerencia_id'  => $faker->randomDigit,
+                 'empresa_id'  => 1,
+                 'holding_id'  => 1,
+                 'password_changed_at' => date('Y-m-d H:i:s'),
+                 'fecha_inicio' => $faker->date('Y-m-d H:i:s', 'now')
+          ));
+        }
+
     }
 }

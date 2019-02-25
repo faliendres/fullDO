@@ -97,24 +97,30 @@ class UserController extends Controller
     }
 
     public function profile(Request $request){
-        $id = $request->only('id');
-        if(count($id))
-            $user = User::query()->find($id);
+        setlocale(LC_ALL, 'es_ES'); 
+
+        $data = $request->only('id');
+        if(count($data))
+            $user = User::query()->find($data['id']);
         else
             $user = auth()->user();
         $cargo = Cargo::query()->where('id_funcionario',$user->id)->first();
         if(isset($user->gerencia_id)){
             $gerencia = Gerencia::query()->where('id',$user->gerencia_id)->first();    
+            $jefatura = Cargo::query()->where('id',$cargo->id_jefatura)->first();
         }else{
             $gerencia = new Gerencia;
             $gerencia->nombre = "Super Admin";
             $gerencia->descripcion = "Super Admin";
+            $jefatura = new Cargo;
+            $jefatura->nombre = "Super Admin";
         }
         
 
         //dd($user,$cargo,$gerencia);
         return view('profile', [ 'user' => $user,
                                 'cargo' => $cargo,
+                                'jefatura' => $jefatura,
                                 'gerencia' => $gerencia
                             ]);
     }

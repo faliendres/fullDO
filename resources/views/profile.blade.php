@@ -128,8 +128,8 @@
                         <h4>{{$user->name}} {{$user->apellido}}</h4>
                         <h5>{{$cargo->nombre}}</h5>
                         <h6>{{$gerencia->nombre}}</h6>
-                        <p class="proile-rating">Jefatura: {{ }}<br/>
-                            Comenzó a trabajar el {{$user->created_at}}</p>
+                        <p class="profile-rating">Jefatura: {{ $jefatura->nombre }}<br/>
+                            Comenzó a trabajar el {{strftime("%d de %B de %Y",strtotime($user->fecha_inicio))}}</p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile"
@@ -151,7 +151,7 @@
                 <div class="col-md-4">
                     <div class="profile-work">
                         <p>Datos adicionales</p>
-                        <a href="#">Perfil del Cargo</a><br/>
+                        <a href="/cargos/{{$cargo->id}}">Perfil del Cargo</a><br/>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -162,7 +162,7 @@
                                     <label>Celular</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>+569 9554 64 46</p>
+                                    <p>--</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -170,7 +170,7 @@
                                     <label>Email</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>juana@empresa.cl</p>
+                                    <p>{{$user->email}}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -178,7 +178,7 @@
                                     <label>Anexo</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>123 456 7890</p>
+                                    <p>--</p>
                                 </div>
                             </div>
                         </div>
