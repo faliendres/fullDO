@@ -16,4 +16,5 @@
     @include("partials.field",["required"=>true,"name"=>"asunto","title"=>"Asunto"])
     @include("partials.textArea",["required"=>true,"name"=>"descripcion","title"=>"Descripcion"])
     @include("partials.select",["required"=>true,"name"=>"destinatario_id","title"=>"Destinatario","options"=>$users ])
+    @include("partials.file",["required"=>true,"name"=>"adjuntos","title"=>"Adjuntos","multiple"=>true ])
 @endsection
