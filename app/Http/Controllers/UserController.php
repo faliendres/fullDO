@@ -96,11 +96,17 @@ class UserController extends Controller
         setlocale(LC_ALL, 'es_ES'); 
 
         $data = $request->only('id');
-        if(count($data))
+        if(count($data)){
             $user = User::query()->find($data['id']);
-        else
+            $cargo = Cargo::query()->where('id_funcionario',$user->id)->first();
+        }
+        else{
             $user = auth()->user();
-        $cargo = Cargo::query()->where('id_funcionario',$user->id)->first();
+            $cargo = new Cargo;
+            $cargo->nombre = "Super Admin";
+            $cargo->id_jefatura = 1;
+        }
+        
         if(isset($user->gerencia_id)){
             $gerencia = Gerencia::query()->where('id',$user->gerencia_id)->first();    
             $jefatura = Cargo::query()->where('id',$cargo->id_jefatura)->first();
