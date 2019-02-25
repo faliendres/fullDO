@@ -71,6 +71,14 @@ class MenuTableSeeder extends Seeder
             "permissions" => 3,
             "icon" => "fa fa-laptop",
             "order" => 3
-        ]); 
+        ]);
+        $cargos = Menu::create([
+            "parent_id" => $admin_estruc->id,
+            "title" => "Solicitudes",
+            "route" => "solicitudes.index",
+            "permissions" => 3,
+            "icon" => "fa fa-file-text-o",
+            "order" => 4
+        ]);
     }
 }

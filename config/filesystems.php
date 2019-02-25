@@ -76,6 +76,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'solicitudes' => [
+            'driver' => 'local',
+            'root' => public_path('files/solicitudes'),
+            'url' => env('APP_URL').'/files/solicitudes',
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

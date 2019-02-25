@@ -34,12 +34,16 @@
     @include("partials.select",["required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>true,"options"=>$empresas, "value"=> $instance->empresa_id])
     @include("partials.select",["required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias, "value"=> $instance->gerencia_id])
     @include("partials.select",["name"=>"cargo_id","value"=>!$instance->cargo?"":$instance->cargo->id,"title"=>"Cargo","options"=>$cargos])
-    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
+    @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","options"=>$perfiles])
 
     @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
     @include("partials.field",["name"=>"rut","title"=>"RUT"])
+    @include("partials.switch",["name"=>"estado","title"=>"Estado"])
+
+
+
 
 @endsection
 @section("page_scripts")

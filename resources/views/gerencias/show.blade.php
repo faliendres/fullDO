@@ -8,4 +8,5 @@
         @include("partials.field",["type"=>"color","name"=>"color","title"=>"Color"])
         @include("partials.field",["name"=>"id_holding","title"=>"Holding","value"=>$instance->empresa->holding->nombre ])
         @include("partials.field",["name"=>"id_empresa","title"=>"Empresa","value"=>$instance->empresa->nombre ])
+        @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])
 @endsection

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Holding extends Model
 {
     protected $table = "ma_holding";
-protected $fillable=["nombre","logo","descripcion","color"];
+protected $fillable=["nombre","logo","descripcion","color","estado"];
     public static function query()
     {
         $query = (new static)->newQuery();
