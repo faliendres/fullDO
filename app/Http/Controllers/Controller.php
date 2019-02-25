@@ -121,10 +121,14 @@ class Controller extends BaseController
             $file = $request->file($name);
             $field = str_replace("_file", "", $name);
             $value = $request->get($field, "");
+            $rename = $request->get("${field}_rename", false);
             if (!is_array($file))
                 $file = [$file];
             foreach ($file as $uploadedFile) {
-                $foto = uniqid() . "." . $uploadedFile->extension();
+                if($rename)
+                    $foto = uniqid() . "." . $uploadedFile->extension();
+                else
+                    $foto=$uploadedFile->getClientOriginalName();
                 Storage::disk($this->resource)->put($foto, $uploadedFile->get());
                 if (!empty($value))
                     $value .= "/";
