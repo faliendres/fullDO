@@ -71,6 +71,13 @@ Route::group(['middleware' => ['auth','check.permission']], function () {
     Route::get("/cargos/edit/{id}", "CargoController@edit")->name('cargos.edit');
     Route::post("/cargos", "CargoController@store")->name('cargos.store');
 
+    Route::delete("/solicitudes/{id}", "SolicitudController@destroy")->name('solicitudes.destroy');
+    Route::get("/solicitudes", "SolicitudController@index")->name('solicitudes.index');
+    Route::get("/solicitudes/create", "SolicitudController@create")->name('solicitudes.create');
+    Route::get("/solicitudes/{id}", "SolicitudController@show")->name('solicitudes.show');
+    Route::put("/solicitudes/{id}", "SolicitudController@update")->name('solicitudes.update');
+    Route::get("/solicitudes/edit/{id}", "SolicitudController@edit")->name('solicitudes.edit');
+    Route::post("/solicitudes", "SolicitudController@store")->name('solicitudes.store');
 });
 
 });
