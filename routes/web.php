@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','check.permission']], function () {
+    Route::get("/perfil", "UserController@profile")->name('perfil');
 
     Route::delete("/usuarios/{id}", "UserController@destroy")->name('users.destroy');
     Route::get("/usuarios", "UserController@index")->name('users.index');

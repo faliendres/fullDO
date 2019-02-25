@@ -196,11 +196,18 @@
                 success: function (result) {
                     datasource = result;
                     var nodeTemplate = function (data) {
-                        return `
-                                <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
-                                <div class="nombre" style="border-radius:unset !important;">${data.name}</div>
-                                <div class="cargo">${data.title}</div>
-                                <div class="departamento">${data.office}</div>
+                        let link;
+                        if(data.id=='-1'){
+                            link = "#";
+                        }else{
+                            link = `perfil?id=${data.id}`;
+                        }
+                        return `<a href="${link}">
+                                    <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
+                                    <div class="nombre" style="border-radius:unset !important;">${data.name}</div>
+                                    <div class="cargo">${data.title}</div>
+                                    <div class="departamento">${data.office}</div>
+                                </a>
                               `;
                     };
 
