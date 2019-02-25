@@ -20,6 +20,7 @@ class CreateSolicitudsTable extends Migration
             $table->string('asunto');
             $table->text('descripcion');
             $table->text('adjuntos');
+            $table->integer('estado')->unsigned()->default(1);
             $table->timestamps();
             $table->foreign("destinatario_id")->references('id')->on('users');
         });

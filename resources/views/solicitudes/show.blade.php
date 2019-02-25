@@ -6,5 +6,7 @@
         @include("partials.textArea",["required"=>true,"name"=>"descripcion","title"=>"Descripcion"])
         @include("partials.field",["name"=>"destinatario_id","title"=>"Destinatario","value"=>$instance->destinatario->name ])
         @include("partials.file",["required"=>true,"name"=>"adjuntos","title"=>"Adjuntos","multiple"=>true ])
+        @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])
+
 
 @endsection
