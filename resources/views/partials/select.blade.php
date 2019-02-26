@@ -2,7 +2,7 @@
     $auxId=uniqid($name);
     if(!isset($value)&&isset($instance))
         $value=$instance->$name;
-    else $value="";
+    if(!isset($value)) $value="";
     if(isset($value)&&(!isset($selected)||!$selected)){
         $selected=collect($options)->filter(function($item)use($value){
            return $value==$item["id"];
