@@ -21,11 +21,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', function () {
         return view('profile');
     })->name("profile");
-
+    Route::get("/perfil", "UserController@profile")->name('perfil');
     Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','check.permission']], function () {
-    Route::get("/perfil", "UserController@profile")->name('perfil');
+    
 
     Route::delete("/usuarios/{id}", "UserController@destroy")->name('users.destroy');
     Route::get("/usuarios", "UserController@index")->name('users.index');
@@ -62,7 +62,7 @@ Route::group(['middleware' => ['auth','check.permission']], function () {
     Route::get("/gerencias/edit/{id}", "GerenciaController@edit")->name('gerencias.edit');
     Route::post("/gerencias", "GerenciaController@store")->name('gerencias.store');
 
-    Route::get('/cargos/tree', 'CargoController@getEstructura')->name('getEstructura');
+    Route::get('/organigrama/tree', 'CargoController@getEstructura')->name('getEstructura');
 
     Route::delete("/cargos/{id}", "CargoController@destroy")->name('cargos.destroy');
     Route::get("/cargos", "CargoController@index")->name('cargos.index');
