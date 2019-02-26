@@ -97,8 +97,8 @@ class UserController extends Controller
 
         $data = $request->only('id');
         if(count($data)){
-            $user = User::query()->find($data['id']);
-            $cargo = Cargo::query()->where('id_funcionario',$user->id)->first();
+            $user = User::where('id',$data['id'])->first();
+            $cargo = Cargo::where('id_funcionario',$user->id)->first();
         }
         else{
             $user = auth()->user();
@@ -108,8 +108,13 @@ class UserController extends Controller
         }
         
         if(isset($user->gerencia_id)){
-            $gerencia = Gerencia::query()->where('id',$user->gerencia_id)->first();    
-            $jefatura = Cargo::query()->where('id',$cargo->id_jefatura)->first();
+            $gerencia = Gerencia::where('id',$user->gerencia_id)->first();
+            if(isset($cargo->id_jefatura))    
+                $jefatura = Cargo::where('id',$cargo->id_jefatura)->first();
+            else{
+                $jefatura = new Cargo;
+                $jefatura->nombre = "-";    
+            }
         }else{
             $gerencia = new Gerencia;
             $gerencia->nombre = "Super Admin";
@@ -118,8 +123,6 @@ class UserController extends Controller
             $jefatura->nombre = "Super Admin";
         }
         
-
-        //dd($user,$cargo,$gerencia);
         return view('profile', [ 'user' => $user,
                                 'cargo' => $cargo,
                                 'jefatura' => $jefatura,

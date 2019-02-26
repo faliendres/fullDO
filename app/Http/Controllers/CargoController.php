@@ -29,7 +29,7 @@ class CargoController extends Controller
 
     protected function getArbol($cargo){
     	if(isset($cargo->id_funcionario)){
-    		$func = User::query()->where('id',$cargo->id_funcionario)->first();
+    		$func = User::where('id',$cargo->id_funcionario)->first();
     		$name = $func->nombre . ' ' . $func->apellido;
     		$avatar = $func->foto;
     	}else{
