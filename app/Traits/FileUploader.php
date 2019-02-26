@@ -21,27 +21,29 @@ trait FileUploader
         $now = Carbon::now();
         $folder = $now->format("Y/d") . "/" . $instance->getKey();
         $files = $request->files;
-
         foreach ($files as $name => $nameF) {
+            $multiple = true;
             $file = $request->file($name);
             $field = str_replace("_file", "", $name);
             $value = $request->get($field, "");
             $value = json_decode($value, true);
-            $rename = $request->get("${field}_rename", false);
-            if (!is_array($file))
+            if (!is_array($file)) {
+                $multiple = false;
                 $file = [$file];
+            }
             foreach ($file as $uploadedFile) {
-                if ($rename)
-                    $foto = uniqid() . "." . $uploadedFile->extension();
-                else
-                    $foto = $uploadedFile->getClientOriginalName();
+                $foto = $uploadedFile->getClientOriginalName();
                 $foto = $this->validateFileName("$folder/$foto", $resource);
                 Storage::disk($resource)->put($foto, $uploadedFile->get());
                 $value[] = $foto;
             }
-            $this->removeUnusedFiles($instance->$field, json_encode($value), $resource);
-            $request->merge([$field => json_encode($value)]);
-            $instance->update([$field => json_encode($value)]);
+            if ($multiple)
+                $value = json_encode($value);
+            else
+                $value = array_first($value);
+            $this->removeUnusedFiles($instance->$field, $value, $resource);
+            $request->merge([$field => $value]);
+            $instance->update([$field => $value]);
         }
     }
 
@@ -61,9 +63,14 @@ trait FileUploader
 
     protected function removeUnusedFiles($olds, $news, $resource)
     {
-        $olds = json_decode($olds, true);
-        $news = json_decode($news, true);
+        $olds = json_decode($olds, true) ?? $olds;
+        $news = json_decode($news, true) ?? $news;
         $removibles = [];
+        if (!is_array($olds))
+            $olds = [$olds];
+        if (!is_array($news))
+            $news = [$news];
+
         foreach ($olds as $old) {
             if (!in_array($old, $news))
                 $removibles[] = $old;

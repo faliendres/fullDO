@@ -10,11 +10,6 @@ $multiple=isset($multiple)&&$multiple
     </div>
     @if(!(isset($readonly)&&$readonly))
         <div class="col-12 col-md-9">
-            @if(isset($rename)&&$rename)
-                <input type="hidden" name="{{$name}}_rename" value="true">
-            @endif
-
-
             <input type="file" id="{{$auxId}}" {{$multiple?"multiple":""}} name="{{$name}}_file{{$multiple?"[]":""}}"
                    {{($required??false)?"required":""}}  class="form-control-file">
             @if ($errors->has("$name"))
