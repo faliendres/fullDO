@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\FileUploader;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, FileUploader;
 
     protected $clazz;
     protected $resource;
@@ -79,14 +79,21 @@ class Controller extends BaseController
         throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
     }
 
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function update($id, Request $request)
     {
         $rules = collect($this->rules)->map(function ($item) use ($id) {
             return str_replace("{id}", $id, $item);
         })->all();
         $this->validate($request, $rules);
-        $this->uploadFile($request);
         $instance = $this->clazz::find($id);
+        $this->uploadFiles($request, $instance, $this->resource);
         if ($instance) {
             if ($instance instanceof Model)
                 $data = collect($request->only($instance->getFillable()))->filter(function ($item) {
@@ -103,44 +110,26 @@ class Controller extends BaseController
         throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function store(Request $request)
     {
         $this->validate($request, $this->rules);
-        $this->uploadFile($request);
         $new = $this->clazz::create($request->except(["_token"]));
+        $this->uploadFiles($request, $new, $this->resource);
         if ($new && $new->id)
             $request->merge(["new_id" => $new->id]);
         return redirect()->route("$this->resource.index");
     }
 
-    protected function uploadFile(Request &$request)
-    {
-        $files = $request->files;
-
-        foreach ($files as $name => $nameF) {
-            $file = $request->file($name);
-            $field = str_replace("_file", "", $name);
-            $value = $request->get($field, "");
-            $rename = $request->get("${field}_rename", false);
-            if (!is_array($file))
-                $file = [$file];
-            foreach ($file as $uploadedFile) {
-                if($rename)
-                    $foto = uniqid() . "." . $uploadedFile->extension();
-                else
-                    $foto=$uploadedFile->getClientOriginalName();
-                Storage::disk($this->resource)->put($foto, $uploadedFile->get());
-                if (!empty($value))
-                    $value .= "/";
-                $value .= $foto;
-                $request->merge([$field => $value]);
-            }
-        }
-    }
-
 
     public function destroy($id, Request $request)
     {
+        //TODO DELETE FILES WHEN DELETE
         $id = $this->clazz::find($id);
         if ($id) {
             $id->delete();

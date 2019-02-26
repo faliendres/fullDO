@@ -29,7 +29,7 @@ $multiple=isset($multiple)&&$multiple
     @if(isset($value)&&$value)
         <input type="hidden" name="{{$name}}" value="{{$value}}">
         <ul class="col-12 col-md-9 offset-md-3" data-target="{{$name}}">
-            @foreach(explode("/",$value) as $item)
+            @foreach(json_decode($value,true) as  $item)
                 <li data-content="{{$item}}">
                     <a href="{{image_asset($resource,$item)}}" target="_blank">{{$item}}</a>
                     @if(!(isset($readonly)&&$readonly))
@@ -49,13 +49,9 @@ $multiple=isset($multiple)&&$multiple
             let content = $li.data("content");
             let target = $ul.data("target");
             let $input = $(`input[name="${target}"]`);
-            let res = $input.val().replace(`${content}`, "");
-            res = res.replace("//", "/");
-            if (res.startsWith("/"))
-                res = res.substring(1);
-            if (res.endsWith("/"))
-                res = res.substring(0, res.length - 1);
-            $input.val(res);
+            let res=JSON.parse($input.val());
+            res=res.filter(e => e !== content);
+            $input.val(JSON.stringify(res));
             $li.remove();
         }
     }

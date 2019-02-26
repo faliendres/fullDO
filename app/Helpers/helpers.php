@@ -41,12 +41,26 @@ if (!function_exists('image_asset')) {
 
     function image_asset($type = "users", $file = "")
     {
-        if (substr($file, 0, 4 ) === "http")
+        if (substr($file, 0, 4) === "http")
             return $file;
 
         $base = config("filesystems.disks.$type.url");
         if (!$file)
             return $base;
         return "$base/$file";
+    }
+}
+
+
+if (!function_exists('last_strpos')) {
+
+    function last_strpos($haystack, $needle)
+    {
+        $index = strpos(strrev($haystack), strrev($needle));
+        if ($index === false) {
+            return false;
+        }
+        $index = strlen($haystack) - strlen($needle) - $index;
+        return $index;
     }
 }
