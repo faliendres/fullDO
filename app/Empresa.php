@@ -23,8 +23,13 @@ class Empresa extends Model
     {
         $query = (new static)->newQuery();
         $user = auth()->user();
-        if ($user && $user->perfil > 1 && $user->holding_id && $user->empresa_id)
-            $query = $query->where("id", $user->empresa_id);
+        if ($user) {
+            if ($user->perfil > 0 && $user->holding_id)
+                $query = $query->where("id_holding", $user->holding_id);
+            if ($user->perfil > 1 && $user->empresa_id)
+                $query = $query->where("id", $user->empresa_id);
+        }
+
         return $query;
     }
 
