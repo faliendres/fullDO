@@ -15,7 +15,7 @@
     @include("partials.field",["required"=>true,"name"=>"asunto","title"=>"Asunto"])
     @include("partials.textArea",["required"=>true,"name"=>"descripcion","title"=>"Descripcion"])
     @include("partials.select",["required"=>true,"name"=>"destinatario_id","title"=>"Destinatario","options"=>$users ])
-    @include("partials.file",["name"=>"adjuntos","title"=>"Adjuntos","multiple"=>true ])
+    @include("partials.file-upload",["name"=>"adjuntos","title"=>"Adjuntos","multiple"=>true ])
     @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])
 
 @endsection
