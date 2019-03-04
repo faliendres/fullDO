@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cargo;
+use App\Empresa;
 use App\User;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Illuminate\Support\Facades\DB;
@@ -24,6 +25,9 @@ class CargoController extends Controller
 
     public function getEstructura(Request $request){
         $empresa = $request->get('e');
+        if(!isset($empresa)){
+            $empresa = Empresa::first()->id;
+        }
     	$cargo = Cargo::whereIn('id_gerencia', function ($q) use ($empresa){
                     $q->from('ma_gerencia')->select('id')->where('id_empresa',$empresa);
                 })
