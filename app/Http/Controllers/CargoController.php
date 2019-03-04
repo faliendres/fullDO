@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Cargo;
 use App\User;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class CargoController extends Controller
 {
@@ -21,8 +22,13 @@ class CargoController extends Controller
         'hasta' => 'nullable|date',
     ];
 
-    public function getEstructura(){
-    	$cargo = Cargo::query()->where('id_jefatura',null)->get()->first();
+    public function getEstructura(Request $request){
+        $empresa = $request->get('e');
+    	$cargo = Cargo::query()
+                ->whereIn('id_gerencia', function ($q) use ($empresa){
+                    $q->from('ma_gerencia')->select('id')->where('id_empresa',$empresa);
+                })
+                ->where('id_jefatura',null)->first();
     	$result = $this->getArbol($cargo);
     	return response()->json($result, 200);
     }
