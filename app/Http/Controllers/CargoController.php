@@ -24,8 +24,7 @@ class CargoController extends Controller
 
     public function getEstructura(Request $request){
         $empresa = $request->get('e');
-    	$cargo = Cargo::query()
-                ->whereIn('id_gerencia', function ($q) use ($empresa){
+    	$cargo = Cargo::whereIn('id_gerencia', function ($q) use ($empresa){
                     $q->from('ma_gerencia')->select('id')->where('id_empresa',$empresa);
                 })
                 ->where('id_jefatura',null)->first();
@@ -49,7 +48,7 @@ class CargoController extends Controller
 			'title' => $cargo->nombre,
 			'office' => $cargo->area,
     	);
-    	$childrens = Cargo::query()->where('id_jefatura',$cargo->id)->get();
+    	$childrens = Cargo::where('id_jefatura',$cargo->id)->get();
     	if(count($childrens)>0)
     		foreach ($childrens as $child) {
     			$node['children'][] = $this->getArbol($child);
