@@ -53,7 +53,7 @@
                                     @include("partials.select",["name"=>"cargo_id","title"=>"Cargo","stable"=>$cargos->count()==1,"options"=>$cargos])
                                     @include("partials.field",["name"=>"name","title"=>"Nombre","value"=>old('name')])
                                     @include("partials.field",["name"=>"apellido","title"=>"Apellido","value"=>old('apellido')])
-                                    @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email","value"=>old(email)])
+                                    @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email","value"=>old('email')])
                                     @include("partials.field",["required"=>true,"name"=>"rut","title"=>"RUT","value"=>old('rut')])
                                     @include("partials.select",["name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
                                     @include("partials.image",["name"=>"foto","title"=>"Foto"])
