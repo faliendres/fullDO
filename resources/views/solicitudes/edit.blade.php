@@ -1,6 +1,6 @@
 @extends("default.edit")
 @php
-    $users=toOptions(\App\User::query(),"id","name");
+    $users=toOptions(\App\User::get_nombre_cargo(),"id","full_name");
     $tipos=collect(\App\Solicitud::TIPOS)->map(function ($item){
         return [
         "text" => $item,
