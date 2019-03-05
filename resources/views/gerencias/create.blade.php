@@ -11,9 +11,9 @@
 
 
 @section("form")
-        @include("partials.field",["required"=>true,"name"=>"nombre","title"=>"Nombre"])
-        @include("partials.textArea",["name"=>"descripcion","title"=>"Descripcion"])
-        @include("partials.field",["type"=>"color","name"=>"color","title"=>"Color"])
+        @include("partials.field",["required"=>true,"name"=>"nombre","title"=>"Nombre","value"=>old('name')])
+        @include("partials.textArea",["name"=>"descripcion","title"=>"Descripcion","value"=>old('descripcion')])
+        @include("partials.field",["type"=>"color","name"=>"color","title"=>"Color","value"=>old('color')])
         @include("partials.select",["name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
         @include("partials.select",["name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])
 @endsection

@@ -40,6 +40,7 @@ class User extends Authenticatable
              * 1: Holding Admin
              * 2: Empresa Admin
              * 3: Gerencia Admin
+             * 4: Funcional
              */
             if ($user->perfil)
                 $query = $query->where("perfil", '>=',$user->perfil);

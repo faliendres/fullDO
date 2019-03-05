@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\Builder;
 
 class Gerencia extends Model
 {
@@ -14,8 +16,18 @@ class Gerencia extends Model
     {
         $query= (new static)->newQuery();
         $user=auth()->user();
-        if($user && $user->perfil>2 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
-            $query=$query->where("id",$user->gerencia_id);
+        if ($user) {
+            if($user->perfil==1 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
+                $query = $query
+                    ->whereIn('id_empresa', 
+                        function($q) use ($user){                        
+                            $q->from('ma_empresa')->select('id')->where('id_holding', $user->holding_id);
+                        });
+            if($user->perfil==2 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
+                $query = $query->where("id_empresa", $user->empresa_id);
+            if($user->perfil>2 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
+                $query=$query->where("id",$user->gerencia_id);
+        }
         return $query;
     }
     public function empresa(){

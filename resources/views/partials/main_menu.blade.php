@@ -18,10 +18,12 @@
                                     @if($subItem->subItems->count())
                                         <ul class="sub-menu children dropdown-menu">
                                             @foreach($subItem->subItems as $sub)
-                                                <li>
-                                                    <i class="{{$sub->icon }}"></i>
-                                                    <a href="{{$sub->target()}}">{{$sub->title}}</a>
-                                                </li>
+                                                @if($user->perfil <= $sub->permissions)
+                                                    <li>
+                                                        <i class="{{$sub->icon }}"></i>
+                                                        <a href="{{$sub->target()}}">{{$sub->title}}</a>
+                                                    </li>
+                                                @endif
                                             @endforeach
                                         </ul>
                                     @endif

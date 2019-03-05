@@ -72,7 +72,7 @@ class MenuTableSeeder extends Seeder
             "icon" => "fa fa-laptop",
             "order" => 3
         ]);
-        $cargos = Menu::create([
+        $solicitudes = Menu::create([
             "parent_id" => $admin_estruc->id,
             "title" => "Solicitudes",
             "route" => "solicitudes.index",

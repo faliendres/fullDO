@@ -26,10 +26,8 @@
                                         $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$empresas->first()["id"]));
                                     else
                                         $gerencias=collect([]);
-                                    if($gerencias->count()===1)
-                                        $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$gerencias->first()["id"]));
-                                    else
-                                        $cargos=collect([]);
+                                    $cargos=array_first(\App\Cargo::query()->where("id_funcionario",$instance->id)->get());
+
                                     $perfiles=[];
                                     if(!isset($user->perfil))
                                         $perfiles[]=["text"=>"Super Admin","id"=>0,"selected"=>false];
@@ -44,12 +42,11 @@
                                 @endphp
 
                                 @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
-                                @include("partials.select",["selected"=>toOptions(\App\Empresa::query()->where("id",$instance->empresa_id)),
-                                    "required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas])
-                                @include("partials.select",["selected"=>toOptions(\App\Gerencia::query()->where("id",$instance->gerencia_id)),
-                                    "required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias])
-                                @include("partials.select",["selected"=>toOptions(\App\Cargo::query()->where("id_funcionario",$instance->id)),
-                                    "required"=>true, "name"=>"cargo_id","title"=>"Cargo","stable"=>$cargos->count()==1,"options"=>$cargos])
+
+                                @include("partials.field",["title"=>"Empresa","value"=>$instance->empresa->nombre,"name"=>"empresa"])
+                                @include("partials.field",["title"=>"Gerencia","value"=>$instance->gerencia->nombre,"name"=>"gerencia"])
+                                @include("partials.field",["title"=>"Cargo","value"=>$cargos?$cargos->nombre:"-","name"=>"cargo"])
+
                                 @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
                                 @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                 @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])

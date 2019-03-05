@@ -86,6 +86,19 @@ class Cargo extends Model
         $user = auth()->user();
         if ($user && $user->perfil > 2 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
             $query = $query->where("id_gerencia", $user->gerencia_id);
+        if ($user && $user->perfil == 2 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
+            $query = $query
+                    ->whereIn('id_gerencia', function($q) use ($user){                        
+                            $q->from('ma_gerencia')->select('id')->where('id_empresa', $user->empresa_id);
+                        });
+        if ($user && $user->perfil == 1 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
+            $query = $query
+                    ->whereIn('id_gerencia', function($q) use ($user){                        
+                            $q->from('ma_gerencia')->select('id')->whereIn('id_empresa', 
+                                    function($w) use ($user){                        
+                                        $w->from('ma_empresa')->select('id')->where('id_holding', $user->holding_id);
+                                    });
+                        });
         return $query;
     }
 
