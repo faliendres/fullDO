@@ -19,7 +19,7 @@ class CreateSolicitudsTable extends Migration
             $table->unsignedInteger('destinatario_id');
             $table->string('asunto');
             $table->text('descripcion');
-            $table->text('adjuntos');
+            $table->text('adjuntos')->nullable();
             $table->integer('estado')->unsigned()->default(1);
             $table->timestamps();
             $table->foreign("destinatario_id")->references('id')->on('users');

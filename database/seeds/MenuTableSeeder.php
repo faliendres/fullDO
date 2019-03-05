@@ -73,12 +73,11 @@ class MenuTableSeeder extends Seeder
             "order" => 3
         ]);
         $solicitudes = Menu::create([
-            "parent_id" => $admin_estruc->id,
             "title" => "Solicitudes",
             "route" => "solicitudes.index",
             "permissions" => 3,
             "icon" => "fa fa-file-text-o",
-            "order" => 4
+            "order" => 3
         ]);
     }
 }
