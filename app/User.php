@@ -114,7 +114,8 @@ class User extends Authenticatable
             $arrayUsers[]=$value['id'];
         }
         if(isset($arrayUsers))
-            array_push($arrayUsers, $jefatura->toArray()[0]['id_funcionario']);
+            if(isset($jefatura->toArray()[0]))
+                array_push($arrayUsers, $jefatura->toArray()[0]['id_funcionario']);
         else if(isset($jefatura->toArray()[0]))
             $arrayUsers[] = $jefatura->toArray()[0]['id_funcionario'];
         else
