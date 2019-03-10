@@ -64,14 +64,3 @@ if (!function_exists('backButton')) {
         return $back;
     }
 }
-/*
-if (!function_exists('backButton')) {
-    function backButton()
-    {
-        $route = request()->route()->getName();
-        if( $route == 'home' || $route == 'perfil' )
-            return 0;
-        return 1;
-    }
-}
-*/

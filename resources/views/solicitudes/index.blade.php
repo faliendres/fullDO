@@ -6,6 +6,16 @@
             {"data": "tipo", "title": "Tipo"},
             {"data": "asunto", "title": "Asunto"},
             {"data": "destinatario.name", "title": "Destinatario","orderable": false},
+            {"data": "estado", "title": "Estado",
+                "render": function (data,row){
+                    let color = 'red';
+                    if(data == 2)
+                        color = 'yellow';
+                    else if( data == 3)
+                        color = 'green';
+                    return `<span style="color: ${color}"><i class="fa fa-circle fa-2x"></i></span>`;
+                }
+        },
             {
                 "data": "id", "title": "Acciones",
                 "render": function (data, row) {
