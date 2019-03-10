@@ -113,9 +113,10 @@ class User extends Authenticatable
         foreach ($empresaAdmins->get()->toArray() as $key => $value) {
             $arrayUsers[]=$value['id'];
         }
-        if(isset($arrayUsers))
+        if(isset($arrayUsers)){
             if(isset($jefatura->toArray()[0]))
                 array_push($arrayUsers, $jefatura->toArray()[0]['id_funcionario']);
+        }
         else if(isset($jefatura->toArray()[0]))
             $arrayUsers[] = $jefatura->toArray()[0]['id_funcionario'];
         else
