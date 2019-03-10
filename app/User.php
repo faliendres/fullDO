@@ -115,8 +115,10 @@ class User extends Authenticatable
         }
         if(isset($arrayUsers))
             array_push($arrayUsers, $jefatura->toArray()[0]['id_funcionario']);
-        else
+        else if(isset($jefatura->toArray()[0]))
             $arrayUsers[] = $jefatura->toArray()[0]['id_funcionario'];
+        else
+            $arrayUsers = [];
         return User::leftJoin("ma_cargo","users.id","=","ma_cargo.id_funcionario")->select("users.id", DB::raw(" CONCAT(users.name, ' ', users.apellido, CASE WHEN ma_cargo.nombre IS NULL THEN '' ELSE ' [' END, IFNULL(ma_cargo.nombre, ' '), CASE WHEN ma_cargo.nombre IS NULL THEN '' ELSE ']' END )  as full_name"))
         ->whereIn('users.id', $arrayUsers);
     }

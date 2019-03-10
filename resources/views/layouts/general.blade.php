@@ -79,6 +79,7 @@
     <!-- /#header -->
     <!-- Content -->
     <div class="content">
+        @include('partials.backButton')
         @yield("content")
     </div>
     <!-- /.content -->

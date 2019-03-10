@@ -50,3 +50,28 @@ if (!function_exists('image_asset')) {
         return "$base/$file";
     }
 }
+
+if (!function_exists('backButton')) {
+    function backButton()
+    {
+        $back = session('back-btn',false);
+        if ($back) {
+            $route = request()->route();
+            if($route->getName()=='perfil')
+                return 0;
+            $back = !\App\Menu::query()->where("route", $route->getName())->exists();
+        }
+        return $back;
+    }
+}
+/*
+if (!function_exists('backButton')) {
+    function backButton()
+    {
+        $route = request()->route()->getName();
+        if( $route == 'home' || $route == 'perfil' )
+            return 0;
+        return 1;
+    }
+}
+*/

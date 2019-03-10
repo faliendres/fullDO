@@ -21,10 +21,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', function () {
         return view('profile');
     })->name("profile");
-    Route::get("/perfil", "UserController@profile")->name('perfil');
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get("/perfil", "UserController@profile")->middleware("save-back")->name('perfil');
+    Route::get('/home', 'HomeController@index')->middleware("save-back")->name('home');
 
-Route::group(['middleware' => ['auth','check.permission']], function () {
+Route::group(['middleware' => ['auth','check.permission','save-back']], function () {
     
 
     Route::delete("/usuarios/{id}", "UserController@destroy")->name('users.destroy');
