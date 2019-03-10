@@ -132,7 +132,7 @@ class User extends Authenticatable
     }
 
     public static function getAdminEmpresa($id_empresa){
-        return User::where('perfil',2)->where('empresa_id',$id_empresa)->select('id');
+        return User::where('perfil',2)->where('empresa_id',$id_empresa)->where('id','!=',auth()->id())->select('id');
     }
 
     /**
