@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\DB;
+use App\Cargo;
 
 class User extends Authenticatable
 {
@@ -107,9 +108,27 @@ class User extends Authenticatable
     }
 
     public static function get_nombre_cargo(){
-          //return User::query()->select('id',DB::raw("CONCAT(name,' ',apellido) as full_name"));
-          return User::query()->leftJoin("ma_cargo","users.id","=","ma_cargo.id_funcionario")->select("users.id", DB::raw(" CONCAT(users.name, ' ', users.apellido, CASE WHEN ma_cargo.nombre IS NULL THEN '' ELSE ' [' END, IFNULL(ma_cargo.nombre, ' '), CASE WHEN ma_cargo.nombre IS NULL THEN '' ELSE ']' END )  as full_name"));
-          
+        $jefatura = User::getJefatura(auth()->id());
+        $empresaAdmins = User::getAdminEmpresa(auth()->user()->empresa_id);
+        foreach ($empresaAdmins->get()->toArray() as $key => $value) {
+            $arrayUsers[]=$value['id'];
+        }
+        if(isset($arrayUsers))
+            array_push($arrayUsers, $jefatura->toArray()[0]['id_funcionario']);
+        else
+            $arrayUsers[] = $jefatura->toArray()[0]['id_funcionario'];
+        return User::leftJoin("ma_cargo","users.id","=","ma_cargo.id_funcionario")->select("users.id", DB::raw(" CONCAT(users.name, ' ', users.apellido, CASE WHEN ma_cargo.nombre IS NULL THEN '' ELSE ' [' END, IFNULL(ma_cargo.nombre, ' '), CASE WHEN ma_cargo.nombre IS NULL THEN '' ELSE ']' END )  as full_name"))
+        ->whereIn('users.id', $arrayUsers);
+    }
+
+    public static function getJefatura($id_funcionario){
+        return Cargo::whereIn('id', function($q) use($id_funcionario){
+                                $q->from('ma_cargo')->select('id_jefatura')->where('id_funcionario', $id_funcionario);
+                        })->select('id_funcionario')->get();
+    }
+
+    public static function getAdminEmpresa($id_empresa){
+        return User::where('perfil',2)->where('empresa_id',$id_empresa)->select('id');
     }
 
     /**
