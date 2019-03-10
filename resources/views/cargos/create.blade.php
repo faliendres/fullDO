@@ -31,7 +31,7 @@
     @include("partials.select",["required"=>true,"name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
     @include("partials.select",["required"=>true,"name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])
     @include("partials.select",["required"=>true,"name"=>"id_gerencia","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias ])
-    @include("partials.select",["name"=>"id_jefatura","title"=>"Cargo","options"=>$cargos ])
+    @include("partials.select",["name"=>"id_jefatura","title"=>"Jefatura","options"=>$cargos ])
 @endsection
 @section("page_scripts")
 

@@ -25,7 +25,7 @@
     @include("partials.select",["required"=>true,"value"=>$instance->gerencia->id_empresa,
      "name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])
     @include("partials.select",["required"=>true,"name"=>"id_gerencia","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias ])
-    @include("partials.select",["name"=>"id_jefatura","title"=>"Cargo","options"=>$cargos ])
+    @include("partials.select",["name"=>"id_jefatura","title"=>"Jefatura","options"=>$cargos ])
     @include("partials.switch",["name"=>"estado","title"=>"Estado"])
 @endsection
 @section("page_scripts")
