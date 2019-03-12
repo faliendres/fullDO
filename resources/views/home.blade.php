@@ -45,6 +45,11 @@
         .perfil {
             border-radius: 4px 4px 0 0;
         }
+        .oc-export-btn, .oc-export-btn:active, .oc-export-btn:hover, .oc-export-btn:focus{
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
     </style>
 @endsection
 
@@ -72,14 +77,25 @@
     </div>
     <div class="row">
         <div class="col-md-12 text-center">
-            <h3 class="nombre-empresa"></h3>       
+            <h3 class="nombre-empresa"></h3>      
         </div>
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <div id="chart-container"></div>
+            <div id="chart-container">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row" style="margin-top: 15px;">
+        <div class="col-lg-12 col-md-12 text-center">ZOOM
+            <button  class="btn btn-primary chartzoomin" ><i class="fa fa-plus"></i></button>
+            <button  class="btn btn-primary chartzoomout"><i class="fa fa-minus"></i></button>
         </div>
     </div>
+
     <!--  /All Contente -->
     <div class="clearfix"></div>
 
@@ -216,7 +232,48 @@
                         'data': datasource,
                         'nodeTemplate': nodeTemplate,
                         'pan': true,
-                        //'zoom': true
+                        'exportButton': true,
+                        'exportFileextension': 'pdf',
+                        'exportFilename': 'organigrama',
+                        //'zoom': true,
+
+                        'initCompleted': function(){
+
+                  setTimeout( function(){
+                    
+                    // center the chart to container
+                    var $container = $('#chart-container');
+                    $container.scrollLeft(($container[0].scrollWidth - $container.width())/2);
+                    
+                    // get "zoom" and make usable
+                    var $chart = $('.orgchart');
+                    $chart.css('transform', "scale(1,1)");
+                    var div = $chart.css('transform');
+                    var values = div.split('(')[1];
+                    values = values.split(')')[0];
+                    values = values.split(',');
+                    var a = values[0];
+                    var b = values[1];
+                    var currentZoom = Math.sqrt(a*a + b*b);
+                    var zoomval = .8;
+
+                    // zoom buttons
+                    $('.chartzoomin').on('click', function () {
+                        zoomval = currentZoom += 0.1;
+                        $chart.css('transform', div+" scale(" + zoomval + "," + zoomval + ")");
+                    });
+                    $('.chartzoomout').on('click', function () {
+                        if(currentZoom > 0.2){
+                                zoomval = currentZoom -= 0.1;
+                                $chart.css('transform', div+" scale(" + zoomval + "," + zoomval + ")");
+                        }
+                    });
+
+                  }  , 1000 );
+                }
+
+
+
                         //'visibleLevel': 2
                     });
                 }

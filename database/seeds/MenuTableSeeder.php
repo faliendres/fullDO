@@ -14,16 +14,23 @@ class MenuTableSeeder extends Seeder
     {
         Menu::query()->delete();
         Menu::create([
+            "title" => "Buzon de Solicitudes",
+            "route" => "home",
+            "permissions" => 3,
+            "icon" => "fa fa-envelope",
+            "order" => 0
+        ]);
+        Menu::create([
             "title" => "Organigrama",
             "route" => "home",
             "permissions" => 4,
             "icon" => "fa fa-sitemap",
-            "order" => 0
+            "order" => 1
         ]);
         $admin = Menu::create([
             "title" => "Administracion",
             "permissions" => 3,
-            "order" => 1
+            "order" => 2
         ]);
         $users = Menu::create([
             "title" => "Usuarios",
