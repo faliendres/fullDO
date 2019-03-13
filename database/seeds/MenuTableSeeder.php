@@ -22,7 +22,7 @@ class MenuTableSeeder extends Seeder
         ]);
         Menu::create([
             "title" => "Organigrama",
-            "route" => "home",
+            "route" => "organigrama",
             "permissions" => 4,
             "icon" => "fa fa-sitemap",
             "order" => 1

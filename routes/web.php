@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth','check.permission','save-back']], function
     Route::get("/gerencias/edit/{id}", "GerenciaController@edit")->name('gerencias.edit');
     Route::post("/gerencias", "GerenciaController@store")->name('gerencias.store');
 
+    Route::get('/organigrama', 'HomeController@index')->name('organigrama');
     Route::get('/organigrama/tree', 'CargoController@getEstructura')->name('getEstructura');
 
     Route::delete("/cargos/{id}", "CargoController@destroy")->name('cargos.destroy');
