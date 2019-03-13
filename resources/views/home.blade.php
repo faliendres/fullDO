@@ -81,6 +81,10 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12 text-center logo-empresa">      
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12 col-md-12">
             <div id="chart-container">
             </div>
@@ -278,6 +282,7 @@
                     });
                 }
             });
+            var base_logos="{{image_asset('empresas')}}";
             let url = "{{route("gerencias.show",["_id"])}}".replace("_id", 1);
             jQuery.ajax({
                 type: "GET",
@@ -291,6 +296,12 @@
                         beforeSend: function () { },
                         success: function (response) {
                             $(".nombre-empresa").html(response.nombre);
+                            if(!response.logo)
+                                response.logo="nologo.png"
+                            if (!(response.logo).startsWith("http"))
+                                response.logo=base_logos+"/"+response.logo;                           
+                            $(".logo-empresa").html('<img class="rounded-circle" style="width:85px;height:85px;margin: 15px;" alt="logo" src='+response.logo+'>');
+                            
                         }
                     });
 
