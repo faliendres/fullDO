@@ -1,6 +1,7 @@
 @extends("default.index")
 @section("index_scripts")
     <script type="text/javascript">
+        console.log("{{$resource}}");
         var base_logos="{{image_asset($resource)}}";
         var columns = [
             {

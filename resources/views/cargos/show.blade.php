@@ -17,4 +17,6 @@
     @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])
 
     @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto","value"=>!$instance->funcionario?"":url('/').'/images/avatar/'.$instance->funcionario->foto])
+
+    @include("partials.file",["required"=>true,"name"=>"adjuntos","title"=>"Adjunto","multiple"=>false ])
 @endsection
