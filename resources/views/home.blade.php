@@ -208,7 +208,9 @@
             });
 
             let datasource;
-            let treeUrl = "{{route("getEstructura") . '?e=' . Auth::user()->empresa_id }}";
+            const urlParams = new URLSearchParams(window.location.search);
+            const myParam = urlParams.get('id');
+            let treeUrl = "{{route("getEstructura") . '?e=' . Auth::user()->empresa_id }}" + '&id='+ urlParams.get('id') ;
             jQuery.ajax({
                 type: "GET",
                 url: treeUrl,

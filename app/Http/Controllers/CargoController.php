@@ -28,12 +28,16 @@ class CargoController extends Controller
         if(!isset($empresa)){
             $empresa = Empresa::first()->id;
         }
-    	$cargo = Cargo::whereIn('id_gerencia', function ($q) use ($empresa){
-                    $q->from('ma_gerencia')->select('id')->where('id_empresa',$empresa);
-                })
-                ->where('id_jefatura',null)->first();
-    	$result = $this->getArbol($cargo);
-    	return response()->json($result, 200);
+        $data = $request->only('id');
+        if(count($data) && $data['id']!='null')
+            $cargo = Cargo::where('id',$data['id'])->first();
+        else{ 
+	       $cargo = Cargo::whereIn('id_gerencia', function ($q) use ($empresa){
+                $q->from('ma_gerencia')->select('id')->where('id_empresa',$empresa);
+            })->where('id_jefatura',null)->first();
+        }
+        $result = $this->getArbol($cargo);
+        return response()->json($result, 200);
     }
 
     protected function getArbol($cargo){
@@ -45,12 +49,16 @@ class CargoController extends Controller
     		$name = "Vacante";
     		$avatar = 'nobody.png';
     	}
+        //$collapsed = false;
+        //if($cargo->nombre == 'Gerente TI')
+            //$collapsed = true;
     	$node = array(
             'id' => $cargo->id_funcionario ?: "-1",
     		'avatar' => $avatar,
 			'name' => $name,
 			'title' => $cargo->nombre,
 			'office' => $cargo->area,
+            //'collapsed' => $collapsed,
     	);
     	$childrens = Cargo::where('id_jefatura',$cargo->id)->get();
     	if(count($childrens)>0)

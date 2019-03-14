@@ -208,7 +208,7 @@
             });
 
             let datasource;
-            let treeUrl = "{{route("getEstructura") . '?e=' . Auth::user()->empresa_id }}";
+            let treeUrl = "{{route("getEstructura") . '?e=' . Auth::user()->empresa_id . '&id=2'. }}";
             jQuery.ajax({
                 type: "GET",
                 url: treeUrl,

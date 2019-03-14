@@ -114,6 +114,13 @@
 @endsection
 <!-- Content -->
 @section("content")
+    @php
+    $id_org=''; 
+    if(isset($jefatura->jefatura->id))
+            $id_org='?id='.$jefatura->jefatura->id;
+    else if(isset($jefatura->id))
+            $id_org='?id='.$jefatura->id;       
+    @endphp
     <div class="container emp-profile">
         <form method="post">
             <div class="row">
@@ -128,7 +135,10 @@
                         <h4>{{$user->name}} {{$user->apellido}}</h4>
                         <h5>{{$cargo?$cargo->nombre:'-'}}</h5>
                         <h6>{{$user->gerencia?$user->gerencia->nombre:'-'}}</h6>
-                        <p class="profile-rating">Jefatura: {{ $jefatura->funcionario?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido:''}} {{$jefatura?' [' . $jefatura->nombre . ']':'-' }}<br/>
+                        <a class="profile-rating"><a href="/organigrama{{$id_org}}">Jefatura: 
+                            {{ $jefatura ? ($jefatura->funcionario?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido:'') : '' }} 
+                            {{$jefatura?' [' . $jefatura->nombre . ']':'-' }}
+                        </a><br/>
                             Comenzó a trabajar el {{strftime("%d de %B de %Y",strtotime($user->fecha_inicio))}}</p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -197,14 +207,18 @@
                             @if($cargo && $cargo->subCargos)
                                 @foreach ($cargo->subCargos as $subCargo)
                                     @if ($subCargo->funcionario != null)
+                                    <a href="/organigrama?id={{$subCargo->id_jefatura}}">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <label>{{ $subCargo->funcionario->name . ' ' . $subCargo->funcionario->apellido }}</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <p>{{$subCargo->nombre}}</p>
-                                        </div>
+                                        
+                                            <div class="col-md-6">
+                                                <label>{{ $subCargo->funcionario->name . ' ' . $subCargo->funcionario->apellido }}</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p>{{$subCargo->nombre}}</p>
+                                            </div>
+                                        
                                     </div>
+                                    </a>
                                     @endif
                                 @endforeach
                             @endif
