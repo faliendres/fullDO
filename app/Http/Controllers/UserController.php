@@ -53,7 +53,6 @@ class UserController extends Controller
            Log::info('-------Creando ando---------------');
 
         try{
-                Auth::user()->sendPasswordResetNotification();
                 Mail::to($request->user())->send(new EmailUserLogin( ));
                 Log::info('-------Send Mail Success---------------');
 
