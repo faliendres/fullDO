@@ -128,7 +128,7 @@
                         <h4>{{$user->name}} {{$user->apellido}}</h4>
                         <h5>{{$cargo?$cargo->nombre:'-'}}</h5>
                         <h6>{{$user->gerencia?$user->gerencia->nombre:'-'}}</h6>
-                        <p class="profile-rating">Jefatura: {{ $jefatura?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido . ' [' . $jefatura->nombre . ']':'-' }}<br/>
+                        <p class="profile-rating">Jefatura: {{ $jefatura->funcionario?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido:''}} {{$jefatura?' [' . $jefatura->nombre . ']':'-' }}<br/>
                             Comenzó a trabajar el {{strftime("%d de %B de %Y",strtotime($user->fecha_inicio))}}</p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
