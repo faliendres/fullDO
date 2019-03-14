@@ -126,9 +126,9 @@
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h4>{{$user->name}} {{$user->apellido}}</h4>
-                        <h5>{{$cargo->nombre}}</h5>
-                        <h6>{{$gerencia->nombre}}</h6>
-                        <p class="profile-rating">Jefatura: {{ $jefatura->nombre }}<br/>
+                        <h5>{{$cargo?$cargo->nombre:'-'}}</h5>
+                        <h6>{{$user->gerencia?$user->gerencia->nombre:'-'}}</h6>
+                        <p class="profile-rating">Jefatura: {{ $jefatura?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido . ' [' . $jefatura->nombre . ']':'-' }}<br/>
                             Comenzó a trabajar el {{strftime("%d de %B de %Y",strtotime($user->fecha_inicio))}}</p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -151,7 +151,7 @@
                 <div class="col-md-4">
                     <div class="profile-work">
                         <p>Datos adicionales</p>
-                        <a href="/cargos/{{$cargo->id}}">Perfil del Cargo</a><br/>
+                        <a href="{{$cargo?'/cargos/'.$cargo->id:'#'}}">Perfil del Cargo</a><br/>
                     </div>
                 </div>
                 <div class="col-md-8">
@@ -186,35 +186,25 @@
                              aria-labelledby="profile-tab">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p>{{$gerencia->descripcion}}</p>
+                                    <p>{{$user->gerencia?$user->gerencia->descripcion:'-'}}</p>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="report" role="tabpanel" aria-labelledby="report-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Carlos Guzmán</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Jefe de Ventas</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Rosa Carmona</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Subgerente de Marketing</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Pedro Pablo</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p>Supervisor de Ventas</p>
-                                </div>
-                            </div>
+                            @if($cargo && $cargo->subCargos)
+                                @foreach ($cargo->subCargos as $subCargo)
+                                    @if ($subCargo->funcionario != null)
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>{{ $subCargo->funcionario->name . ' ' . $subCargo->funcionario->apellido }}</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>{{$subCargo->nombre}}</p>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
