@@ -147,11 +147,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row">             
                 <div class="col-md-4">
                     <div class="profile-work">
-                        <p>Datos adicionales</p>
-                        <a href="{{$cargo?'/cargos/'.$cargo->id:'#'}}">Perfil del Cargo</a><br/>
+                        @if(isset($cargo->adjuntos))
+                            <p>Datos adicionales</p>                        
+                            <a href="{{$cargo?'/cargos/'.$cargo->id:'#'}}">Perfil del Cargo</a><br/>
+                            @include("partials.file",["readonly"=> "true", "name"=>"adjuntos","title"=>"","multiple"=>true, "value"=>$cargo->adjuntos, "resource" => "cargos"  ])
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-8">

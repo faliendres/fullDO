@@ -83,6 +83,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'cargos' => [
+            'driver' => 'local',
+            'root' => public_path('files/cargos'),
+            'url' => env('APP_URL').'/files/cargos',
+            'visibility' => 'public',
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
