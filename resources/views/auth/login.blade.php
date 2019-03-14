@@ -36,6 +36,9 @@
                                 @endif
                         </div>
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">INICIAR SESIóN</button>
+                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                            {{ __('Forgot Your Password?') }}
+                        </a>
                     </form>
                 </div>
             </div>

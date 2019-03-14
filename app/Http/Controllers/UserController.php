@@ -8,9 +8,12 @@ use App\Exceptions\SelfDeleteException;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\EmailUserLogin;
+use Log;
 
 class UserController extends Controller
 {
@@ -34,6 +37,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $this->validate($request, [
             'password' => 'confirmed',
         ]);
@@ -45,6 +49,19 @@ class UserController extends Controller
             $cargo->id_funcionario = $request->new_id;
             $cargo->update();
         }
+
+           Log::info('-------Creando ando---------------');
+
+        try{
+                Auth::user()->sendPasswordResetNotification();
+                Mail::to($request->user())->send(new EmailUserLogin( ));
+                Log::info('-------Send Mail Success---------------');
+
+            }
+            catch(\Exception $e){
+                \Log::info('----------------Error Sending Mail: '.$e->getMessage());
+            }
+
         return $result;
     }
 
@@ -129,5 +146,7 @@ class UserController extends Controller
                                 'gerencia' => $gerencia
                             ]);
     }
+
+
 
 }
