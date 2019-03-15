@@ -1,11 +1,20 @@
 @extends("default.index")
 @section("index_scripts")
     <script type="text/javascript">
-        console.log("{{$resource}}");
+        var filterDropDown=
+        {
+            columns: [
+                {
+                    idx: 3
+                }
+            ],
+                bootstrap: true
+        };
         var base_logos="{{image_asset($resource)}}";
         var columns = [
             {
                 "data": "logo",
+                "orderable": false,
                 "render": function (data, row) {
                     if(!data)
                         return "";

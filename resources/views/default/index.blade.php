@@ -41,6 +41,7 @@
     <script src="{{asset("assets/js/lib/data-table/buttons.html5.min.js")}}"></script>
     <script src="{{asset("assets/js/lib/data-table/buttons.print.min.js")}}"></script>
     <script src="{{asset("assets/js/lib/data-table/buttons.colVis.min.js")}}"></script>
+    <script src="{{asset("assets/js/filterDropDown.js")}}"></script>
     <script src="{{asset("assets/js/init/datatables-init.js")}}"></script>
 
     @yield("index_scripts")
@@ -55,6 +56,7 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
                 },
+                filterDropDown: filterDropDown||{},
                 "columns": columns
             });
             $table.on("click", ".btn-danger", function (e) {
