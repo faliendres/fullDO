@@ -48,6 +48,8 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            if(typeof filterDropDown ==="undefined")
+                var filterDropDown={};
             let route = "{!! request()->fullUrl() !!}";
             let $table = $('table').DataTable({
                 "processing": true,
@@ -56,7 +58,7 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
                 },
-                filterDropDown: filterDropDown||{},
+                filterDropDown: filterDropDown,
                 "columns": columns
             });
             $table.on("click", ".btn-danger", function (e) {
