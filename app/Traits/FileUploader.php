@@ -79,4 +79,14 @@ trait FileUploader
             Storage::disk($resource)->delete($removible);
 
     }
+
+    public function upload(Request $request)
+    {
+        $rnd=mt_rand(1,100);
+        if($rnd>50){
+            return response()->json(["files" => [["url" => "file_$rnd"]]]);
+        }
+        dd($request->all());
+        throw  new \Symfony\Component\Translation\Exception\NotFoundResourceException("this element");
+    }
 }

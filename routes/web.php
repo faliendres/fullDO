@@ -17,11 +17,7 @@ Route::get('/', function () {
         return view('auth.login');
     return redirect()->route("home");
 });
-Route::put('/upload/', function () {
-//    return response()->json(["files"=>[["url"=>"aghsfdghjgajsj"]]]);
-//    return response()->json(["files" => [  ["error" => "message"]  ]    ]);
-    throw  new \Symfony\Component\Translation\Exception\NotFoundResourceException("this element");
-})->name("upload");
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('profile', function () {
         return view('profile');
@@ -30,8 +26,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::group(['middleware' => ['auth', 'check.permission']], function () {
-
-
         Route::delete("/usuarios/{id}", "UserController@destroy")->name('users.destroy');
         Route::get("/usuarios", "UserController@index")->name('users.index');
         Route::get("/usuarios/create", "UserController@create")->name('users.create');
@@ -81,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get("/solicitudes", "SolicitudController@index")->name('solicitudes.index');
         Route::get("/solicitudes/create", "SolicitudController@create")->name('solicitudes.create');
         Route::get("/solicitudes/{id}", "SolicitudController@show")->name('solicitudes.show');
+        Route::put("/solicitudes/upload","SolicitudController@upload")->name("solicitudes.upload");
         Route::put("/solicitudes/{id}", "SolicitudController@update")->name('solicitudes.update');
         Route::get("/solicitudes/edit/{id}", "SolicitudController@edit")->name('solicitudes.edit');
         Route::post("/solicitudes", "SolicitudController@store")->name('solicitudes.store');
