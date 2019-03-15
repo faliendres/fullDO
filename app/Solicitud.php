@@ -8,6 +8,21 @@ class Solicitud extends Model
 {
     const TIPOS = ["A", "B", "C"];
 
+    const ESTADOS = array(
+		array(
+			'text' => "Nueva",
+			'id'  => "1"
+		),		
+		array(
+			'text' => "Revision",
+			'id'  => "2"
+		),	
+		array(
+			'text' => "Completada",
+			'id'  => "3"
+		)
+	);
+
     protected $table = "solicitudes";
     protected $with = ["destinatario"];
     protected $fillable = ["tipo", "destinatario_id", "asunto", "descripcion","adjuntos"];

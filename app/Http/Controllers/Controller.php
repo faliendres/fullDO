@@ -39,11 +39,14 @@ class Controller extends BaseController
 
     public function index(Request $request)
     {
+        //dd($request);
         if ($request->ajax()) {
             $query = $this->clazz::query();
             $f = $request->get("filter");
             if ($f["resource"]=='usuarios')
                 $query = $query->where('name', "LIKE", '%'.$f["value"].'%')->orWhere('apellido', "LIKE", '%'.$f["value"].'%');
+            if($request->getPathInfo()=='/solicitudes/buzon')
+                $query = $query->where('destinatario_id', auth()->user()->id);
             if (!$request->get("draw", false))
                 return response()->json(["data" => $query->get()]);
             return (new \Yajra\DataTables\DataTables)->eloquent($query)
