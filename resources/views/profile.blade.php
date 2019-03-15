@@ -121,7 +121,11 @@
     else if(isset($jefatura->id))
             $id_org='?id='.$jefatura->id;       
     @endphp
-    <div class="container emp-profile">
+    <div class="back-button">
+        <a href="/organigrama@php echo $jefatura ? '?id='.$jefatura->id : ''; @endphp"><i class="fa fa-reply"></i> Volver</a>
+        <p></p>
+    </div>
+    <div class="container emp-profile">       
         <form method="post">
             <div class="row">
                 <div class="col-md-4">
