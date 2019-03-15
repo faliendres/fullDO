@@ -42,7 +42,16 @@ class SolicitudController extends Controller
             foreach ($data as $field => $value)
                 if ($instance->$field != $value){
                     if($field=='estado'){
-                        //Enviar email
+                        $solicitud = Solicitud::findOrFail($request->get("destinatario_id"));
+                        $solicitud->estado = $value;
+                        try{
+                            Mail::to($request->user())
+                            ->send(new SolicitudEmail($solicitud));
+                            \Log::info('Envio correctamente el email');
+                        }
+                        catch(\Exception $e){ 
+                            \Log::info('-------Error Sending Mail: '.$e->getMessage());
+                        }
                     }
                     $instance->$field = $value;
                 }

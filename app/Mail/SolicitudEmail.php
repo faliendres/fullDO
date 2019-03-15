@@ -38,14 +38,15 @@ class SolicitudEmail extends Mailable
     {
 
       //  \Log::info($this->solicitud->descripcion);
-
+        $estados=collect(Solicitud::ESTADOS);
+        $con_texto = ($estados->where('id',$this->solicitud->estado)->first())['text']; 
            return $this->subject($this->solicitud->asunto)
                        ->from('example@fulldo.com')
                        ->markdown('emails.solicitud')
                        ->with([
                         'solicituDescripcion' => $this->solicitud->descripcion,
                         'solicituTipo' => $this->solicitud->tipo,
-                        'solicituEstado' => $this->solicitud->estado, 
+                        'solicituEstado' => $con_texto, 
                 ]);
 
     }
