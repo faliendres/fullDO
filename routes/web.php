@@ -75,6 +75,7 @@ Route::group(['middleware' => ['auth','check.permission','save-back']], function
 
     Route::delete("/solicitudes/{id}", "SolicitudController@destroy")->name('solicitudes.destroy');
     Route::get("/solicitudes", "SolicitudController@index")->name('solicitudes.index');
+    Route::get("/solicitudes/buzon", "SolicitudController@index")->name('solicitudes.buzon');
     Route::get("/solicitudes/create", "SolicitudController@create")->name('solicitudes.create');
     Route::get("/solicitudes/{id}", "SolicitudController@show")->name('solicitudes.show');
     Route::put("/solicitudes/{id}", "SolicitudController@update")->name('solicitudes.update');
