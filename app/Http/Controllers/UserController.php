@@ -50,16 +50,12 @@ class UserController extends Controller
             $cargo->update();
         }
 
-           Log::info('-------Creando ando---------------');
 
         try{
-                Auth::user()->sendPasswordResetNotification();
                 Mail::to($request->user())->send(new EmailUserLogin( ));
-                Log::info('-------Send Mail Success---------------');
-
             }
             catch(\Exception $e){
-                \Log::info('----------------Error Sending Mail: '.$e->getMessage());
+                \Log::info('Error Sending Mail: '.$e->getMessage());
             }
 
         return $result;
