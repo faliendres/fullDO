@@ -12,5 +12,6 @@
         @include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde","value"=>old('desde')])
         @include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta","value"=>old('hasta')])
         @include("partials.image",["name"=>"logo","title"=>"Logo"])
+        @include("partials.image",["name"=>"banner","title"=>"Banner"])
         @include("partials.select",["required"=>true,"name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
 @endsection

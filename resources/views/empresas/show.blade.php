@@ -8,6 +8,7 @@
         @include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde"])
         @include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta"])
         @include("partials.image",["name"=>"logo","title"=>"Logo"])
+        @include("partials.image",["name"=>"banner","title"=>"Banner"])
         @include("partials.field",["name"=>"id_holding","title"=>"Holding","value"=>$instance->holding->nombre ])
         @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])
 @endsection

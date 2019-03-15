@@ -15,6 +15,7 @@ class EmpresaController extends Controller
         "rut" => "required|unique:ma_empresa,rut,{id},id",
         "nombre" => "required|unique:ma_empresa,nombre,{id},id",
         'logo_file' => 'file|image| max:1000',
+        'banner_file' => 'file|image| max:1000',
         'descripcion' => 'max:255',
         'id_holding' => 'required|exists:ma_holding,id',
         'desde' => 'nullable|date',

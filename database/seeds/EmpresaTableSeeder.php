@@ -22,6 +22,7 @@ class EmpresaTableSeeder extends Seeder
                     'rut' => $faker->numerify("##########"),
                     'descripcion' => $faker->paragraph(),
                     'logo' => $faker->imageUrl(),
+                    'banner' => $faker->imageUrl(),
                     'color' => $faker->colorName,
                     'desde' => $faker->dateTime(),
                     'hasta' => $faker->dateTime(),

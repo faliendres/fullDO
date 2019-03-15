@@ -15,6 +15,7 @@ class Empresa extends Model
         "desde",
         "hasta",
         "logo",
+        "banner",
         "id_holding",
         "estado"];
     protected $with = ["holding"];
