@@ -55,53 +55,12 @@
 
 @section("content")
     <!--  All Content  -->
-    <div class="row" style="margin-bottom: 1em;display:none;">
-        <div class="col-md-4">
-            <label>Seleccione holding</label>
-            <select class="form-control" name="holdings" id="holdings">
-                <option>Seleccione...</option>
-            </select>
-        </div>
-        <div class="col-md-4">
-            <label>Seleccione empresa</label>
-            <select class="form-control" name="empresas" id="empresas" disabled>
-                <option>Seleccione...</option>
-            </select>
-        </div>
-        <div class="col-md-4">
-            <label>Seleccione gerencia</label>
-            <select class="form-control" name="gerencias" id="gerencias" disabled>
-                <option>Seleccione...</option>
-            </select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h3 class="nombre-empresa"></h3>      
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 text-center logo-empresa">      
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div id="chart-container">
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="row" style="margin-top: 15px;">
-        <div class="col-lg-12 col-md-12 text-center">ZOOM
-            <button  class="btn btn-primary chartzoomin" ><i class="fa fa-plus"></i></button>
-            <button  class="btn btn-primary chartzoomout"><i class="fa fa-minus"></i></button>
-        </div>
-    </div>
-
-    <!--  /All Contente -->
     <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 text-center">
+            <div id="banner-container"></div>
+        </div>
+    </div>
 
     <!-- Modal -->
     <div class="modal" tabindex="-1" role="dialog" id="myModal">
@@ -146,168 +105,30 @@
     <script type="text/javascript">
         jQuery(function () {
 
-            // LLenar los select
-            jQuery.ajax({
-                type: "GET",
-                url: "/holdings",
-                beforeSend: function () {
-                    jQuery("#empresas").attr("disabled");
-                    jQuery("#gerencias").attr("disabled");
-                },
-                success: function (result) {
-                    let options = '';
-                    Object.values(result.data).forEach( k =>{
-                        options += `<option value="${k.id}">${k.nombre}</option>`;
-                    });
-                    jQuery("#holdings").append(options);
-                }
-            });
-
-            jQuery(document).on('change','#holdings',function(){
-                let holding = jQuery(this).find("option:selected").attr('value');
-                let route = "{{route("getEmpresasByHolding",["_id"])}}".replace("_id", holding);
+        var base_banners="{{image_asset('empresas')}}";
+        let url = "{{route("gerencias.show",["_id"])}}".replace("_id", 1);
+        jQuery.ajax({
+            type: "GET",
+            url: url,
+            beforeSend: function () { },
+            success: function (result) {
+                url = "{{route("empresas.show",["_id"])}}".replace("_id", result.id_empresa);
                 jQuery.ajax({
                     type: "GET",
-                    url: route,
-                    beforeSend: function () {
-                        jQuery("#empresas").empty();
-                        jQuery("#empresas").attr("disabled");
-                        jQuery("#empresas").append(`<option>Seleccione...</option>`);
-                    },
-                    success: function (result) {
-                        let options = '';
-                        Object.keys(result).forEach( k =>{
-                            options += `<option value="${k}">${result[k]}</option>`;
-                        });
-                        jQuery("#empresas").append(options);
-                        jQuery("#empresas").removeAttr( "disabled" );
+                    url: url,
+                    beforeSend: function () { },
+                    success: function (response) {
+                        if(!response.banner)
+                            response.banner="nobanner.png"
+                        if (!(response.banner).startsWith("http"))
+                            response.banner=base_banners+"/"+response.banner;                           
+                        $("#banner-container").html('<img alt="banner" src='+response.banner+'>');
+                        
                     }
                 });
-            });
 
-            jQuery(document).on('change','#empresas',function(){
-                let empresa = jQuery(this).find("option:selected").attr('value');
-                let route = "{{route("getGerenciasbyEmpresa",["_id"])}}".replace("_id", empresa);
-                jQuery.ajax({
-                    type: "GET",
-                    url: route,
-                    beforeSend: function () {
-                        jQuery("#gerencias").empty();
-                        jQuery("#gerencias").attr("disabled");
-                        jQuery("#gerencias").append(`<option>Seleccione...</option>`);
-                    },
-                    success: function (result) {
-                        let options = '';
-                        Object.keys(result).forEach( k =>{
-                            options += `<option value="${k}">${result[k]}</option>`;
-                        });
-                        jQuery("#gerencias").append(options);
-                        jQuery("#gerencias").removeAttr( "disabled" );
-                    }
-                });
-            });
-
-            let datasource;
-            let treeUrl = "{{route("getEstructura") . '?e=' . Auth::user()->empresa_id }}";
-            jQuery.ajax({
-                type: "GET",
-                url: treeUrl,
-                beforeSend: function () {
-                },
-                success: function (result) {
-                    datasource = result;
-                    var nodeTemplate = function (data) {
-                        let link;
-                        if(data.id=='-1'){
-                            link = "#";
-                        }else{
-                            link = `perfil?id=${data.id}`;
-                        }
-                        return `<a href="${link}">
-                                    <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
-                                    <div class="nombre" style="border-radius:unset !important;">${data.name}</div>
-                                    <div class="cargo">${data.title}</div>
-                                    <div class="departamento">${data.office}</div>
-                                </a>
-                              `;
-                    };
-
-                    var oc = jQuery('#chart-container').orgchart({
-                        'data': datasource,
-                        'nodeTemplate': nodeTemplate,
-                        'pan': true,
-                        'exportButton': true,
-                        'exportFileextension': 'pdf',
-                        'exportFilename': 'organigrama',
-                        'visibleLevel': 4,
-                        //'zoom': true,
-
-                        'initCompleted': function(){
-
-                            setTimeout( function(){
-                                
-                                // center the chart to container
-                                var $container = $('#chart-container');
-                                $container.scrollLeft(($container[0].scrollWidth - $container.width())/2);
-                                
-                                // get "zoom" and make usable
-                                var $chart = $('.orgchart');
-                                $chart.css('transform', "scale(1,1)");
-                                var div = $chart.css('transform');
-                                var values = div.split('(')[1];
-                                values = values.split(')')[0];
-                                values = values.split(',');
-                                var a = values[0];
-                                var b = values[1];
-                                var currentZoom = Math.sqrt(a*a + b*b);
-                                var zoomval = .8;
-
-                                // zoom buttons
-                                $('.chartzoomin').on('click', function () {
-                                    zoomval = currentZoom += 0.1;
-                                    $chart.css('transform', div+" scale(" + zoomval + "," + zoomval + ")");
-                                });
-                                $('.chartzoomout').on('click', function () {
-                                    if(currentZoom > 0.2){
-                                            zoomval = currentZoom -= 0.1;
-                                            $chart.css('transform', div+" scale(" + zoomval + "," + zoomval + ")");
-                                    }
-                                });
-
-                            }  , 1000 );
-                        }
-
-
-
-                        //'visibleLevel': 2
-                    });
-                }
-            });
-            var base_logos="{{image_asset('empresas')}}";
-            let url = "{{route("gerencias.show",["_id"])}}".replace("_id", 1);
-            jQuery.ajax({
-                type: "GET",
-                url: url,
-                beforeSend: function () { },
-                success: function (result) {
-                    url = "{{route("empresas.show",["_id"])}}".replace("_id", result.id_empresa);
-                    jQuery.ajax({
-                        type: "GET",
-                        url: url,
-                        beforeSend: function () { },
-                        success: function (response) {
-                            $(".nombre-empresa").html(response.nombre);
-                            if(!response.logo)
-                                response.logo="nologo.png"
-                            if (!(response.logo).startsWith("http"))
-                                response.logo=base_logos+"/"+response.logo;                           
-                            $(".logo-empresa").html('<img class="rounded-circle" style="width:85px;height:85px;margin: 15px;" alt="logo" src='+response.logo+'>');
-                            
-                        }
-                    });
-
-                }
-            });
+            }
+        });
 
 
 

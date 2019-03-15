@@ -62,7 +62,7 @@ Route::group(['middleware' => ['auth','check.permission','save-back']], function
     Route::get("/gerencias/edit/{id}", "GerenciaController@edit")->name('gerencias.edit');
     Route::post("/gerencias", "GerenciaController@store")->name('gerencias.store');
 
-    Route::get('/organigrama', 'HomeController@index')->name('organigrama');
+    Route::get('/organigrama', 'HomeController@organigrama')->name('organigrama');
     Route::get('/organigrama/tree', 'CargoController@getEstructura')->name('getEstructura');
 
     Route::delete("/cargos/{id}", "CargoController@destroy")->name('cargos.destroy');
@@ -75,6 +75,7 @@ Route::group(['middleware' => ['auth','check.permission','save-back']], function
 
     Route::delete("/solicitudes/{id}", "SolicitudController@destroy")->name('solicitudes.destroy');
     Route::get("/solicitudes", "SolicitudController@index")->name('solicitudes.index');
+    Route::get("/solicitudes/buzon", "SolicitudController@index")->name('solicitudes.buzon');
     Route::get("/solicitudes/create", "SolicitudController@create")->name('solicitudes.create');
     Route::get("/solicitudes/{id}", "SolicitudController@show")->name('solicitudes.show');
     Route::put("/solicitudes/{id}", "SolicitudController@update")->name('solicitudes.update');

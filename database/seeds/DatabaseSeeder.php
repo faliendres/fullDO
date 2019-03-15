@@ -14,20 +14,20 @@ class DatabaseSeeder extends Seeder
 
 
 
-        $this->truncateTables([
+        /*$this->truncateTables([
             'ma_holding',
             'ma_empresa',
             'ma_gerencia',
-        ]);
+        ]);*/
 
         // Ejecutar los seeders:
         
         $this->call(MenuTableSeeder::class);
-        $this->call(HoldingTableSeeder::class);
-        $this->call(EmpresaTableSeeder::class);
-        $this->call(GerenciaTableSeeder::class);
-        $this->call(UserTableSeeder::class);
-        $this->call(CargosTableSeeder::class);
+        //$this->call(HoldingTableSeeder::class);
+        //$this->call(EmpresaTableSeeder::class);
+        //$this->call(GerenciaTableSeeder::class);
+        //$this->call(UserTableSeeder::class);
+        //$this->call(CargosTableSeeder::class);
     }
 
     public function truncateTables(array $tables)

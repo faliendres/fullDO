@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Log;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class Controller extends BaseController
@@ -40,9 +41,16 @@ class Controller extends BaseController
     {
         if ($request->ajax()) {
             $query = $this->clazz::query();
-            $f = $request->get("filter", []);
-            foreach ($f as $filter)
-                $query = $query->where($filter["field"], $filter["op"] ?? "=", $filter["value"]);
+            $f = $request->get("filter");
+            if (isset($f["resource"]) && $f["resource"]=='usuarios')
+                $query = $query->where('name', "LIKE", '%'.$f["value"].'%')->orWhere('apellido', "LIKE", '%'.$f["value"].'%');
+            if($request->getPathInfo()=='/solicitudes/buzon')
+                $query = $query->where('destinatario_id', auth()->user()->id);
+            if ($f)
+                foreach ($f as $filter) {
+                    if (is_array($filter) && array_key_exists("field", $filter) && array_key_exists("op", $filter) && array_key_exists("value", $filter))
+                        $query = $query->where($filter["field"], $filter["op"] ?? "=", $filter["value"]);
+                }
             if (!$request->get("draw", false))
                 return response()->json(["data" => $query->get()]);
             return (new \Yajra\DataTables\DataTables)->eloquent($query)

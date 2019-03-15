@@ -24,4 +24,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function organigrama(Request $request)
+    {
+        return view('organigrama');
+    }
 }

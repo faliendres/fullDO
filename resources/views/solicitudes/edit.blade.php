@@ -1,12 +1,18 @@
 @extends("default.edit")
 @php
     $users=toOptions(\App\User::get_nombre_cargo(),"id","full_name");
+    if($instance->destinatario_id == auth()->user()->id) // si la solicitud a editar va dirigida al usuario actual
+        $users->push([
+            "text" => auth()->user()->name.' '.auth()->user()->apellido,
+            "id" => auth()->user()->id
+        ]);
     $tipos=collect(\App\Solicitud::TIPOS)->map(function ($item){
         return [
         "text" => $item,
         "id" => $item
         ];
     });
+    $estados=collect(\App\Solicitud::ESTADOS);
 @endphp
 
 @section("form")
@@ -16,6 +22,6 @@
     @include("partials.textArea",["required"=>true,"name"=>"descripcion","title"=>"Descripcion"])
     @include("partials.select",["required"=>true,"name"=>"destinatario_id","title"=>"Destinatario","options"=>$users ])
     @include("partials.file",["name"=>"adjuntos","title"=>"Adjuntos","multiple"=>true ])
-    @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])
+    @include("partials.select",["required"=>true, "name"=>"estado","title"=>"Estado","options"=>$estados])
 
 @endsection
