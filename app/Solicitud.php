@@ -25,7 +25,7 @@ class Solicitud extends Model
 
     protected $table = "solicitudes";
     protected $with = ["destinatario"];
-    protected $fillable = ["tipo", "destinatario_id", "asunto", "descripcion","adjuntos"];
+    protected $fillable = ["tipo", "destinatario_id", "asunto", "descripcion","adjuntos","estado"];
 
     public function destinatario()
     {

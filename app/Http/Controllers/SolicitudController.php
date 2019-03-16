@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Http\Request;
 use App\Solicitud;
 use Illuminate\Validation\Rule;
 
@@ -21,5 +21,32 @@ class SolicitudController extends Controller
         ];
     }
 
+    public function update($id, Request $request)
+    {
+        $rules = collect($this->rules)->map(function ($item) use ($id) {
+            return str_replace("{id}", $id, $item);
+        })->all();
+        $this->validate($request, $rules);
+        $this->uploadFile($request);
+        $instance = $this->clazz::find($id);
+        if ($instance) {
+            if ($instance instanceof Solicitud)
+                $data = collect($request->only($instance->getFillable()))->filter(function ($item) {
+                    return isset($item);
+                })->all();
+            foreach ($data as $field => $value)
+                if ($instance->$field != $value){
+                    if($field=='estado'){
+                        //Enviar email
+                    }
+                    $instance->$field = $value;
+                }
+            $instance->update();
+            if ($request->ajax())
+                return response()->json($instance, 200);
+            return redirect()->route("$this->resource.show", ["id" => $instance->id]);
+        }
+        throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
+    }
 
 }

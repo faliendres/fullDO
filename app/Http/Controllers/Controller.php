@@ -43,7 +43,7 @@ class Controller extends BaseController
         if ($request->ajax()) {
             $query = $this->clazz::query();
             $f = $request->get("filter");
-            if ($f["resource"]=='usuarios')
+            if (isset($f["resource"]) && $f["resource"]=='usuarios')
                 $query = $query->where('name', "LIKE", '%'.$f["value"].'%')->orWhere('apellido', "LIKE", '%'.$f["value"].'%');
             if($request->getPathInfo()=='/solicitudes/buzon')
                 $query = $query->where('destinatario_id', auth()->user()->id);
