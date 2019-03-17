@@ -7,7 +7,6 @@ use App\Solicitud;
 use App\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Http\Request;
 use App\Mail\SolicitudEmail;
 use Log;
 

@@ -22,6 +22,7 @@
     @include("partials.textArea",["required"=>true,"name"=>"descripcion","title"=>"Descripcion"])
     @include("partials.select",["required"=>true,"name"=>"destinatario_id","title"=>"Destinatario","options"=>$users ])
     @include("partials.file",["name"=>"adjuntos","title"=>"Adjuntos","multiple"=>true ])
+    @include("partials.textArea",["required"=>true,"name"=>"comentarios","title"=>"Comentarios"])
     @include("partials.select",["required"=>true, "name"=>"estado","title"=>"Estado","options"=>$estados])
 
 @endsection
