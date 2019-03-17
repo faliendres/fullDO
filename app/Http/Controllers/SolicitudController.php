@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Solicitud;
+use App\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
+use App\Mail\SolicitudEmail;
+use Log;
+
 
 class SolicitudController extends Controller
 {
@@ -47,6 +53,26 @@ class SolicitudController extends Controller
             return redirect()->route("$this->resource.show", ["id" => $instance->id]);
         }
         throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
+    }
+
+    public function store(Request $request)
+    {
+
+        $result = parent::store($request);
+        $solicitud = Solicitud::findOrFail($request->get("new_id"));
+
+        try{
+                Mail::to(User::findOrFail($solicitud->destinatario_id)->email)
+                ->cc($request->user())
+                ->send(new SolicitudEmail($solicitud));
+                \Log::info('Envio correctamente el email');
+            }
+            catch(\Exception $e){ 
+                \Log::info('-------Error Sending Mail: '.$e->getMessage());
+            }
+
+        return $result;
+
     }
 
 }
