@@ -5,7 +5,7 @@ Hola,
 
 Tienes una solicitud de tipo {{ $solicituTipo }}
 {{ $solicituDescripcion }} .
-Esta Solicitud se encuentra en un estado {{ $solicituEstado }}
+Esta Solicitud se encuentra en estado {{ $solicituEstado }}
 
 
 

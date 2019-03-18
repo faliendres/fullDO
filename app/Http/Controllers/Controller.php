@@ -39,6 +39,10 @@ class Controller extends BaseController
 
     public function index(Request $request)
     {
+        $noEdit = false;
+        if($request->getPathInfo()=='/solicitudes')
+            $noEdit = true;
+        
         if ($request->ajax()) {
             $query = $this->clazz::query();
             $f = $request->get("filter");
@@ -56,7 +60,7 @@ class Controller extends BaseController
             return (new \Yajra\DataTables\DataTables)->eloquent($query)
                 ->make(true);
         }
-        return view("$this->resource.index");
+        return view("$this->resource.index",compact('noEdit'));
     }
 
     public function create(Request $request)
