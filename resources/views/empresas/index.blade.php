@@ -1,6 +1,12 @@
 @extends("default.index")
 @section("index_scripts")
+
     <script type="text/javascript">
+        var perfil = "{{ auth()->user()->perfil }}";
+        var filterSelect = [];
+        if (perfil == "" || perfil == null) {
+            var filterSelect = ["Holding"];
+        }
         var filterDropDown=
         {
             columns: [
@@ -24,8 +30,10 @@
                     return `<img class="rounded-circle" style="width:85px;height:85px;" alt="logo" src="${data}">`;
                 }
             },
+            {"data": "id_holding", "title": "Holding ID","orderable": false, visible: false},
             {"data": "rut", "title": "RUT"},
             {"data": "nombre", "title": "Nombre"},
+
             {"data": "holding.nombre", "title": "Holding","orderable": false},
             {"data": "desde", "title": "Desde"},
             {"data": "hasta", "title": "Hasta"},
@@ -52,3 +60,4 @@
         ];
     </script>
 @endsection
+

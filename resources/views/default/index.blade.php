@@ -14,6 +14,25 @@
                         <h4 class="box-title">{{__($resource)}} </h4>
                         <a href="{{route("$resource.create")}}" class="btn btn-primary">Nuevo</a>
                     </div>
+                    <div class="row card-body">
+
+                        <div class="form-group col-md-offset-1 col-md-4 holding" style="display: none">
+                            <h5>Seleccionar Holding <span class="text-danger"></span></h5>
+                            <select id="Holdings">
+                                <option value="">Todos </option>
+
+                            </select>
+
+                        </div>
+                        <div class="form-group col-md-4 empresas" style="display: none">
+                            <h5>Seleccionar Empresa <span class="text-danger"></span></h5>
+                            <select id="Empresas">
+                                <option value="">Todos </option>
+
+                            </select>
+
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card-body">
@@ -21,7 +40,7 @@
                                     <thead></thead>
                                     <tbody></tbody>
                                 </table>
-                            </div>
+                    </div>
                         </div>
                     </div> <!-- /.row -->
                 </div>
@@ -29,6 +48,8 @@
         </div>
         <!--  /Traffic -->
     </div>
+
+
 @endsection
 
 @section("page_scripts")
@@ -48,9 +69,11 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+
             if(typeof filterDropDown ==="undefined")
                 var filterDropDown={};
             let route = "{!! request()->fullUrl() !!}";
+
             let $table = $('table').DataTable({
                 "processing": true,
                 "serverSide": true,
@@ -103,6 +126,72 @@
                 });
 
             });
+            if(typeof filterSelect != "undefined") {
+                if (filterSelect.indexOf("Holding") >= 0) {
+                    $('.holding').show();
+                    $.ajax({
+                        url: '/holdings',
+                        type: 'GET',
+                        success: function (response) { // What to do if we succeed
+
+                            $.each(response.data, function () {
+
+                                $("#Holdings").append('<option value="' + this.id + '">' + this.nombre + '</option>');
+                            });
+                        },
+                    });
+
+                    $('#Holdings').on('change', function () {
+                        var filter_value = $(this).val();
+                        $table
+                            .columns(1)
+                            .search(filter_value)
+                            .draw();
+
+                        $.ajax({
+                            url: '/holdings/' + filter_value + '/empresas',
+                            type: 'GET',
+                            success: function (response) { // What to do if we succeed
+
+                                $("#Empresas").empty();
+
+                                let options = '<option value="">Todos </option>';
+                                Object.keys(response).forEach(k => {
+                                    options += `<option value="${k}">${response[k]}</option>`;
+                                });
+                                jQuery("#Empresas").append(options);
+
+                            },
+                        });
+
+                    });
+                }
+
+                if (filterSelect.indexOf("Empresas") >= 0) {
+                    $('.empresas').show();
+                    $.ajax({
+                        url: '/empresas',
+                        type: 'GET',
+                        success: function (response) { // What to do if we succeed
+
+                            $.each(response.data, function () {
+
+                                $("#Empresas").append('<option value="' + this.id + '">' + this.nombre + '</option>');
+                            });
+                        },
+                    });
+
+                    $('#Empresas').on('change', function () {
+                        var filter_value = $(this).val();
+                        $table
+                            .columns(2)
+                            .search(filter_value)
+                            .draw();
+
+                    });
+                }
+            }
+
         });
     </script>
 

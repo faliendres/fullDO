@@ -2,12 +2,21 @@
 @section("index_scripts")
     <script type="text/javascript">
         var base_logos="{{image_asset($resource)}}";
+        var perfil = "{{ auth()->user()->perfil }}";
+        var filterSelect = [];
+        if (perfil == "" || perfil == null) {
+            filterSelect = ["Holding", "Empresas"];
+        }
+        if (perfil == 1){
+            filterSelect = ["Empresas"];
+        }
         var columns = [
 
-            {"data": "nombre", "title": "Nombre"},
+            {"data": "nombregerencia", "title": "Nombre","orderable": false},
+            {"data": "empresa.id_holding", "title": "Holding ID","orderable": false, visible: false},
+            {"data": "empresa.id", "title": "Empresa","orderable": false, visible:false},
             {"data": "empresa.nombre", "title": "Empresa","orderable": false},
             {"data": "empresa.holding.nombre", "title": "Holding","orderable": false},
-
             {
                 "data": "id", "title": "Acciones",
                 "render": function (data, row) {
