@@ -84,7 +84,7 @@
                     success: result => {
                         $select.append(`<option value="" selected disabled>Seleccione por favor</option>`)
                         result.data.forEach((item) => {
-                            $select.append(`<option value="${item.id}">${item.nombre}</option>`)
+                            $select.append(`<option value="${item.id}">${item.nombregerencia}</option>`)
                         });
                     },
                     error: response => {

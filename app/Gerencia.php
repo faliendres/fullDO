@@ -14,7 +14,7 @@ class Gerencia extends Model
     protected $fillable=["nombre","descripcion","color","id_empresa","estado"];
     public static function query()
     {
-        $query= (new static)->newQuery()->select(['ma_gerencia.id', 'ma_gerencia.nombre as nombregerencia', 'ma_gerencia.descripcion', 'ma_gerencia.color', 'id_empresa','ma_gerencia.estado']);
+        $query= (new static)->newQuery()->select(['ma_gerencia.id', 'ma_gerencia.nombre', 'ma_gerencia.nombre as nombregerencia', 'ma_gerencia.descripcion', 'ma_gerencia.color', 'id_empresa','ma_gerencia.estado']);
         $user=auth()->user();
         if ($user) {
             if($user->perfil==1 && $user->holding_id && $user->empresa_id && $user->gerencia_id)

@@ -61,14 +61,12 @@
             <div id="banner-container"></div>
         </div>
     </div>
-
     <!-- Modal -->
     <div class="modal" tabindex="-1" role="dialog" id="myModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="alert alert-danger" style="display:none"></div>
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Actualice su contraseña</h4>
                 </div>
@@ -90,7 +88,6 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-
                     <button  class="btn btn-success" id="ajaxSubmit">Guardar</button>
                 </div>
             </div>
@@ -104,40 +101,26 @@
     <script type="text/javascript" src="{{asset("OrgChart-master/demo/js/jquery.orgchart.js")}}"></script>
     <script type="text/javascript">
         jQuery(function () {
-
         var base_banners="{{image_asset('empresas')}}";
-        let url = "{{route("gerencias.show",["_id"])}}".replace("_id", 1);
+        var empresa_id = "{{Auth::user()->empresa_id}}" ? "{{Auth::user()->empresa_id}}" : 1;
+        url = "{{route("empresas.show",["_id"])}}".replace("_id", empresa_id);
         jQuery.ajax({
             type: "GET",
             url: url,
             beforeSend: function () { },
-            success: function (result) {
-                url = "{{route("empresas.show",["_id"])}}".replace("_id", result.id_empresa);
-                jQuery.ajax({
-                    type: "GET",
-                    url: url,
-                    beforeSend: function () { },
-                    success: function (response) {
-                        if(!response.banner)
-                            response.banner="nobanner.png"
-                        if (!(response.banner).startsWith("http"))
-                            response.banner=base_banners+"/"+response.banner;                           
-                        $("#banner-container").html('<img alt="banner" src='+response.banner+'>');
-                        
-                    }
-                });
-
+            success: function (response) {
+                if(!response.banner)
+                    response.banner="nobanner.png"
+                if (!(response.banner).startsWith("http"))
+                    response.banner=base_banners+"/"+response.banner;                           
+                $("#banner-container").html('<img alt="banner" src='+response.banner+'>');         
             }
         });
-
-
-
         // change password
         var fecha = "{{ Auth::user()->password_changed_at }}";
         if( fecha == ""){
             $("#myModal").modal('show');
         }
-
             jQuery('#ajaxSubmit').click(function(e){
                 e.preventDefault();
                 jQuery('.alert-danger').html('');
@@ -168,9 +151,7 @@
                     jQuery('.alert-danger').show();
                     jQuery('.alert-danger').append('<li>Rellene todos los campos</li>');
                 }
-
             });
-
         });
     </script>
 @endsection

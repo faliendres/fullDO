@@ -122,7 +122,7 @@
             $id_org='?id='.$jefatura->id;       
     @endphp
     <div class="back-button">
-        <a href="/organigrama@php echo $jefatura ? '?id='.$jefatura->id : ''; @endphp"><i class="fa fa-reply"></i> Volver</a>
+        <a href="{{ route('organigrama') }}@php echo $jefatura ? '?id='.$jefatura->id : ''; @endphp"><i class="fa fa-reply"></i> Volver</a>
         <p></p>
     </div>
     <div class="container emp-profile">       
@@ -139,7 +139,7 @@
                         <h4>{{$user->name}} {{$user->apellido}}</h4>
                         <h5>{{$cargo?$cargo->nombre:'-'}}</h5>
                         <h6>{{$user->gerencia?$user->gerencia->nombre:'-'}}</h6>
-                        <a class="profile-rating"><a href="/organigrama{{$id_org}}">Jefatura: 
+                        <a class="profile-rating"><a href="{{ route('organigrama') }}{{$id_org}}">Jefatura: 
                             {{ $jefatura ? ($jefatura->funcionario?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido:'') : '' }} 
                             {{$jefatura?' [' . $jefatura->nombre . ']':'-' }}
                         </a><br/>
@@ -211,7 +211,7 @@
                             @if($cargo && $cargo->subCargos)
                                 @foreach ($cargo->subCargos as $subCargo)
                                     @if ($subCargo->funcionario != null)
-                                    <a href="/organigrama?id={{$subCargo->id_jefatura}}">
+                                    <a href="{{ route('organigrama') }}?id={{$subCargo->id_jefatura}}">
                                     <div class="row">
                                         
                                             <div class="col-md-6">
