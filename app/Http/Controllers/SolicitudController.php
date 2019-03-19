@@ -42,10 +42,11 @@ class SolicitudController extends Controller
             foreach ($data as $field => $value)
                 if ($instance->$field != $value){
                     if($field=='estado'){
-                        $solicitud = Solicitud::findOrFail($request->get("destinatario_id"));
+                        $solicitud = Solicitud::findOrFail($id);
                         $solicitud->estado = $value;
                         try{
-                            Mail::to($request->user())
+                            Mail::to($request->user()->email)
+                            ->cc(User::findOrFail($solicitud->remitente_id)->email)
                             ->send(new SolicitudEmail($solicitud));
                             \Log::info('Envio correctamente el email');
                         }
@@ -68,19 +69,16 @@ class SolicitudController extends Controller
 
         $result = parent::store($request);
         $solicitud = Solicitud::findOrFail($request->get("new_id"));
-
         try{
-                Mail::to(User::findOrFail($solicitud->destinatario_id)->email)
-                ->cc($request->user())
-                ->send(new SolicitudEmail($solicitud));
-                \Log::info('Envio correctamente el email');
-            }
-            catch(\Exception $e){ 
-                \Log::info('-------Error Sending Mail: '.$e->getMessage());
-            }
-
+            Mail::to($request->user()->email)
+            ->cc(User::findOrFail($solicitud->destinatario_id)->email)
+            ->send(new SolicitudEmail($solicitud));
+            \Log::info('Envio correctamente el email');
+        }
+        catch(\Exception $e){ 
+            \Log::info('-------Error Sending Mail: '.$e->getMessage());
+        }
         return $result;
-
     }
-
 }
+
