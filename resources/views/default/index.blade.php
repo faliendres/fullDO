@@ -32,6 +32,14 @@
                             </select>
 
                         </div>
+                        <div class="form-group col-md-4 gerencias" style="display: none">
+                            <h5>Seleccionar Gerencia <span class="text-danger"></span></h5>
+                            <select id="Gerencias">
+                                <option value="">Todos </option>
+
+                            </select>
+
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
@@ -185,6 +193,30 @@
                         var filter_value = $(this).val();
                         $table
                             .columns(2)
+                            .search(filter_value)
+                            .draw();
+
+                    });
+                }
+
+                if (filterSelect.indexOf("Gerencias") >= 0) {
+                    $('.gerencias').show();
+                    $.ajax({
+                        url: '/gerencias',
+                        type: 'GET',
+                        success: function (response) { // What to do if we succeed
+
+                            $.each(response.data, function () {
+
+                                $("#Gerencias").append('<option value="' + this.id + '">' + this.nombregerencia + '</option>');
+                            });
+                        },
+                    });
+
+                    $('#Gerencias').on('change', function () {
+                        var filter_value = $(this).val();
+                        $table
+                            .column(4)
                             .search(filter_value)
                             .draw();
 

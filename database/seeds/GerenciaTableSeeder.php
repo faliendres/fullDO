@@ -18,7 +18,7 @@ class GerenciaTableSeeder extends Seeder
         for($i=1; $i<7; $i++) {
             foreach (range(1,3) as $index) {
                 DB::table('ma_gerencia')->insert([
-                    'nombre' => $faker->jobTitle,
+                    'nombre' => 'Gerencia ' . $faker->jobTitle,
                     'descripcion' => $faker->paragraph(),
                     'color' => $faker->colorName,
                     'fecha_creacion' => $faker->dateTime(),

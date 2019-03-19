@@ -13,12 +13,13 @@
         if (perfil == 2){
             filterSelect = [ "Gerencias"];
         }
-        filterSelect = [];
+        //filterSelect = [];
         var columns = [
-            {"data": "nombre", "title": "Nombre"},
+            {"data": "nombrecargo", "title": "Nombre"},
             {"data": "gerencia.empresa.id_holding", "title": "Holding ID","orderable": false, visible: false},
-            {"data": "gerencia.empresa.id", "title": "Empresa","orderable": false, visible:false},
+            {"data": "gerencia.id_empresa", "title": "Empresa","orderable": false, visible:false},
             {"data": "area", "title": "area"},
+            {"data": "gerencia.id", "title": "Gerencia ID","orderable": false, visible: false},
             {"data": "gerencia.nombre", "title": "Gerencia"},
             {"data": "gerencia.empresa.nombre", "title": "Empresa","orderable": false,},
             {"data": "gerencia.empresa.holding.nombre", "title": "Holding","orderable": false,},
