@@ -13,9 +13,9 @@
         if (perfil == 2){
             filterSelect = [ "Gerencias"];
         }
-        //filterSelect = [];
+        filterSelect = [];
         var columns = [
-            {"data": "nombrecargo", "title": "Nombre"},
+            {"data": "nombre", "title": "Nombre"},
             {"data": "gerencia.empresa.id_holding", "title": "Holding ID","orderable": false, visible: false},
             {"data": "gerencia.id_empresa", "title": "Empresa","orderable": false, visible:false},
             {"data": "area", "title": "area"},
