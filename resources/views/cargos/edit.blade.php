@@ -5,7 +5,7 @@
     $holdings=toOptions(\App\Holding::query());
     $empresas=toOptions(\App\Empresa::query()->where("id_holding",$instance->gerencia->empresa->id_holding));
     $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$instance->gerencia->id_empresa));
-    $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$instance->id_gerencia));
+    $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$instance->id_gerencia)->where("id","!=",$instance->id));
 @endphp
 
 

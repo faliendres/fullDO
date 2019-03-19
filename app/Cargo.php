@@ -45,12 +45,6 @@ class Cargo extends Model
                     $cargo->update();
                 }
             }
-
-            if($model->id_jefatura){
-                $model->isSubCargo($model->id_jefatura);
-                //throw  new LoopReferenceException;
-            }
-
         });
         self::saved(function ($model) {
             $user = User::find($model->id_funcionario);
@@ -64,11 +58,8 @@ class Cargo extends Model
             Cargo::query()
                 ->where("id", "<>", $model->id)
                 ->where("id_funcionario", $model->id_funcionario)->update(["id_funcionario" => null]);
-            if($model->id_jefatura){
-                $model->isSubCargo($model->id_jefatura);
-                //throw  new LoopReferenceException;
-            }
-
+            if($model->id_jefatura == $model->id)
+                throw  new LoopReferenceException;
         });
         static::updated(function ($model) {
             $user = User::find($model->id_funcionario);
@@ -101,20 +92,6 @@ class Cargo extends Model
                         });
         return $query;
     }
-
-
-    public function isSubCargo($cargo_id){
-        if(!in_array($cargo_id,$this->subCargos->pluck("id")->all()))
-            return true;
-        foreach ($this->subCargos as $cargo){
-            if($cargo->isSubCargo($cargo_id)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     public function getDesdeAttribute($desde){
         return Carbon::parse($desde)->format('d-m-Y');
     }
