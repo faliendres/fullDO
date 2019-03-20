@@ -22,7 +22,7 @@ class CheckPermission
                 $uri = $request->route()->uri();
                 $resource = explode("/", $uri)[0];
                 $menuItem = Menu::query()->where('title',ucwords($resource))->first();
-                if($user->perfil > $menuItem->permissions){
+                if($user->perfil > $menuItem->permissions && $menuItem->title != "Usuarios"){
                     return redirect('home');
                 }
             }

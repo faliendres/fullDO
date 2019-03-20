@@ -82,7 +82,7 @@ class MenuTableSeeder extends Seeder
         $solicitudes = Menu::create([
             "title" => "Solicitudes",
             "route" => "solicitudes.index",
-            "permissions" => 3,
+            "permissions" => 4,
             "icon" => "fa fa-file-text-o",
             "order" => 3
         ]);

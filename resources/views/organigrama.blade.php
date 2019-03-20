@@ -45,16 +45,13 @@
             background-color: #007bff;
             border-color: #007bff;
         }
+        .orgchart .nombre { background-color: #006699; }
+
     </style>
 @endsection
 
 @section("content")
     <!--  All Content  -->
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h3 class="nombre-empresa"></h3>      
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12 text-center logo-empresa">      
         </div>
@@ -97,11 +94,11 @@
                         if(data.id=='-1'){
                             link = "#";
                         }else{
-                            link = `perfil?id=${data.id}`;
+                            link = "{!! route('perfil') !!}"+"?id="+data.id;
                         }
-                        return `<a href="${link}">
+                        return `<a href="${link}" >
                                     <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
-                                    <div class="nombre" style="border-radius:unset !important;">${data.name}</div>
+                                    <div class="nombre" style="color:black;border-radius:unset !important;background-color:${data.color} !important;>${data.name}</div>
                                     <div class="cargo">${data.title}</div>
                                     <div class="departamento">${data.office}</div>
                                 </a>
@@ -149,6 +146,10 @@
                     });
                 }
             });
+
+            
+
+
             var base_logos="{{image_asset('empresas')}}";
             var empresa_id = "{{Auth::user()->empresa_id}}" ? "{{Auth::user()->empresa_id}}" : 1;
             url = "{{route("empresas.show",["_id"])}}".replace("_id", empresa_id);
@@ -157,8 +158,6 @@
                 url: url,
                 beforeSend: function () { },
                 success: function (response) {
-                    console.log (url);
-                    $(".nombre-empresa").html(response.nombre);
                     if(!response.logo)
                         response.logo="nologo.png"
                     if (!(response.logo).startsWith("http"))
@@ -167,5 +166,10 @@
                 }
             });
         });
+        jQuery(function () {
+            $('.node').each(function(key, element){
+              console.log($(element).parent().attr('id'));
+            });
+            });
     </script>
 @endsection

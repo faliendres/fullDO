@@ -4,7 +4,7 @@
         var base_logos = "{{image_asset($resource)}}";
         var perfil = "{{ auth()->user()->perfil }}";
         if (perfil == "" || perfil == null) {
-            filterSelect = ["Holding", "Empresas", "Gerencias"];
+            filterSelect = ["Empresas", "Gerencias"];
         }
         if (perfil == 1){
             filterSelect = ["Empresas", "Gerencias"];

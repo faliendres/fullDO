@@ -36,7 +36,7 @@
                                             $cargos=collect([]);
                                         $perfiles=[];
                                         if(!isset($user->perfil))
-                                            $perfiles[]=["text"=>"Super Admin","id"=>0];
+                                            $perfiles[]=["text"=>"Super Admin","id"=>null];
                                         if($user->perfil<1)
                                             $perfiles[]=["text"=>"Holding","id"=>1];
                                         if($user->perfil<2)

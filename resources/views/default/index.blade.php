@@ -153,10 +153,10 @@
                         var filter_value = $(this).val();
                         $table
                             .columns(1)
-                            .search(filter_value)
+                            .search(filter_value ? '^'+filter_value+'$' : '',true, false)
                             .draw();
 
-                        $.ajax({
+                        /*$.ajax({
                             url: '/holdings/' + filter_value + '/empresas',
                             type: 'GET',
                             success: function (response) { // What to do if we succeed
@@ -170,7 +170,7 @@
                                 jQuery("#Empresas").append(options);
 
                             },
-                        });
+                        });*/
 
                     });
                 }
@@ -193,7 +193,7 @@
                         var filter_value = $(this).val();
                         $table
                             .columns(2)
-                            .search(filter_value)
+                            .search(filter_value ? '^'+filter_value+'$' : '',true, false)
                             .draw();
 
                     });
@@ -217,7 +217,7 @@
                         var filter_value = $(this).val();
                         $table
                             .column(4)
-                            .search(filter_value)
+                            .search(filter_value ? '^'+filter_value+'$' : '',true, false)
                             .draw();
 
                     });

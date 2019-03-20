@@ -58,6 +58,7 @@ class CargoController extends Controller
 			'name' => $name,
 			'title' => $cargo->nombre,
 			'office' => $cargo->area,
+            'color'  => $cargo->gerencia->color,
             //'collapsed' => $collapsed,
     	);
     	$childrens = Cargo::where('id_jefatura',$cargo->id)->get();

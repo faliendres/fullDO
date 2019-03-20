@@ -1,7 +1,7 @@
 @extends("default.create")
 @php
     $user=auth()->user();
-    $users=toOptions(\App\User::query(),"id","name");
+    $users=toOptions(\App\User::query()->select(DB::raw("CONCAT(name,' ',apellido,' [',rut,']') AS full_name, id")),"id","full_name");
     $holdings=toOptions(\App\Holding::query());
     if($holdings->count()===1)
         $empresas=toOptions(\App\Empresa::query()->where("id_holding",$holdings->first()["id"]));
@@ -17,7 +17,6 @@
         $cargos=collect([]);
 @endphp
 
-
 @section("form")
     @include("partials.field",["required"=>true,"name"=>"nombre","title"=>"Nombre", "value"=>old('name')])
     @include("partials.textArea",["name"=>"descripcion","title"=>"Descripcion", "value"=>old('descripcion')])
@@ -25,9 +24,7 @@
     @include("partials.field",["type"=>"color","name"=>"color","title"=>"Color", "value"=>old('color')])
     @include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde", "value"=>old('desde')])
     @include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta", "value"=>old('hasta')])
-
-    @include("partials.select",["required"=>true,"name"=>"id_funcionario","title"=>"Funcionario","options"=>$users ])
-
+    @include("partials.select",["name"=>"id_funcionario","title"=>"Funcionario","options"=>$users ])
     @include("partials.select",["required"=>true,"name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
     @include("partials.select",["required"=>true,"name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])
     @include("partials.select",["required"=>true,"name"=>"id_gerencia","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias ])
@@ -39,8 +36,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             let $form = $("#create_form");
-
-
             $form.find("select[name='id_holding']").change(function (e) {
                 let $select = $form.find("select[name='id_empresa']");
                 $select.empty();
