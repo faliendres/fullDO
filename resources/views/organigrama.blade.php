@@ -98,7 +98,7 @@
                         }
                         return `<a href="${link}" >
                                     <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
-                                    <div class="nombre" style="color:black;border-radius:unset !important;background-color:${data.color} !important;>${data.name}</div>
+                                    <div class="nombre" style="color:black;border-radius:unset !important;background-color:${data.color} !important;">${data.name}</div>
                                     <div class="cargo">${data.title}</div>
                                     <div class="departamento">${data.office}</div>
                                 </a>
@@ -162,14 +162,9 @@
                         response.logo="nologo.png"
                     if (!(response.logo).startsWith("http"))
                         response.logo=base_logos+"/"+response.logo;                           
-                    $(".logo-empresa").html('<img class="rounded-circle" style="width:85px;height:85px;margin: 15px;" alt="logo" src='+response.logo+'>'); 
+                    $(".logo-empresa").html('<img class="rounded-circle" style="width:85px;height:85px;margin: 15px;" alt="logo" src="'+response.logo+'">'); 
                 }
             });
         });
-        jQuery(function () {
-            $('.node').each(function(key, element){
-              console.log($(element).parent().attr('id'));
-            });
-            });
     </script>
 @endsection

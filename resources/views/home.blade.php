@@ -113,7 +113,7 @@
                     response.banner="nobanner.png"
                 if (!(response.banner).startsWith("http"))
                     response.banner=base_banners+"/"+response.banner;                           
-                $("#banner-container").html('<img alt="banner" src='+response.banner+'>');         
+                $("#banner-container").html('<img alt="banner" src="'+response.banner+'">');         
             }
         });
         // change password
