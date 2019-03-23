@@ -94,9 +94,11 @@ class Cargo extends Model
         return $query;
     }
     public function getDesdeAttribute($desde){
+        if($desde)
         return Carbon::parse($desde)->format('d-m-Y');
     }
     public function getHastaAttribute($hasta){
+        if($hasta)
         return Carbon::parse($hasta)->format('d-m-Y');
     }
 }
