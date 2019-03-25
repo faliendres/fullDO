@@ -30,6 +30,7 @@
         if($user->perfil<4)
             $perfiles[]=["text"=>"Funcional","id"=>4,"selected"=>false];
     @endphp
+
     @include("partials.field",["name"=>'validated',"type"=>"hidden","value"=>""])
     @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>true,"options"=>$holdings, "value"=> $instance->holding_id ])
     @include("partials.select",["required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>true,"options"=>$empresas, "value"=> $instance->empresa_id])
@@ -40,11 +41,13 @@
     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
     @include("partials.field",["name"=>"rut","title"=>"RUT"])
+    
+    @include("partials.field",["type"=>"date","name"=>"fecha_nacimiento","title"=>"Fecha de Nacimiento", "value"=>$instance->fecha_nacimiento ? Carbon\Carbon::parse($instance->fecha_nacimiento)->format('Y-m-d') : ''])
+
+    @include("partials.field",["type"=>"date","name"=>"fecha_inicio","title"=>"Fecha de Contratación", "value"=>$instance->fecha_inicio ? Carbon\Carbon::parse($instance->fecha_inicio)->format('Y-m-d') : ''])
+
     @include("partials.image",["name"=>"foto","title"=>"Foto"])
     @include("partials.switch",["name"=>"estado","title"=>"Estado"])
-
-
-
 
 @endsection
 @section("page_scripts")

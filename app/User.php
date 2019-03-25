@@ -9,6 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\DB;
 use App\Cargo;
 use App\Notifications\ResetPasswordNotification;
+use Carbon\Carbon;
 use Log;
 
 class User extends Authenticatable
@@ -30,7 +31,6 @@ class User extends Authenticatable
                 $model->holding_id = $model->cargo->gerencia->empresa->id_holding;
             }
         });
-
     }
 
     public static function query()
@@ -67,7 +67,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'apellido', 'email', 'password', "foto",
-        "perfil", "usuario_creacion", "estado", "rut",
+        "perfil", "fecha_nacimiento", "fecha_inicio", "usuario_creacion", "estado", "rut",
         'gerencia_id', 'empresa_id', 'holding_id',"estado"];
 
     public function cargo()
@@ -147,11 +147,18 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        Log::info('-------Entra en la notificacion---------------');
         $this->notify(new ResetPasswordNotification($token));
     }
 
 
+    public function getFechaInicioAttribute($fecha_inicio){
+        if($fecha_inicio)
+            return Carbon::parse($fecha_inicio)->format('d-m-Y');
+    }
+    public function getFechaNacimientoAttribute($fecha_nacimiento){
+        if($fecha_nacimiento)
+            return Carbon::parse($fecha_nacimiento)->format('d-m-Y');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -6,7 +6,6 @@
             background: white;
         }
         #chart-container {
-            /*position: relative;*/
             display: inline-block;
             top: 10px;
             left: 10px;
@@ -46,7 +45,6 @@
             border-color: #007bff;
         }
         .orgchart .nombre { background-color: #006699; }
-
     </style>
 @endsection
 
@@ -59,13 +57,14 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div id="chart-container">
+
             </div>
-        </div>
-    </div>
-    <div class="row" style="margin-top: 15px;">
-        <div class="col-lg-12 col-md-12 text-center">ZOOM
-            <button  class="btn btn-primary chartzoomin" ><i class="fa fa-plus"></i></button>
-            <button  class="btn btn-primary chartzoomout"><i class="fa fa-minus"></i></button>
+            <div class="row" id="buttons-zoom" style="margin-top: 15px;">
+                <div class="col-lg-12 col-md-12 text-center">ZOOM
+                    <button  class="btn btn-primary chartzoomin" ><i class="fa fa-plus"></i></button>
+                    <button  class="btn btn-primary chartzoomout"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
         </div>
     </div>
     <!--  /All Contente -->
@@ -146,10 +145,6 @@
                     });
                 }
             });
-
-            
-
-
             var base_logos="{{image_asset('empresas')}}";
             var empresa_id = "{{Auth::user()->empresa_id}}" ? "{{Auth::user()->empresa_id}}" : 1;
             url = "{{route("empresas.show",["_id"])}}".replace("_id", empresa_id);
