@@ -14,9 +14,7 @@
         }
 
         .profile-img img {
-            max-height: 370px;
-            max-width: 370px;
-            width: 100%;
+            width: 70%;
             height: 100%;
         }
 
@@ -29,10 +27,6 @@
             border-radius: 0;
             font-size: 15px;
             background: #212529b8;
-        }
-
-        .table .avatar{
-            width: 1px;
         }
 
         .profile-img .file input {
@@ -75,13 +69,6 @@
             margin-bottom: 5%;
         }
 
-        .profile-head i {
-            margin-right: 5px;
-            width: 20px;
-            text-align: center;
-        }
-
-
         .profile-head .nav-tabs .nav-link {
             font-weight: 600;
             border: none;
@@ -123,149 +110,127 @@
             font-weight: 600;
             color: #1D0D89;
         }
-        .fontsize10{
-            font-size: 10px;
-        }
-        .fontsize12{
-            font-size: 12px;
-        }
-        .fontsize13{
-            font-size: 13px;
-        }
-        .table-stats .table {
-            cursor: pointer;
-        }
-        .m-t-20{
-          margin-top: 20px;
-        }
-        .td-email{
-            text-transform:none !important;
-        }
     </style>
 @endsection
 <!-- Content -->
 @section("content")
+    @php
+    $id_org=''; 
+    if(isset($jefatura->jefatura->id))
+            $id_org='?id='.$jefatura->jefatura->id;
+    else if(isset($jefatura->id))
+            $id_org='?id='.$jefatura->id;       
+    @endphp
     <div class="back-button">
-        <a href="{{ route('organigrama') }} {{ isset($jefatura) ? ('?id='.$jefatura->id) : '' }} "><i class="fa fa-reply"></i> Volver</a>
+        <a href="{{ route('organigrama') }}@php echo $jefatura ? '?id='.$jefatura->id : ''; @endphp"><i class="fa fa-reply"></i> Volver</a>
         <p></p>
     </div>
     <div class="container emp-profile">       
         <form method="post">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="profile-head">
-                            <h2 style="margin-bottom: 10px;">{{$user->name}} {{$user->apellido}}</h2>
-                            <h4 style="margin-bottom: 20px;">{{$cargo ? $cargo->nombre:'-'}}</h4>
-                            <i class="fa fa-flag"></i><span>{{$user->gerencia ? $user->gerencia->nombre:'-'}}</span><br/>
-                            <i class="fa fa-map-marker"></i><span>{{$user->empresa ? $user->empresa->nombre:'-'}}</span><br/>
-                            <i class="fa fa-trophy"></i><span>Comenzó el {{ (new Date($user->fecha_inicio))->format('j F Y') }}</span><br/>    
-                        </div>
-                    </div>
-                    <div class="row m-t-20">
-                        <div class="col-md-2">
-                            <a href="{{ route('home') }}" class="btn btn-primary">Editar</a>
-                        </div>
-                        <div class="col-md-4">
-                            <a href="{{ route('organigrama') }}" class="btn btn-primary">Ver Organigrama</a>
-                        </div>
-                    </div>                    
-                    <div class="card-body m-t-20">
-                        <h5 class="box-title">Contact</h5>
-                    </div>
-                    <div class="table-stats ov-h">
-                        <table class="contact" id="reports-contacts">
-                            <tbody>
-                                <tr class="contact"> 
-                                    <td class="avatar">
-                                        <i class="fa fa-envelope"></i>
-                                    </td>
-                                    <td><span class="fontsize13">EMAIL</span>
-                                        <br>
-                                        <span class="fontsize12 td-email">{{$user->email}}</span>
-                                    </td>
-                                </tr>           
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row">             
-                        <div class="col-md-4">
-                            <div class="profile-work m-t-20">
-                                @if(isset($cargo->adjuntos))                  
-                                    <a>Perfil del Cargo:</a><br/>
-                                    @include("partials.file",["readonly"=> "true", "name"=>"adjuntos","title"=>"","multiple"=>true, "value"=>$cargo->adjuntos, "resource" => "cargos"  ])
-                                @endif
-                            </div>
-                        </div>
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="images\avatar\{{$user->foto}}"
+                             alt=""/>
                     </div>
                 </div>
-                <div class="col-md-5 card" style="padding:30px;">
-                    <div class="profile-img">
-                        <img src="images\avatar\{{$user->foto}}" alt=""/>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h4>{{$user->name}} {{$user->apellido}}</h4>
+                        <h5>{{$cargo?$cargo->nombre:'-'}}</h5>
+                        <h6>{{$user->gerencia?$user->gerencia->nombre:'-'}}</h6>
+                        <a class="profile-rating"><a href="{{ route('organigrama') }}{{$id_org}}">Jefatura: 
+                            {{ $jefatura ? ($jefatura->funcionario?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido:'') : '' }} 
+                            {{$jefatura?' [' . $jefatura->nombre . ']':'-' }}
+                        </a><br/>
+                            Comenzó a trabajar el {{strftime("%d de %B de %Y",strtotime($user->fecha_inicio))}}</p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile"
+                                   role="tab" aria-controls="profile" aria-selected="true">Funciones del Cargo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                   aria-controls="home" aria-selected="false">Contacto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="report-tab" data-toggle="tab" href="#report" role="tab"
+                                   aria-controls="report" aria-selected="false">Reportes Directos</a>
+                            </li>
+                        </ul>
                     </div>
-                    @if($jefatura)
-                        <div class="card-body">
-                            <h5 class="box-title">Jefatura</h5>
+                </div>
+            </div>
+            <div class="row">             
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        @if(isset($cargo->adjuntos))
+                            <p>Datos adicionales</p>                        
+                            <a>Perfil del Cargo:</a><br/>
+                            @include("partials.file",["readonly"=> "true", "name"=>"adjuntos","title"=>"","multiple"=>true, "value"=>$cargo->adjuntos, "resource" => "cargos"  ])
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Celular</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>--</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{$user->email}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Anexo</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>--</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="table-stats ov-h">
-                            <table class="table" id="reports-contacts">
-                                <tbody>
-                                    <tr class="pb-0" data-url="{{ route('perfil') }}?id={{$jefatura->funcionario->id}}"> 
-                                        <td class="avatar">
-                                            <div class="round-img">
-                                                <img class="rounded-circle" src="images/avatar/{{$jefatura->funcionario->foto}}" alt="">
+                        <div class="tab-pane fade show active" id="profile" role="tabpanel"
+                             aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>{{$user->gerencia?$user->gerencia->descripcion:'-'}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="report" role="tabpanel" aria-labelledby="report-tab">
+                            @if($cargo && $cargo->subCargos)
+                                @foreach ($cargo->subCargos as $subCargo)
+                                    @if ($subCargo->funcionario != null)
+                                    <a href="{{ route('organigrama') }}?id={{$subCargo->id_jefatura}}">
+                                    <div class="row">
+                                        
+                                            <div class="col-md-6">
+                                                <label>{{ $subCargo->funcionario->name . ' ' . $subCargo->funcionario->apellido }}</label>
                                             </div>
-                                        </td>
-                                        <td><span class="fontsize13">{{ $jefatura->nombre }}</span>
-                                            <br>
-                                            <span class="fontsize12">{{ $jefatura->funcionario?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido:'' }}</span>
-                                        </td>
-                                        <td><i class="fa fa-angle-right"></i></td>
-                                    </tr>           
-                                </tbody>
-                            </table>
+                                            <div class="col-md-6">
+                                                <p>{{$subCargo->nombre}}</p>
+                                            </div>
+                                        
+                                    </div>
+                                    </a>
+                                    @endif
+                                @endforeach
+                            @endif
                         </div>
-                    @endif
-                    @if($cargo && count($cargo->subCargos)>0)
-                        <div class="card-body">
-                            <h5 class="box-title">Reportes Directos</h5>
-                        </div>
-                        <div class="table-stats ov-h">
-                            <table class="table" id="reports-contacts">
-                                <tbody>
-                                    @foreach ($cargo->subCargos as $subCargo)
-                                        @if ($subCargo->funcionario != null)
-                                            <tr class="pb-0" data-url="{{ route('perfil') }}?id={{$subCargo->funcionario->id}}"> 
-                                                <td class="avatar">
-                                                    <div class="round-img">
-                                                        <img class="rounded-circle" src="images/avatar/{{$subCargo->funcionario->foto}}" alt="">
-                                                    </div>
-                                                </td>
-                                                <td><span class="fontsize13">{{$subCargo->nombre}}</span>
-                                                    <br>
-                                                    <span class="fontsize12">{{ $subCargo->funcionario->name . ' ' . $subCargo->funcionario->apellido }}</span>
-                                                </td>
-                                                <td><i class="fa fa-angle-right"></i></td>
-                                            </tr>           
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    @endif
+                    </div>
                 </div>
             </div>
         </form>
     </div>
 @endsection
-@section("page_scripts")
-<script type="text/javascript">
-
-    $(function() {
-      $('table.table').on("click", "tr.pb-0", function() {
-        window.location = $(this).data("url");
-      });
-    });
-
-</script>
-@endsection
+<!-- /.content -->

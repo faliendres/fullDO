@@ -21,8 +21,8 @@
             {"data": "area", "title": "area"},
             {"data": "gerencia.id", "title": "Gerencia ID","orderable": false, visible: false},
             {"data": "gerencia.nombre", "title": "Gerencia"},
-            {"data": "gerencia.empresa.nombre", "title": "Empresa",},
-            {"data": "gerencia.empresa.holding.nombre", "title": "Holding",},
+            {"data": "gerencia.empresa.nombre", "title": "Empresa","orderable": false,},
+            {"data": "gerencia.empresa.holding.nombre", "title": "Holding","orderable": false,},
             {
                 "data": "jefatura", "title": "Jefatura",
                 "render": function (data, row) {
