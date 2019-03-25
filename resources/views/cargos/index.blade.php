@@ -2,12 +2,13 @@
 @section("index_scripts")
     <script type="text/javascript">
         var base_logos = "{{image_asset($resource)}}";
+        
         var columns = [
             {"data": "nombre", "title": "Nombre"},
             {"data": "area", "title": "area"},
             {"data": "gerencia.nombre", "title": "Gerencia"},
-            {"data": "gerencia.empresa.nombre", "title": "Empresa","orderable": false,},
-            {"data": "gerencia.empresa.holding.nombre", "title": "Holding","orderable": false,},
+            {"data": "gerencia.empresa.nombre", "title": "Empresa",},
+            {"data": "gerencia.empresa.holding.nombre", "title": "Holding",},
             {
                 "data": "jefatura", "title": "Jefatura",
                 "render": function (data, row) {
