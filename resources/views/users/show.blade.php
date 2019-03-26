@@ -1,9 +1,7 @@
 @extends("layouts.general")
 
 @section("content")
-
     <div class="animated fadeIn">
-
         <!--  Traffic  -->
         <div class="row">
             <div class="col-lg-12">
@@ -12,7 +10,6 @@
                         <h4 class="box-title">Mostrar Usuario</h4>
                     </div>
                     <div class="row">
-
                         <div class="col-lg-12">
                             <div class="card-body">
                                 @php
@@ -42,15 +39,15 @@
                                 @endphp
 
                                 @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
-
                                 @include("partials.field",["title"=>"Empresa","value"=>$instance->empresa->nombre,"name"=>"empresa"])
                                 @include("partials.field",["title"=>"Gerencia","value"=>$instance->gerencia->nombre,"name"=>"gerencia"])
                                 @include("partials.field",["title"=>"Cargo","value"=>$cargos?$cargos->nombre:"-","name"=>"cargo"])
-
                                 @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
                                 @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                 @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
                                 @include("partials.field",["name"=>"rut","title"=>"RUT"])
+                                @include("partials.field",["type"=>"date","name"=>"fecha_nacimiento","title"=>"Fecha de Nacimiento"])
+                                @include("partials.field",["type"=>"date","name"=>"fecha_inicio","title"=>"Fecha de Contratación"])
                                 @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])
                                 @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto"])
                                 @include("partials.switch",["name"=>"estado","title"=>"Estado","value"=>$instance->estado])

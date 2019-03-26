@@ -347,8 +347,8 @@
   display: inline-block;
   position: absolute;
   right: 5px;
-  top: 5px;
-  padding: 6px 12px;
+  top: 3px;
+  padding: 8px 12px;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 400;
@@ -435,3 +435,23 @@
 .orgchart.l2r .node.slide-left, .orgchart.r2l .node.slide-left {
   transform: translateX(-40px);
 }
+
+#buttons-zoom{
+  display: inline-block;
+  position: absolute;
+  right: 65px;
+  top: -18px;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  color: black;
+}
+
