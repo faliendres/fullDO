@@ -3,6 +3,7 @@
     <script type="text/javascript">
         var base_logos = "{{image_asset($resource)}}";
         var perfil = "{{ auth()->user()->perfil }}";
+        
         if (perfil == "" || perfil == null) {
             filterSelect = ["Holding", "Empresas", "Gerencias"];
         }
