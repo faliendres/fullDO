@@ -16,34 +16,38 @@
             $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$instance->gerencia_id));
         else
             $cargos=collect([]);
-
         $perfiles=[];
         if(!isset($user->perfil))
-            $perfiles[]=["text"=>"Super Admin","id"=>0,"selected"=>false];
-        if($user->perfil<1)
+            $perfiles[]=["text"=>"Super Admin","id"=>null,"selected"=>false];
+        if($user->perfil<1 || $instance->perfil==1){
             $perfiles[]=["text"=>"Holding","id"=>1,"selected"=>false];
-        if($user->perfil<2)
-            $perfiles[]=["text"=>"Empresarial","id"=>2,"selected"=>false];
-        if($user->perfil<3)
+        }
+        if($user->perfil<2 || $instance->perfil==2){
+            $perfiles[]=["text"=>"Empresarial","id"=>2,"selected"=>false];    
+        }
+        if($user->perfil<3 || $instance->perfil==3)
             $perfiles[]=["text"=>"Gerencial","id"=>3,"selected"=>false];
         if($user->perfil<4)
             $perfiles[]=["text"=>"Funcional","id"=>4,"selected"=>false];
     @endphp
+
     @include("partials.field",["name"=>'validated',"type"=>"hidden","value"=>""])
     @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>true,"options"=>$holdings, "value"=> $instance->holding_id ])
     @include("partials.select",["required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>true,"options"=>$empresas, "value"=> $instance->empresa_id])
     @include("partials.select",["required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias, "value"=> $instance->gerencia_id])
     @include("partials.select",["name"=>"cargo_id","value"=>!$instance->cargo?"":$instance->cargo->id,"title"=>"Cargo","options"=>$cargos])
     @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","options"=>$perfiles])
-
     @include("partials.field",["required"=>true,"name"=>"name","title"=>"Nombre"])
     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
     @include("partials.field",["name"=>"rut","title"=>"RUT"])
+    
+    @include("partials.field",["type"=>"date","name"=>"fecha_nacimiento","title"=>"Fecha de Nacimiento", "value"=>$instance->fecha_nacimiento ? Carbon\Carbon::parse($instance->fecha_nacimiento)->format('Y-m-d') : ''])
+
+    @include("partials.field",["type"=>"date","name"=>"fecha_inicio","title"=>"Fecha de Contratación", "value"=>$instance->fecha_inicio ? Carbon\Carbon::parse($instance->fecha_inicio)->format('Y-m-d') : ''])
+
+    @include("partials.image",["name"=>"foto","title"=>"Foto"])
     @include("partials.switch",["name"=>"estado","title"=>"Estado"])
-
-
-
 
 @endsection
 @section("page_scripts")

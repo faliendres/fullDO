@@ -3,8 +3,9 @@
     <script type="text/javascript">
         var base_logos = "{{image_asset($resource)}}";
         var perfil = "{{ auth()->user()->perfil }}";
+        
         if (perfil == "" || perfil == null) {
-            filterSelect = ["Holding", "Empresas", "Gerencias"];
+            filterSelect = ["Empresas", "Gerencias"];
         }
         if (perfil == 1){
             filterSelect = ["Empresas", "Gerencias"];
@@ -13,16 +14,17 @@
         if (perfil == 2){
             filterSelect = [ "Gerencias"];
         }
-        filterSelect = [];
+
+        //filterSelect = [];
         var columns = [
             {"data": "nombre", "title": "Nombre"},
-            {"data": "gerencia.empresa.id_holding", "title": "Holding ID","orderable": false, visible: false},
+            {"data": "gerencia.empresa.id_holding", "title": "Holding ID","orderable": false, visible: false, "searchable":false},
             {"data": "gerencia.id_empresa", "title": "Empresa","orderable": false, visible:false},
             {"data": "area", "title": "area"},
             {"data": "gerencia.id", "title": "Gerencia ID","orderable": false, visible: false},
             {"data": "gerencia.nombre", "title": "Gerencia"},
-            {"data": "gerencia.empresa.nombre", "title": "Empresa","orderable": false,},
-            {"data": "gerencia.empresa.holding.nombre", "title": "Holding","orderable": false,},
+            {"data": "gerencia.empresa.nombre", "title": "Empresa","orderable": false, "searchable":false},
+            {"data": "gerencia.empresa.holding.nombre", "title": "Holding","orderable": false, "searchable":false},
             {
                 "data": "jefatura", "title": "Jefatura",
                 "render": function (data, row) {
@@ -30,6 +32,7 @@
                         return "";
                     return `<span>${data.nombre}</span>`;
                 }
+                , "searchable":false
             },
             {
                 "data": "funcionario", "title": "Funcionario",
@@ -38,6 +41,7 @@
                         return "";
                     return `<span>${data.name}</span>`;
                 }
+                , "searchable":false
             },
             {
                 "data": "id", "title": "Acciones",

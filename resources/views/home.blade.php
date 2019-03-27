@@ -1,57 +1,4 @@
 @extends("layouts.general")
-@section("page_styles")
-    <link rel="stylesheet" href="{{asset("OrgChart-master/demo/css/jquery.orgchart.css")}}">
-    <style>
-        .orgchart {
-            background: white;
-        }
-
-        #chart-container {
-            /*position: relative;*/
-            display: inline-block;
-            top: 10px;
-            left: 10px;
-            height: 100%;
-            width: 100%;
-            border-radius: 5px;
-            overflow: auto;
-            text-align: center;
-        }
-
-        .nombre {
-            text-align: center;
-            font-size: 12px;
-            font-weight: bold;
-            height: 20px;
-            line-height: 20px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            background-color: rgba(225, 31, 38, 1);
-            color: #fff;
-        }
-
-        .cargo {
-            font-size: 10px;
-            color: #1D0D89;
-            font-weight: bold;
-        }
-
-        .departamento {
-            font-size: 10px;
-            color: #1D0D89;
-        }
-
-        .perfil {
-            border-radius: 4px 4px 0 0;
-        }
-        .oc-export-btn, .oc-export-btn:active, .oc-export-btn:hover, .oc-export-btn:focus{
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-    </style>
-@endsection
 
 @section("content")
     <!--  All Content  -->
@@ -93,9 +40,7 @@
             </div>
         </div>
     </div>
-
 @endsection
-
 
 @section("page_scripts")
     <script type="text/javascript" src="{{asset("OrgChart-master/demo/js/jquery.orgchart.js")}}"></script>
@@ -113,7 +58,7 @@
                     response.banner="nobanner.png"
                 if (!(response.banner).startsWith("http"))
                     response.banner=base_banners+"/"+response.banner;                           
-                $("#banner-container").html('<img alt="banner" src='+response.banner+'>');         
+                $("#banner-container").html('<img alt="banner" src="'+response.banner+'">');         
             }
         });
         // change password
@@ -140,7 +85,6 @@
                                 repassword: jQuery('#repassword').val(),
                             },
                             success: function(result){
-
                                 $('#myModal').modal('hide');
                             }});
                     }else{

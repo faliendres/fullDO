@@ -6,7 +6,6 @@
             background: white;
         }
         #chart-container {
-            /*position: relative;*/
             display: inline-block;
             top: 10px;
             left: 10px;
@@ -45,16 +44,12 @@
             background-color: #007bff;
             border-color: #007bff;
         }
+        .orgchart .nombre { background-color: #006699; }
     </style>
 @endsection
 
 @section("content")
     <!--  All Content  -->
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h3 class="nombre-empresa"></h3>      
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12 text-center logo-empresa">      
         </div>
@@ -62,13 +57,14 @@
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <div id="chart-container">
+
             </div>
-        </div>
-    </div>
-    <div class="row" style="margin-top: 15px;">
-        <div class="col-lg-12 col-md-12 text-center">ZOOM
-            <button  class="btn btn-primary chartzoomin" ><i class="fa fa-plus"></i></button>
-            <button  class="btn btn-primary chartzoomout"><i class="fa fa-minus"></i></button>
+            <div class="row" id="buttons-zoom" style="margin-top: 15px;">
+                <div class="col-lg-12 col-md-12 text-center">ZOOM
+                    <button  class="btn btn-primary chartzoomin" ><i class="fa fa-plus"></i></button>
+                    <button  class="btn btn-primary chartzoomout"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
         </div>
     </div>
     <!--  /All Contente -->
@@ -97,11 +93,11 @@
                         if(data.id=='-1'){
                             link = "#";
                         }else{
-                            link = `perfil?id=${data.id}`;
+                            link = "{!! route('perfil') !!}"+"?id="+data.id;
                         }
-                        return `<a href="${link}">
+                        return `<a href="${link}" >
                                     <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
-                                    <div class="nombre" style="border-radius:unset !important;">${data.name}</div>
+                                    <div class="nombre" style="color:black;border-radius:unset !important;background-color:${data.color} !important;">${data.name}</div>
                                     <div class="cargo">${data.title}</div>
                                     <div class="departamento">${data.office}</div>
                                 </a>
@@ -157,13 +153,11 @@
                 url: url,
                 beforeSend: function () { },
                 success: function (response) {
-                    console.log (url);
-                    $(".nombre-empresa").html(response.nombre);
                     if(!response.logo)
                         response.logo="nologo.png"
                     if (!(response.logo).startsWith("http"))
                         response.logo=base_logos+"/"+response.logo;                           
-                    $(".logo-empresa").html('<img class="rounded-circle" style="width:85px;height:85px;margin: 15px;" alt="logo" src='+response.logo+'>'); 
+                    $(".logo-empresa").html('<img class="rounded-circle" style="width:85px;height:85px;margin: 15px;" alt="logo" src="'+response.logo+'">'); 
                 }
             });
         });

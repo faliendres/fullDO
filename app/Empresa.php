@@ -41,9 +41,11 @@ class Empresa extends Model
 
 
     public function getDesdeAttribute($desde){
-        return Carbon::parse($desde)->format('d-m-Y');
+        if($desde)
+            return Carbon::parse($desde)->format('d-m-Y');
     }
     public function getHastaAttribute($hasta){
-        return Carbon::parse($hasta)->format('d-m-Y');
+        if($hasta)
+            return Carbon::parse($hasta)->format('d-m-Y');
     }
 }

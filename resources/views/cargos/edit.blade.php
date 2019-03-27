@@ -1,7 +1,7 @@
 @extends("default.edit")
 @php
     $user=auth()->user();
-    $users=toOptions(\App\User::query(),"id","name");
+    $users=toOptions(\App\User::query()->select(DB::raw("CONCAT(name,' ',apellido,' [',rut,']') AS full_name, id")),"id","full_name");
     $holdings=toOptions(\App\Holding::query());
     $empresas=toOptions(\App\Empresa::query()->where("id_holding",$instance->gerencia->empresa->id_holding));
     $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$instance->gerencia->id_empresa));
@@ -14,12 +14,9 @@
     @include("partials.textArea",["name"=>"descripcion","title"=>"Descripcion"])
     @include("partials.field",["name"=>"area","title"=>"Area"])
     @include("partials.field",["type"=>"color","name"=>"color","title"=>"Color"])
-    @include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde"])
-    @include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta"])
-
+    @include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde", "value"=>$instance->desde ? Carbon\Carbon::parse($instance->desde)->format('Y-m-d') : ''])
+    @include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta", "value"=>$instance->hasta ? Carbon\Carbon::parse($instance->hasta)->format('Y-m-d') : ''])
     @include("partials.select",["required"=>true,"name"=>"id_funcionario","title"=>"Funcionario","options"=>$users ])
-
-
     @include("partials.select",["required"=>true,"value"=>$instance->gerencia->empresa->id_holding,
         "name"=>"id_holding","title"=>"Holding","stable"=>$user->perfil>0,"options"=>$holdings ])
     @include("partials.select",["required"=>true,"value"=>$instance->gerencia->id_empresa,

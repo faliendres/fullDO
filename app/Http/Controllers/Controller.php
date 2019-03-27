@@ -47,7 +47,10 @@ class Controller extends BaseController
             $query = $this->clazz::query();
             $f = $request->get("filter");
             if (isset($f["resource"]) && $f["resource"]=='usuarios')
-                $query = $query->where('name', "LIKE", '%'.$f["value"].'%')->orWhere('apellido', "LIKE", '%'.$f["value"].'%');
+                $query = $query->where(function($q)  use ($f){
+                  $q->where('name', "LIKE", '%'.$f["value"].'%')
+                    ->orWhere('apellido', "LIKE", '%'.$f["value"].'%');
+              });
             if($request->getPathInfo()=='/solicitudes/buzon')
                 $query = $query->where('destinatario_id', auth()->user()->id);
             if ($f)
