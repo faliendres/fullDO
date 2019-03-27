@@ -161,8 +161,6 @@
                             .draw();
                     });
                 }
-<<<<<<< HEAD
-=======
 
                 if (filterSelect.indexOf("Gerencias") >= 0) {
                     $('.gerencias').show();
@@ -184,7 +182,6 @@
                             .draw();
                     });
                 }
->>>>>>> bc2d93164ba72c369c4d539ebd889984ef97ba99
             }
         });
     </script>

@@ -203,7 +203,7 @@
                     <div class="profile-img">
                         <img src="images\avatar\{{$user->foto}}" alt=""/>
                     </div>
-                    @if($jefatura)
+                    @if($jefatura->funcionario)
                         <div class="card-body">
                             <h5 class="box-title">Jefatura</h5>
                         </div>
