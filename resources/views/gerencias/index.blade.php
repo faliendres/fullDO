@@ -13,11 +13,11 @@
         }
         var columns = [
 
-            {"data": "nombregerencia", "title": "Nombre","orderable": false},
+            {"data": "nombre", "title": "Nombre","orderable": false},
             {"data": "empresa.id_holding", "title": "Holding ID","orderable": false, visible: false},
             {"data": "empresa.id", "title": "Empresa","orderable": false, visible:false},
             {"data": "empresa.nombre", "title": "Empresa","orderable": false},
-            {"data": "empresa.holding.nombre", "title": "Holding","orderable": false},
+            {"data": "empresa.holding.nombre", "title": "Holding","orderable": false, "searchable": false},
             {
                 "data": "id", "title": "Acciones",
                 "render": function (data, row) {
