@@ -45,7 +45,9 @@
     @include("partials.field",["type"=>"date","name"=>"fecha_nacimiento","title"=>"Fecha de Nacimiento", "value"=>$instance->fecha_nacimiento ? Carbon\Carbon::parse($instance->fecha_nacimiento)->format('Y-m-d') : ''])
 
     @include("partials.field",["type"=>"date","name"=>"fecha_inicio","title"=>"Fecha de Contratación", "value"=>$instance->fecha_inicio ? Carbon\Carbon::parse($instance->fecha_inicio)->format('Y-m-d') : ''])
-
+    @if(($user->perfil <= 2 && $user->perfil < $instance->perfil) || !isset($user->perfil))
+        @include("partials.field",["name"=>"password","title"=>"Contraseña", "placeholder"=>"123456","type"=>"password"])
+    @endif
     @include("partials.image",["name"=>"foto","title"=>"Foto"])
     @include("partials.switch",["name"=>"estado","title"=>"Estado"])
 

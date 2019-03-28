@@ -17,7 +17,7 @@ Route::get('/', function () {
         return view('auth.login');
     return redirect()->route("home");
 });
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth','check.unread']], function () {
     Route::get('profile', function () {
         return view('profile');
     })->name("profile");

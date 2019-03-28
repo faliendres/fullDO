@@ -8,10 +8,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body">
-                        <h4 class="box-title" style="text-transform: capitalize; text-align: center;">{{__($resource)}} </h4>
-                        <a href="{{route("$resource.create")}}" class="btn btn-primary">Nuevo</a>
-                    </div>
+                    @if(auth()->user()->perfil <= 3 )
+                        <div class="card-body">
+                            <h4 class="box-title" style="text-transform: capitalize; text-align: center;">{{__($resource)}} </h4>
+                            <a href="{{route("$resource.create")}}" class="btn btn-primary">Nuevo</a>
+                        </div>
+                    @endif
                     <div class="row card-body">
                         <div class="form-group col-md-offset-1 col-md-4 holding" style="display: none">
                             <h5>Seleccionar Holding <span class="text-danger"></span></h5>
@@ -161,8 +163,6 @@
                             .draw();
                     });
                 }
-<<<<<<< HEAD
-=======
 
                 if (filterSelect.indexOf("Gerencias") >= 0) {
                     $('.gerencias').show();
@@ -184,7 +184,6 @@
                             .draw();
                     });
                 }
->>>>>>> bc2d93164ba72c369c4d539ebd889984ef97ba99
             }
         });
     </script>
