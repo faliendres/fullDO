@@ -45,7 +45,7 @@
     <header id="header" class="header">
         <div class="top-left">
             <div class="navbar-header">
-                <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset("images/logofulldo.png")}}" alt="Logo"></a>
+                <a class="navbar-brand" href="{{route('home')}}"><img src="{{image_asset('empresas',Auth::user()->empresa ? ( Auth::user()->empresa->logo ? Auth::user()->empresa->logo : 'logofulldo.png' ) : 'logofulldo.png') }}" alt="Logo"></a>
                 <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
             </div>
         </div>
@@ -61,16 +61,12 @@
                             <button class="search-close"><i class="fa fa-close"></i></button>
                         </form>
                     </div>
-                    <div class="dropdown for-message">
-                        
-                        <button href="{{ route('solicitudes.buzon') }}" class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="dropdown for-message">                      
+                        <button href="{{ route('solicitudes.buzon') }}" class="btn btn-secondary dropdown-toggle" type="button" onclick="location.href='{{ route('solicitudes.buzon') }}'">
                             
                             <i class="fa fa-envelope"></i>
-                            <span class="count bg-primary">4</span>
-                            
-                        </button>
-                       
-                         
+                            <span class="count bg-primary">4</span>                           
+                        </button>    
                     </div>
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
@@ -87,8 +83,6 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-
-
                         </div>
                     </div>
                 </div>

@@ -34,7 +34,7 @@
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 </head>
-<body style="background-color: #e9ecef;">
+<body style="background-color: #e9ecef;background-image: url(images/fondo.png)">
     <div id="app">
         <main class="py-4">
             @yield('content')

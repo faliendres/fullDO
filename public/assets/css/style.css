@@ -349,7 +349,8 @@ body {
   display: table;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-  width: 100%; }
+  width: 100%;
+  background-repeat: round; }
 
 p {
   font-size: 16px;
@@ -885,7 +886,8 @@ aside.left-panel {
 .right-panel .navbar-brand {
   line-height: 42px; }
   .right-panel .navbar-brand img {
-    max-width: 145px; }
+    max-width: 145px;
+    max-height: 45px; }
   .right-panel .navbar-brand.hidden {
     display: none; }
 
@@ -1734,7 +1736,6 @@ header .form-inline {
   margin: 8vh auto; }
 
 .login-form {
-  background: #ffffff;
   padding: 30px 30px 20px;
   border-radius: 2px; }
 
@@ -1757,7 +1758,6 @@ header .form-inline {
   border: 0px; }
 
 .login-form label {
-  color: #878787;
   text-transform: uppercase; }
 
 .login-form label a {

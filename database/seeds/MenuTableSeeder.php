@@ -14,13 +14,6 @@ class MenuTableSeeder extends Seeder
     {
         Menu::query()->delete();
         Menu::create([
-            "title" => "Buzon de Solicitudes",
-            "route" => "solicitudes.buzon",
-            "permissions" => 3,
-            "icon" => "fa fa-envelope",
-            "order" => 0
-        ]);
-        Menu::create([
             "title" => "Organigrama",
             "route" => "organigrama",
             "permissions" => 4,
