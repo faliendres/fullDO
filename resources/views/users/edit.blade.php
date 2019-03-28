@@ -41,6 +41,7 @@
     @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
     @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
     @include("partials.field",["name"=>"rut","title"=>"RUT"])
+    @include("partials.field",["type"=>"number", "name"=>"telefono","title"=>"Teléfono"])
     
     @include("partials.field",["type"=>"date","name"=>"fecha_nacimiento","title"=>"Fecha de Nacimiento", "value"=>$instance->fecha_nacimiento ? Carbon\Carbon::parse($instance->fecha_nacimiento)->format('Y-m-d') : ''])
 

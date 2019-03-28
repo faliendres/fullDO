@@ -46,6 +46,7 @@
                                 @include("partials.field",["name"=>"apellido","title"=>"Apellido"])
                                 @include("partials.field",["required"=>true,"name"=>"email","type"=>"email","title"=>"Email"])
                                 @include("partials.field",["name"=>"rut","title"=>"RUT"])
+                                @include("partials.field",["name"=>"telefono","title"=>"Teléfono"])
                                 @include("partials.field",["type"=>"date","name"=>"fecha_nacimiento","title"=>"Fecha de Nacimiento"])
                                 @include("partials.field",["type"=>"date","name"=>"fecha_inicio","title"=>"Fecha de Contratación"])
                                 @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","stable"=>$user->cargo_id,"options"=>$perfiles])

@@ -67,7 +67,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'apellido', 'email', 'password', "foto",
-        "perfil", "fecha_nacimiento", "fecha_inicio", "usuario_creacion", "estado", "rut",
+        "perfil", "telefono", "fecha_nacimiento", "fecha_inicio", "usuario_creacion", "estado", "rut",
         'gerencia_id', 'empresa_id', 'holding_id',"estado"];
 
     public function cargo()

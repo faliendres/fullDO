@@ -145,10 +145,6 @@
 @endsection
 <!-- Content -->
 @section("content")
-    <div class="back-button">
-        <a href="{{ route('organigrama') }} {{ isset($jefatura) ? ('?id='.$jefatura->id) : '' }} "><i class="fa fa-reply"></i> Volver</a>
-        <p></p>
-    </div>
     <div class="container emp-profile">       
         <form method="post">
             <div class="row">
@@ -164,14 +160,14 @@
                     </div>
                     <div class="row m-t-20">
                         <div class="col-md-2">
-                            <a href="{{ route('home') }}" class="btn btn-primary">Editar</a>
+                            <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary">Editar</a>
                         </div>
                         <div class="col-md-4">
-                            <a href="{{ route('organigrama') }}" class="btn btn-primary">Ver Organigrama</a>
+                            <a href="{{ route('organigrama') }}{{ isset($jefatura) ? ('?id='.$jefatura->id) : '' }} " class="btn btn-primary">Ver en Organigrama</a>
                         </div>
                     </div>                    
                     <div class="card-body m-t-20">
-                        <h5 class="box-title">Contact</h5>
+                        <h5 class="box-title">Contacto</h5>
                     </div>
                     <div class="table-stats ov-h">
                         <table class="contact" id="reports-contacts">

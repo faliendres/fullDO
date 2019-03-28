@@ -57,8 +57,6 @@ if (!function_exists('backButton')) {
         $back = session('back-btn',false);
         if ($back) {
             $route = request()->route();
-            if($route->getName()=='perfil')
-                return 0;
             $back = !\App\Menu::query()->where("route", $route->getName())->exists();
         }
         return $back;
