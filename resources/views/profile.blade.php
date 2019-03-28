@@ -204,9 +204,11 @@
                         <img src="images\avatar\{{$user->foto}}" alt=""/>
                     </div>
                     @if($jefatura)
+                        @if($jefatura->funcionario)
                         <div class="card-body">
                             <h5 class="box-title">Jefatura</h5>
                         </div>
+
                         <div class="table-stats ov-h">
                             <table class="table" id="reports-contacts">
                                 <tbody>
@@ -225,6 +227,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        @endif
                     @endif
                     @if($cargo && count($cargo->subCargos)>0)
                         <div class="card-body">

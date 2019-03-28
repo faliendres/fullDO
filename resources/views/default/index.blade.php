@@ -125,7 +125,7 @@
                 if (filterSelect.indexOf("Holding") >= 0) {
                     $('.holding').show();
                     $.ajax({
-                        url: '/holdings',
+                        url: '{{route("holdings.index")}}',
                         type: 'GET',
                         success: function (response) { // What to do if we succeed
                             $.each(response.data, function () {
@@ -146,7 +146,7 @@
                 if (filterSelect.indexOf("Empresas") >= 0) {
                     $('.empresas').show();
                     $.ajax({
-                        url: '/empresas',
+                        url: '{{route("empresas.index")}}',
                         type: 'GET',
                         success: function (response) { // What to do if we succeed
                             $.each(response.data, function () {
@@ -167,7 +167,7 @@
                 if (filterSelect.indexOf("Gerencias") >= 0) {
                     $('.gerencias').show();
                     $.ajax({
-                        url: '/gerencias',
+                        url: '{{route("gerencias.index")}}',
                         type: 'GET',
                         success: function (response) { // What to do if we succeed
                             $.each(response.data, function () {
