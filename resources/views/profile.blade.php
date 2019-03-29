@@ -155,13 +155,16 @@
                             <h4 style="margin-bottom: 20px;">{{$cargo ? $cargo->nombre:'-'}}</h4>
                             <i class="fa fa-flag"></i><span>{{$user->gerencia ? $user->gerencia->nombre:'-'}}</span><br/>
                             <i class="fa fa-map-marker"></i><span>{{$user->empresa ? $user->empresa->nombre:'-'}}</span><br/>
-                            <i class="fa fa-trophy"></i><span>Comenzó el {{ (new Date($user->fecha_inicio))->format('j F Y') }}</span><br/>    
+                            <i class="fa fa-birthday-cake"></i><span>{{ $user->fecha_nacimiento ? ((new Date($user->fecha_nacimiento))->format('j F')) : '-' }}</span><br/>
+                            <i class="fa fa-trophy"></i><span>Comenzó el {{ $user->fecha_inicio ? ((new Date($user->fecha_inicio))->format('j F Y')) : '-' }}</span><br/>    
                         </div>
                     </div>
                     <div class="row m-t-20">
-                        <div class="col-md-2">
-                            <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary">Editar</a>
-                        </div>
+                        @if($user->perfil < 4)
+                            <div class="col-md-2">
+                                <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary">Editar</a>
+                            </div>
+                        @endif
                         <div class="col-md-4">
                             <a href="{{ route('organigrama') }}{{ isset($jefatura) ? ('?id='.$jefatura->id) : '' }} " class="btn btn-primary">Ver en Organigrama</a>
                         </div>
@@ -180,16 +183,35 @@
                                         <br>
                                         <span class="fontsize12 td-email">{{$user->email}}</span>
                                     </td>
-                                </tr>           
+                                </tr>
+                                @if($user->telefono)
+                                    <tr class="contact"> 
+                                        <td class="avatar">
+                                            <i class="fa fa-phone"></i>
+                                        </td>
+                                        <td><span class="fontsize13">TELÉFONO</span>
+                                            <br>
+                                            <span class="fontsize12 td-email">{{$user->telefono}}</span>
+                                        </td>
+                                    </tr>   
+                                @endif        
                             </tbody>
                         </table>
                     </div>
                     <div class="row">             
-                        <div class="col-md-4">
+                        <div class="col-md-8">
                             <div class="profile-work m-t-20">
-                                @if(isset($cargo->adjuntos))                  
-                                    <a>Perfil del Cargo:</a><br/>
-                                    @include("partials.file",["readonly"=> "true", "name"=>"adjuntos","title"=>"","multiple"=>true, "value"=>$cargo->adjuntos, "resource" => "cargos"  ])
+                                @if(isset($cargo->adjuntos) 
+                                    && 
+                                    (
+                                        (Auth::user()->id == ($jefatura ? ($jefatura->funcionario ? $jefatura->funcionario->id : 0) : 0))
+                                        ||
+                                        (Auth::user()->id == ($cargo->funcionario->id))
+                                        ||
+                                        (Auth::user()->perfil < 4)
+                                    )
+                                )                  
+                                    @include("partials.file",["readonly"=> "true", "name"=>"adjuntos","title"=>"","multiple"=>true, "value"=>$cargo->adjuntos, "resource" => "cargos", "mascara" => "Descripción de Cargo"  ])
                                 @endif
                             </div>
                         </div>

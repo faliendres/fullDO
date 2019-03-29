@@ -31,7 +31,7 @@
 
     @yield("page_styles")
 </head>
-<body>
+<body class="open">
 <!-- Left Panel -->
 <aside id="left-panel" class="left-panel">
     <!-- main-menu -->
@@ -65,7 +65,7 @@
                         <button href="{{ route('solicitudes.buzon') }}" class="btn btn-secondary dropdown-toggle" type="button" onclick="location.href='{{ route('solicitudes.buzon') }}'">
                             
                             <i class="fa fa-envelope"></i>
-                            <span class="count bg-primary">4</span>                           
+                            <span class="count bg-primary">{{ session()->get('buzon') }}</span>                           
                         </button>    
                     </div>
                     <div class="user-area dropdown float-right">

@@ -1,8 +1,8 @@
 @php
     $auxId=uniqid($name);
     if(isset($instance->$name))
-    $value=$instance->$name;
-$multiple=isset($multiple)&&$multiple
+        $value=$instance->$name;
+    $multiple=isset($multiple)&&$multiple
 @endphp
 <div class="row form-group">
     <div class="col col-md-3">
@@ -31,7 +31,7 @@ $multiple=isset($multiple)&&$multiple
         <ul class="col-12 col-md-9 offset-md-3" data-target="{{$name}}">
             @foreach(explode("/",$value) as $item)
                 <li data-content="{{$item}}">
-                    <a href="{{image_asset($resource,$item)}}" target="_blank">{{$item}}</a>
+                    <a href="{{image_asset($resource,$item)}}" target="_blank">{{ isset($mascara) ? $mascara : $item}}</a>
                     @if(!(isset($readonly)&&$readonly))
                         <a href="#" class="text-danger" onclick="clean(this)"><i class="fa fa-times"></i></a>
                     @endif
