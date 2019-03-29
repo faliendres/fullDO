@@ -35,6 +35,18 @@ class UserController extends Controller
      * @throws ValidationException
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
+
+    public function edit($id, Request $request)
+    {
+        $instance = User::find($id);
+        if ($instance) {
+            if ($request->ajax())
+                return response()->json($instance, 200);
+            return view("$this->resource.edit", compact("instance"));
+        }
+        throw new ResourceNotFoundException("$this->clazz with id " . $request->route()->parameter("id"));
+    }
+
     public function store(Request $request)
     {
         //dd($request);
