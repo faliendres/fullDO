@@ -24,7 +24,7 @@
     @include("partials.select",["required"=>true,"name"=>"id_gerencia","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias ])
     @include("partials.select",["name"=>"id_jefatura","title"=>"Jefatura","options"=>$cargos ])
     @include("partials.switch",["name"=>"estado","title"=>"Estado"])
-    @include("partials.file",["name"=>"adjuntos","title"=>"Adjuntos","multiple"=>false ])
+    @include("partials.file",["name"=>"adjuntos","title"=>"Descripción de Cargo","multiple"=>false ])
 @endsection
 @section("page_scripts")
 

@@ -19,5 +19,5 @@
 
     @include("partials.image",["required"=>true, "name"=>"foto","title"=>"Foto","value"=>!$instance->funcionario?"":url('/').'/images/avatar/'.$instance->funcionario->foto])
 
-    @include("partials.file",["required"=>true,"name"=>"adjuntos","title"=>"Adjunto","multiple"=>false ])
+    @include("partials.file",["required"=>true,"name"=>"adjuntos","title"=>"Descripción de Cargo","multiple"=>false ])
 @endsection

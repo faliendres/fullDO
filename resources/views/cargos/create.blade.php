@@ -29,7 +29,7 @@
     @include("partials.select",["required"=>true,"name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])
     @include("partials.select",["required"=>true,"name"=>"id_gerencia","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias ])
     @include("partials.select",["name"=>"id_jefatura","title"=>"Jefatura","options"=>$cargos ])
-    @include("partials.file",["name"=>"adjuntos","title"=>"Adjunto","multiple"=>false ])
+    @include("partials.file",["name"=>"adjuntos","title"=>"Descripción de Cargo","multiple"=>false ])
 @endsection
 @section("page_scripts")
 
