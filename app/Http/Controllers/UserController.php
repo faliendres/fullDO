@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\EmailUserLogin;
+use App\Mail\NewPasswordEmail;
 use Log;
 
 class UserController extends Controller
@@ -49,7 +50,6 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request);
         $this->validate($request, [
             'password' => 'confirmed',
         ]);
@@ -62,13 +62,12 @@ class UserController extends Controller
             $cargo->update();
         }
 
-
         try{
-                Mail::to($request->user())->send(new EmailUserLogin( ));
-            }
-            catch(\Exception $e){
-                \Log::info('Error Sending Mail: '.$e->getMessage());
-            }
+            Mail::to($request->user())->send(new EmailUserLogin( ));
+        }
+        catch(\Exception $e){
+            \Log::info('Error Sending Mail: '.$e->getMessage());
+        }
 
         return $result;
     }
@@ -78,8 +77,17 @@ class UserController extends Controller
         $this->validate($request, [
             'password' => 'nullable|confirmed',
         ]);
-        if ($request->get("password"))
-            $request->merge(["password" => Hash::make($request->get("password"))]);
+        if ($request->get("password")){
+            $new_pass=$request->get("password");
+            $request->merge(["password" => Hash::make($new_pass)]);
+            try{
+                Mail::to($request->get("email"))
+                ->send(new NewPasswordEmail($new_pass));
+            }
+            catch(\Exception $e){ 
+                \Log::info('-------Error Sending Mail: '.$e->getMessage());
+            }
+        }
         $result = parent::update($id, $request);
 
         $cargo_anterior = User::find($id)->cargo;
@@ -106,7 +114,6 @@ class UserController extends Controller
         $user->password = Hash::make($data['password']);
         $user->password_changed_at = date('Y-m-d H:i:s');
         return response()->json(['success' => $user->save()], 200);
-
     }
 
     public function destroy($id, Request $request)
