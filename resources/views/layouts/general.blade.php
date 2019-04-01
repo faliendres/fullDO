@@ -61,12 +61,15 @@
                             <button class="search-close"><i class="fa fa-close"></i></button>
                         </form>
                     </div>
-                    <div class="dropdown for-message">                      
-                        <button href="{{ route('solicitudes.buzon') }}" class="btn btn-secondary dropdown-toggle" type="button" onclick="location.href='{{ route('solicitudes.buzon') }}'">
-                            
-                            <i class="fa fa-envelope"></i>
-                            <span class="count bg-primary">{{ session()->get('buzon') }}</span>                           
-                        </button>    
+                    <div class="dropdown for-message">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <span class="count bg-primary">{{ session()->get('buzon') }}</span>
+                            </button>
+                        <div class="dropdown-menu" aria-labelledby="message" style="position: relative;">
+                            <a class="dropdown-item" href="{{ route('solicitudes.buzon') }}">Mis solicitudes</a>
+                            <a class="dropdown-item" href="{{ route('solicitudes.index')}}">Crear solicitud</a>
+                        </div>    
                     </div>
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
