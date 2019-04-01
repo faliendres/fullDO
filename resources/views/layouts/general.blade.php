@@ -55,7 +55,7 @@
                     <button class="search-trigger"><i class="fa fa-search"></i></button>
                     <div class="form-inline">
                         <form class="search-form" method="GET" action="{{ route('users.index') }}" role="search">
-                            <input name="filter[value]" class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                            <input name="filter[value]" class="form-control mr-sm-2" type="text" placeholder="Buscar ..." aria-label="Buscar">
                             <input type="hidden" name="filter[resource]" value="usuarios">
                             <button type="submit" style="margin-right:50px;"></i>Buscar</button>
                             <button class="search-close"><i class="fa fa-close"></i></button>
