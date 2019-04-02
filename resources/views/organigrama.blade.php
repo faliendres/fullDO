@@ -39,6 +39,10 @@
         .perfil {
             border-radius: 4px 4px 0 0;
         }
+        .dotacion{
+            font-size: 8px;
+            color: #1D0D89;
+        }
         .oc-export-btn, .oc-export-btn:active, .oc-export-btn:hover, .oc-export-btn:focus{
             color: #fff;
             background-color: #007bff;
@@ -51,13 +55,8 @@
 @section("content")
     <!--  All Content  -->
     <div class="row">
-        <div class="col-md-12 text-center logo-empresa">      
-        </div>
-    </div>
-    <div class="row">
         <div class="col-lg-12 col-md-12">
             <div id="chart-container">
-
             </div>
             <div class="row" id="buttons-zoom" style="margin-top: 15px;">
                 <div class="col-lg-12 col-md-12 text-center">ZOOM
@@ -100,6 +99,7 @@
                                     <div class="nombre" style="color:black;border-radius:unset !important;background-color:${data.color} !important;">${data.name}</div>
                                     <div class="cargo">${data.title}</div>
                                     <div class="departamento">${data.office}</div>
+                                    <div class="dotacion">${data.dotacion}</div>
                                 </a>
                               `;
                     };
@@ -157,7 +157,7 @@
                         response.logo="nologo.png"
                     if (!(response.logo).startsWith("http"))
                         response.logo=base_logos+"/"+response.logo;                           
-                    $(".logo-empresa").html('<img class="rounded-circle" style="width:85px;height:85px;margin: 15px;" alt="logo" src="'+response.logo+'">'); 
+                    //$(".logo-empresa").html('<img class="rounded-circle" style="width:85px;height:85px;margin: 15px;" alt="logo" src="'+response.logo+'">'); 
                 }
             });
         });
