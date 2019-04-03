@@ -160,7 +160,7 @@
                         </div>
                     </div>
                     <div class="row m-t-20">
-                        @if($user->perfil < 4)
+                        @if(Auth::user()->perfil < 4 && Auth::user()->find($user->id))
                             <div class="col-md-2">
                                 <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary">Editar</a>
                             </div>
