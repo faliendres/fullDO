@@ -166,8 +166,18 @@
 
                 if (filterSelect.indexOf("Empresas") >= 0) {
                     $('.empresas').show();
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const myParam = urlParams.get('holding_id');
                     $.ajax({
-                        url: '{{route("empresas.index")}}',
+                        url: "{!! route("empresas.index",[
+                            "filter"=>[
+                                [
+                                    "field"=>"id_holding",
+                                    "op"=>"_op",
+                                    "value"=>"_id"
+                                ]
+                            ]
+                            ]) !!}".replace("_id", myParam).replace("_op",(myParam ? "=" : "!=")),
                         type: 'GET',
                         success: function (response) { // What to do if we succeed
                             $.each(response.data, function () {
