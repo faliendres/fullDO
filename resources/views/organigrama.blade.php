@@ -1,63 +1,15 @@
 @extends("layouts.general")
 @section("page_styles")
-    <link rel="stylesheet" href="{{asset("OrgChart-master/demo/css/jquery.orgchart.css")}}">
-    <style>
-        .orgchart {
-            background: white;
-        }
-        #chart-container {
-            display: inline-block;
-            top: 10px;
-            left: 10px;
-            height: 100%;
-            max-width: calc(100vw - 200px);
-            border-radius: 5px;
-            overflow: auto;
-            text-align: center;
-        }
-        .nombre {
-            text-align: center;
-            font-size: 12px;
-            font-weight: bold;
-            height: 20px;
-            line-height: 20px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            background-color: rgba(225, 31, 38, 1);
-            color: #fff;
-        }
-        .cargo {
-            font-size: 10px;
-            color: #1D0D89;
-            font-weight: bold;
-        }
-        .departamento {
-            font-size: 10px;
-            color: #1D0D89;
-        }
-        .perfil {
-            border-radius: 4px 4px 0 0;
-        }
-        .dotacion{
-            font-size: 8px;
-            color: #1D0D89;
-        }
-        .oc-export-btn, .oc-export-btn:active, .oc-export-btn:hover, .oc-export-btn:focus{
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .orgchart .nombre { background-color: #006699; }
-    </style>
+    <link rel="stylesheet" href="{{asset("OrgChart-master/demo/css/jquery.orgchart.min.css")}}">
+    <link rel="stylesheet" href="{{asset("OrgChart-master/demo/css/custom.css")}}">
 @endsection
 
 @section("content")
+
     <!--  All Content  -->
     <div class="row">
         <div class="col-lg-12 col-md-12">
-            <div id="chart-container">
-            </div>
+            <div id="chart-container"></div>
             <div class="row" id="buttons-zoom" style="margin-top: 15px;">
                 <div class="col-lg-12 col-md-12 text-center">ZOOM
                     <button  class="btn btn-primary chartzoomin" ><i class="fa fa-plus"></i></button>

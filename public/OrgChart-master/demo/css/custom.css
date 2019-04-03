@@ -1,0 +1,89 @@
+.orgchart {
+    background: white;
+}
+#chart-container {
+    display: inline-block;
+    top: 10px;
+    left: 10px;
+    height: 100%;
+    max-width: calc(100vw - 200px);
+    border-radius: 5px;
+    overflow: auto;
+    text-align: center;
+}
+.nombre {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: rgba(225, 31, 38, 1);
+    color: #fff;
+}
+.cargo {
+    font-size: 10px;
+    color: #1D0D89;
+    font-weight: bold;
+}
+.departamento {
+    font-size: 10px;
+    color: #1D0D89;
+}
+.perfil {
+    border-radius: 4px 4px 0 0;
+}
+.dotacion{
+    font-size: 8px;
+    color: #1D0D89;
+}
+.oc-export-btn {
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  padding: 8px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
+  background-color: #5cb85c;
+  border: 1px solid transparent;
+  border-color: #4cae4c;
+  border-radius: 4px;
+}
+.oc-export-btn, .oc-export-btn:active, .oc-export-btn:hover, .oc-export-btn:focus{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    z-index:999999;
+}
+.orgchart .nombre { background-color: #006699; 
+}
+#buttons-zoom{
+  display: inline-block;
+  position: absolute;
+  right: 65px;
+  top: -18px;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  color: black;
+}
