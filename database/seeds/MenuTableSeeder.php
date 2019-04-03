@@ -72,12 +72,5 @@ class MenuTableSeeder extends Seeder
             "icon" => "fa fa-laptop",
             "order" => 3
         ]);
-        $solicitudes = Menu::create([
-            "title" => "Solicitudes",
-            "route" => "solicitudes.index",
-            "permissions" => 4,
-            "icon" => "fa fa-file-text-o",
-            "order" => 3
-        ]);
     }
 }

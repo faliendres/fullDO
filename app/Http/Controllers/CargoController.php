@@ -43,10 +43,10 @@ class CargoController extends Controller
     protected function getArbol($cargo){
     	if(isset($cargo->id_funcionario)){
     		$func = User::where('id',$cargo->id_funcionario)->first();
-    		$name = $func->name . ' ' . $func->apellido. (count($cargo->subCargos)>0 ? ' ('.count($cargo->subCargos).')' : '');
+    		$name = $func->name . ' ' . $func->apellido;
     		$avatar = $func->foto;
     	}else{
-    		$name = "Vacante". (count($cargo->subCargos) > 0 ? ' ('.count($cargo->subCargos).')' : '');
+    		$name = "Vacante";
     		$avatar = 'nobody.png';
     	}
         //$collapsed = false;
@@ -59,6 +59,7 @@ class CargoController extends Controller
 			'title' => $cargo->nombre,
 			'office' => $cargo->area,
             'color'  => $cargo->gerencia->color,
+            'dotacion' => count($cargo->subCargos)>0 ? ' ('.count($cargo->subCargos).')' : '',
             //'collapsed' => $collapsed,
     	);
     	$childrens = Cargo::where('id_jefatura',$cargo->id)->get();
