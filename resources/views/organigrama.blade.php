@@ -10,7 +10,7 @@
             top: 10px;
             left: 10px;
             height: 100%;
-            width: 100%;
+            max-width: calc(100vw - 200px);
             border-radius: 5px;
             overflow: auto;
             text-align: center;
