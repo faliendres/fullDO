@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -37,14 +38,15 @@ class Controller extends BaseController
     }
 
 
-    public function index(Request $request)
+    public function index(Request $request, $query=null)
     {
         $noEdit = false;
         if($request->getPathInfo()=='/solicitudes')
             $noEdit = true;
         
         if ($request->ajax()) {
-            $query = $this->clazz::query();
+            if(!$query)
+                $query = $this->clazz::query();
             $f = $request->get("filter");
             if (isset($f["resource"]) && $f["resource"]=='usuarios')
                 $query = $query->where(function($q)  use ($f){

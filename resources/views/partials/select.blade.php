@@ -41,8 +41,7 @@
                 <select name="{{$name}}" id="{{$auxId}}"
                         {{($required??false)?"required":""}} class="form-control-lg form-control {{ $errors->has("$name") ? ' is-invalid' : '' }}">
                     @if(count($options)>1)
-                        <option selected value="" {{(isset($required)&&$required)?"disabled":""}} >Seleccione por
-                            favor
+                        <option selected value="" {{(isset($required)&&$required)?"disabled":""}} >{{$placeholder??"Seleccione por favor"}}
                         </option>
                     @endif
                     @foreach($options as $option)

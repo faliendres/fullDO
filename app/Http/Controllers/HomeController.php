@@ -20,7 +20,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index(Request $request, $query=null)
     {
         return view('home');
     }
