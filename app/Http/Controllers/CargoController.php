@@ -39,7 +39,8 @@ class CargoController extends Controller
             }
             return parent::index($request,$query);
         }
-
+        if($request->ajax())
+            return parent::index($request,$query);
         return view("holdings.select");
 
     }
