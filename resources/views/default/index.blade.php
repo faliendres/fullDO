@@ -246,7 +246,7 @@
                             type: 'GET',
                             success: function (response) { // What to do if we succeed
                                 $.each(response.data, function () {
-                                    $gerencia.append('<option value="' + this.id + '">' + this.nombregerencia + '</option>');
+                                    $gerencia.append('<option value="' + this.id + '" data-link="'+this.id_empresa+'">' + this.nombregerencia + '</option>');
                                 });
                             },
                         });
