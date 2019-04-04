@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -49,10 +50,10 @@ class Controller extends BaseController
                 $query = $this->clazz::query();
             $f = $request->get("filter");
             if (isset($f["resource"]) && $f["resource"]=='usuarios')
-                $query = $query->where(function($q)  use ($f){
+                $query = User::where(function($q)  use ($f){
                   $q->where('name', "LIKE", '%'.$f["value"].'%')
                     ->orWhere('apellido', "LIKE", '%'.$f["value"].'%');
-              });
+              })->where('holding_id',auth()->user()->holding_id);
             if($request->getPathInfo()=='/solicitudes/buzon')
                 $query = $query->where('destinatario_id', auth()->user()->id);
             if ($f)

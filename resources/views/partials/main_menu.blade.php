@@ -5,7 +5,7 @@
                 $user=auth()->user();
             @endphp
             @foreach(menu() as $item)
-                @if($user->perfil <= $item->permissions)
+                @if($user->perfil <= $item->permissions && $item->order > 0)
                     @if($item->subItems->count())
                         <li class="menu-title">{{$item->title}}</li>
                         @foreach($item->subItems as $subItem)
