@@ -68,7 +68,9 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-
+            let $holding=$("#Holdings");
+            let $empresa=$("#Empresas");
+            let $gerencia=$("#Gerencias");
             if(typeof filterDropDown ==="undefined")
                 var filterDropDown={};
             let route = "{!! request()->fullUrl() !!}";
@@ -96,8 +98,8 @@
                         "sPrevious": "Anterior"
                     },
                     "oAria": {
-                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                        "sSortAscending":  ": Actilet para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Actilet para ordenar la columna de manera descendente"
                     } 
                 },
                 filterDropDown: filterDropDown,
@@ -152,17 +154,21 @@
                         type: 'GET',
                         success: function (response) { // What to do if we succeed
                             $.each(response.data, function () {
-                                $("#Holdings").append('<option value="' + this.id + '">' + this.nombre + '</option>');
+                                $holding.append('<option value="' + this.id + '">' + this.nombre + '</option>');
                             });
                         },
                     });
 
                     $('#Holdings').on('change', function () {
-                        var filter_value = $(this).val();
+                        let filter_value = $(this).val();
+                        $empresa.find(`option`).show();
+                        if(filter_value)
+                            $empresa.find(`option:not([data-link="${filter_value}"])`).hide();
                         $table
                             .columns(1)
-                            .search(filter_value ? '^'+filter_value+'$' : '',true, false)
+                            .search(filter_value ? '^' + filter_value + '$' : '', true, false)
                             .draw();
+                        $empresa.val("").trigger("change");
                     });
                 }
 
@@ -182,17 +188,24 @@
                         type: 'GET',
                         success: function (response) { // What to do if we succeed
                             $.each(response.data, function () {
-                                $("#Empresas").append('<option value="' + this.id + '">' + this.nombre + '</option>');
+                                $empresa.append('<option value="' + this.id + '" data-link="'+this.id_holding+'">' + this.nombre + '</option>');
                             });
                         },
                     });
 
                     $('#Empresas').on('change', function () {
-                        var filter_value = $(this).val();
+                        let filter_value = $(this).val();
+
+                        $gerencia.find(`option`).show();
+                        if(filter_value)
+                            $gerencia.find(`option:not([data-link="${filter_value}"])`).hide();
+
                         $table
                             .columns(2)
                             .search(filter_value ? '^'+filter_value+'$' : '',true, false)
                             .draw();
+
+                        $gerencia.val("").trigger("change");
                     });
                 }
 
@@ -218,7 +231,8 @@
                                     type: 'GET',
                                     success: function (response) { // What to do if we succeed
                                         $.each(response.data, function () {
-                                            $("#Gerencias").append('<option value="' + this.id + '">' + this.nombregerencia + '</option>');
+                                            $gerencia.append('<option value="' + this.id + '" data-link="'+this.id_empresa+'">' + this.nombregerencia + '</option>');
+                                            console.log($gerencia.html());
                                         });
                                     },
                                 });
@@ -232,7 +246,7 @@
                             type: 'GET',
                             success: function (response) { // What to do if we succeed
                                 $.each(response.data, function () {
-                                    $("#Gerencias").append('<option value="' + this.id + '">' + this.nombregerencia + '</option>');
+                                    $gerencia.append('<option value="' + this.id + '">' + this.nombregerencia + '</option>');
                                 });
                             },
                         });
@@ -243,7 +257,7 @@
                     
 
                     $('#Gerencias').on('change', function () {
-                        var filter_value = $(this).val();
+                        let filter_value = $(this).val();
                         $table
                             .column(4)
                             .search(filter_value ? '^'+filter_value+'$' : '',true, false)
