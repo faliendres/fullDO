@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Holding;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -58,8 +59,15 @@ class Controller extends BaseController
                 $query = $query->where('destinatario_id', auth()->user()->id);
             if ($f)
                 foreach ($f as $filter) {
-                    if (is_array($filter) && array_key_exists("field", $filter) && array_key_exists("op", $filter) && array_key_exists("value", $filter))
-                        $query = $query->where($filter["field"], $filter["op"] ?? "=", $filter["value"]);
+                    
+                    if (is_array($filter) && array_key_exists("field", $filter) && array_key_exists("op", $filter) && array_key_exists("value", $filter)){
+                        
+                        if($filter["op"] == 'whereIn'){
+                            $query = $query->whereIn($filter["field"], explode(",",$filter["value"]) );
+                        }
+                        else
+                            $query = $query->where($filter["field"], $filter["op"] ?? "=", $filter["value"]);
+                    }
                 }
             if (!$request->get("draw", false))
                 return response()->json(["data" => $query->get()]);

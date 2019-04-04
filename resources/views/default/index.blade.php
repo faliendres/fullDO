@@ -143,6 +143,8 @@
                 });
             });
             if(typeof filterSelect != "undefined") {
+                const urlParams = new URLSearchParams(window.location.search);
+                const myParam = urlParams.get('holding_id');
                 if (filterSelect.indexOf("Holding") >= 0) {
                     $('.holding').show();
                     $.ajax({
@@ -166,8 +168,7 @@
 
                 if (filterSelect.indexOf("Empresas") >= 0) {
                     $('.empresas').show();
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const myParam = urlParams.get('holding_id');
+                    
                     $.ajax({
                         url: "{!! route("empresas.index",[
                             "filter"=>[
@@ -197,15 +198,49 @@
 
                 if (filterSelect.indexOf("Gerencias") >= 0) {
                     $('.gerencias').show();
-                    $.ajax({
-                        url: '{{route("gerencias.index")}}',
-                        type: 'GET',
-                        success: function (response) { // What to do if we succeed
-                            $.each(response.data, function () {
-                                $("#Gerencias").append('<option value="' + this.id + '">' + this.nombregerencia + '</option>');
-                            });
-                        },
-                    });
+
+                    if(myParam){
+
+                        $.ajax({
+                            url: "{{route("getEmpresasByHolding",["_id"])}}".replace("_id", myParam),
+                            type: 'GET',
+                            success: function (response) { // What to do if we succeed
+                                $.ajax({
+                                    url: "{!! route("gerencias.index",[
+                                        "filter"=>[
+                                            [
+                                                "field"=>"id_empresa",
+                                                "op"=>"whereIn",
+                                                "value"=>"_id"
+                                            ]
+                                        ]
+                                        ]) !!}".replace("_id", Object.keys(response)),
+                                    type: 'GET',
+                                    success: function (response) { // What to do if we succeed
+                                        $.each(response.data, function () {
+                                            $("#Gerencias").append('<option value="' + this.id + '">' + this.nombregerencia + '</option>');
+                                        });
+                                    },
+                                });
+                            },
+                        });
+
+                    }
+                    else{
+                        $.ajax({
+                            url: '{{route("gerencias.index")}}',
+                            type: 'GET',
+                            success: function (response) { // What to do if we succeed
+                                $.each(response.data, function () {
+                                    $("#Gerencias").append('<option value="' + this.id + '">' + this.nombregerencia + '</option>');
+                                });
+                            },
+                        });
+                    }
+
+
+
+                    
 
                     $('#Gerencias').on('change', function () {
                         var filter_value = $(this).val();
