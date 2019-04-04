@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Cargo;
-use App\Gerencia;
 use App\Exceptions\SelfDeleteException;
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Auth;
 use App\Mail\EmailUserLogin;
 use App\Mail\NewPasswordEmail;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\ValidationException;
 use Log;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class UserController extends Controller
 {

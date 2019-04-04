@@ -37,20 +37,24 @@
             {"data": "email", "title": "Email"},
             {
                 "data": "id", "title": "Acciones",
-                "render": function (data, row) {
+                "render": function (data, field, row) {
                     let show = "{{route("$resource.show",["_id"])}}".replace("_id", data);
                     let edit = "{{route("$resource.edit",["_id"])}}".replace("_id", data);
                     let perfil = "{!! route('perfil') !!}"+"?id="+data;
-                    let style="display: {{( auth()->user()->perfil > 3)?'none':'block'}};"
+                    let style="display: {{( auth()->user()->perfil > 3)?'none':'block'}};";
+                    let current_perfil=parseInt('{{auth()->user()->perfil ?? 0 }}');
+
+                    if((row.perfil||0)<current_perfil)
+                        style="display:none";
                     return `
                     <div class="btn-group">
-                    <a style="display: {{( auth()->user()->perfil > 3)?'none':'block'}};" class="btn btn-primary" data-id="${data}" href="${show}">
+                    <a style="${style}" class="btn btn-primary" data-id="${data}" href="${show}">
                         <i class="fa fa-search"></i>
                     </a>
-                    <a style="display: {{( auth()->user()->perfil > 3)?'none':'block'}};" class="btn btn-warning white-color" data-id="${data}" href="${edit}">
+                    <a style="${style}" class="btn btn-warning white-color" data-id="${data}" href="${edit}">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <button style="display: {{( auth()->user()->perfil > 3)?'none':'block'}};" class="btn btn-danger" data-id="${data}">
+                    <button style="${style}" class="btn btn-danger" data-id="${data}">
                         <i class="fa fa-times"></i>
                     </button>
                     <a class="btn btn-primary" data-id="${data}" href="${perfil}">
