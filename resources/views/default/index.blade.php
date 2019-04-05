@@ -162,13 +162,26 @@
                     $('#Holdings').on('change', function () {
                         let filter_value = $(this).val();
                         $empresa.find(`option`).show();
-                        if(filter_value)
-                            $empresa.find(`option:not([data-link="${filter_value}"])`).hide();
+                        $gerencia.find(`option`).show();
+                        if(filter_value) {
+                            $empresa.find(`option:not([data-holding="${filter_value}"])`).hide();
+                            $gerencia.find(`option:not([data-holding="${filter_value}"])`).hide();
+
+                        }
                         $table
                             .columns(1)
-                            .search(filter_value ? '^' + filter_value + '$' : '', true, false)
+                            .search(filter_value ? '^' + filter_value + '$' : '', true, false);
+
+                        $empresa.val("");
+                        $table
+                            .columns(2)
+                            .search('',true, false);
+
+                        $gerencia.val("");
+                        $table
+                            .column(4)
+                            .search('',true, false)
                             .draw();
-                        $empresa.val("").trigger("change");
                     });
                 }
 
@@ -188,7 +201,7 @@
                         type: 'GET',
                         success: function (response) { // What to do if we succeed
                             $.each(response.data, function () {
-                                $empresa.append('<option value="' + this.id + '" data-link="'+this.id_holding+'">' + this.nombre + '</option>');
+                                $empresa.append('<option value="' + this.id + '" data-holding="'+this.id_holding+'">' + this.nombre + '</option>');
                             });
                         },
                     });
@@ -198,14 +211,15 @@
 
                         $gerencia.find(`option`).show();
                         if(filter_value)
-                            $gerencia.find(`option:not([data-link="${filter_value}"])`).hide();
-
+                            $gerencia.find(`option:not([data-empresa="${filter_value}"])`).hide();
                         $table
                             .columns(2)
-                            .search(filter_value ? '^'+filter_value+'$' : '',true, false)
+                            .search(filter_value ? '^'+filter_value+'$' : '',true, false);
+                        $gerencia.val("");
+                        $table
+                            .column(4)
+                            .search('',true, false)
                             .draw();
-
-                        $gerencia.val("").trigger("change");
                     });
                 }
 
@@ -231,7 +245,7 @@
                                     type: 'GET',
                                     success: function (response) { // What to do if we succeed
                                         $.each(response.data, function () {
-                                            $gerencia.append('<option value="' + this.id + '" data-link="'+this.id_empresa+'">' + this.nombregerencia + '</option>');
+                                            $gerencia.append('<option value="' + this.id + '" data-empresa="'+this.id_empresa+'" data-holding="'+this.empresa.id_holding+'">' + this.nombregerencia + '</option>');
                                             console.log($gerencia.html());
                                         });
                                     },
@@ -246,15 +260,11 @@
                             type: 'GET',
                             success: function (response) { // What to do if we succeed
                                 $.each(response.data, function () {
-                                    $gerencia.append('<option value="' + this.id + '" data-link="'+this.id_empresa+'">' + this.nombregerencia + '</option>');
+                                    $gerencia.append('<option value="' + this.id + '"  data-empresa="'+this.id_empresa+'" data-holding="'+this.empresa.id_holding+'">' + this.nombregerencia + '</option>');
                                 });
                             },
                         });
                     }
-
-
-
-                    
 
                     $('#Gerencias').on('change', function () {
                         let filter_value = $(this).val();
