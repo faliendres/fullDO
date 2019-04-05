@@ -27,6 +27,16 @@ class Solicitud extends Model
     protected $with = ["destinatario"];
     protected $fillable = ["tipo", "remitente_id", "destinatario_id", "asunto", "descripcion","adjuntos","comentarios","estado"];
 
+    public static function query()
+    {
+        $query = (new static)->newQuery();
+        $user = auth()->user();
+        if ($user && $user->perfil > 0)
+            $query = $query->where("remitente_id", $user->id);
+        return $query;
+
+    }
+
     public function destinatario()
     {
         return $this->belongsTo(User::class);

@@ -7,13 +7,13 @@
         <!--  Traffic  -->
         <div class="row">
             <div class="col-lg-12">
-                <div class="card">
-                    @if(auth()->user()->perfil <= 3 )
-                        <div class="card-body">
-                            <h4 class="box-title" style="text-transform: capitalize; text-align: center;">{{__($resource)}} </h4>
+                <div class="card">                    
+                    <div class="card-body">
+                        <h4 class="box-title" style="text-transform: capitalize; text-align: center;">{{__($resource)}} </h4>
+                        @if(auth()->user()->perfil <= 3 || $resource == "solicitudes")
                             <a href="{{route("$resource.create")}}" class="btn btn-primary">Nuevo</a>
-                        </div>
-                    @endif
+                        @endif
+                    </div>                    
                     <div class="row card-body">
                         <div class="form-group col-md-offset-1 col-md-4 holding" style="display: none">
                             <h5>Seleccionar Holding <span class="text-danger"></span></h5>

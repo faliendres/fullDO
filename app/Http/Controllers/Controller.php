@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Holding;
+use App\Solicitud;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -56,7 +57,7 @@ class Controller extends BaseController
                     ->orWhere('apellido', "LIKE", '%'.$f["value"].'%');
               })->where('holding_id',auth()->user()->holding_id);
             if($request->getPathInfo()=='/solicitudes/buzon')
-                $query = $query->where('destinatario_id', auth()->user()->id);
+                $query = Solicitud::where('destinatario_id', auth()->user()->id);
             if ($f)
                 foreach ($f as $filter) {
                     
