@@ -47,20 +47,25 @@
     <script type="text/javascript">
         jQuery(function () {
         var base_banners="{{image_asset('empresas')}}";
-        var empresa_id = "{{Auth::user()->empresa_id}}" ? "{{Auth::user()->empresa_id}}" : 1;
-        url = "{{route("empresas.show",["_id"])}}".replace("_id", empresa_id);
-        jQuery.ajax({
-            type: "GET",
-            url: url,
-            beforeSend: function () { },
-            success: function (response) {
-                if(!response.banner)
-                    response.banner="nobanner.png"
-                if (!(response.banner).startsWith("http"))
-                    response.banner=base_banners+"/"+response.banner;                           
-                $("#banner-container").html('<img alt="banner" src="'+response.banner+'">');         
-            }
-        });
+        var empresa_id = "{{Auth::user()->empresa_id??'none'}}";
+        if(empresa_id!=="none"){
+            url = "{{route("empresas.show",["_id"])}}".replace("_id", empresa_id);
+            jQuery.ajax({
+                type: "GET",
+                url: url,
+                beforeSend: function () { },
+                success: function (response) {
+                    if(!response.banner)
+                        response.banner="nobanner.png"
+                    if (!(response.banner).startsWith("http"))
+                        response.banner=base_banners+"/"+response.banner;
+                    $("#banner-container").html('<img alt="banner" src="'+response.banner+'">');
+                }
+            });
+        }
+        else {
+            $("#banner-container").html('<img alt="banner" src="{{image_asset('empresas','logofulldo.png') }}">');
+        }
         // change password
         var fecha = "{{ Auth::user()->password_changed_at }}";
         if( fecha == ""){
