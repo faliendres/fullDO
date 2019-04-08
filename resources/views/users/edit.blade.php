@@ -18,7 +18,7 @@
             $cargos=collect([]);
         $perfiles=[];
         if(!isset($user->perfil))
-            $perfiles[]=["text"=>"Super Admin","id"=>null,"selected"=>false];
+            $perfiles[]=["text"=>"Super Admin","id"=>0,"selected"=>false];
         if($user->perfil<1 || $instance->perfil==1){
             $perfiles[]=["text"=>"Holding","id"=>1,"selected"=>false];
         }
@@ -78,7 +78,7 @@
                 $.ajax({
                     url: route,
                     success: result => {
-                        if (result.data.length && result.data[0].id_funcionario) {
+                        if (result.data.length && result.data[0].id_funcionario && result.data[0].id_funcionario!='{{$instance->id}}')  {
                             Swal.fire({
                                 title: 'Cargo ocupado!',
                                 text: "¿Seguro que desea reemplazarlo?",
