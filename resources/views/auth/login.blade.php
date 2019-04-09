@@ -16,7 +16,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
-                            <label><Rut></Rut></label>
+                            <label>RUT</label>
                             <input id="rut" type="text" class="form-control{{ $errors->has('rut') ? ' is-invalid' : '' }}" name="rut" value="{{ old('rut') }}" required autofocus>
 
                                 @if ($errors->has('rut'))

@@ -62,7 +62,7 @@ class UserController extends Controller
         }
 
         try{
-            Mail::to($request->user())->send(new EmailUserLogin( ));
+            Mail::to($request->get("email"))->send(new EmailUserLogin());
         }
         catch(\Exception $e){
             \Log::info('Error Sending Mail: '.$e->getMessage());
