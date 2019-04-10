@@ -101,4 +101,26 @@ class Cargo extends Model
         if($hasta)
         return Carbon::parse($hasta)->format('d-m-Y');
     }
+
+    public static function options(){
+
+        $cargos= Cargo::query()->select([
+            "ma_cargo.id as id",
+            "ma_cargo.nombre as text",
+            "ma_gerencia.nombre as gerencia",
+            "ma_empresa.nombre as empresa",
+            "ma_holding.nombre as holding",
+            ])
+            ->join("ma_gerencia", "id_gerencia", "=", "ma_gerencia.id")
+            ->join("ma_empresa", "id_empresa", "=", "ma_empresa.id")
+            ->join("ma_holding", "id_holding", "=", "ma_holding.id")
+            ->toBase()
+            ->get()
+            ->groupBy("holding")->map(function($holding){
+                return $holding->groupBy("empresa")->map(function($empresa){
+                        return $empresa->groupBy("gerencia");
+                    });
+            });
+        return $cargos;
+    }
 }

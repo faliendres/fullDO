@@ -5,7 +5,6 @@
 @endsection
 
 @section("content")
-
     <!--  All Content  -->
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -19,6 +18,37 @@
         </div>
     </div>
     <!--  /All Contente -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="box-title">Select Holding</h4>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card-body">
+                            <form  >
+                                @include("partials.select",["required"=>true,
+        "name"=>"holding_id","title"=>"Holding","options"=>toOptions(\App\Holding::query()),
+        "value"=>request()->get("holding_id") ])
+                                @include("partials.switch",["name"=>"showEmpresas","title"=>"Empresas","value"=>request()->get("showEmpresas")])
+
+
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-search"></i> Buscar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> <!-- /.row -->
+                <div class="card-body"></div>
+            </div>
+        </div><!-- /# column -->
+    </div>
+
     <div class="clearfix"></div>
 
 @endsection
@@ -31,7 +61,9 @@
             let datasource;
             const urlParams = new URLSearchParams(window.location.search);
             const myParam = urlParams.get('id');
-            let treeUrl = "{{route("getEstructura") . '?e=' . Auth::user()->empresa_id }}" + '&id='+ urlParams.get('id') ;
+            let treeUrl = "{{route("getEstructura") }}"
+                + '?holding_id='+ (urlParams.get('holding_id')||'')
+                + '&showEmpresas='+ (urlParams.get('showEmpresas')||'');
             jQuery.ajax({
                 type: "GET",
                 url: treeUrl,
@@ -46,9 +78,15 @@
                         }else{
                             link = "{!! route('perfil') !!}"+"?id="+data.id;
                         }
+                        let color=data.color.replace("#","");
+                        let contra=16777215;
+                        contra=contra-parseInt(color,16);
+
+
+                        data.avatar=`images/${data.tipo}/${data.avatar}`;
                         return `<a href="${link}" >
-                                    <img class="perfil" src="images/avatar/${data.avatar}" width="65px" height="65px;" />
-                                    <div class="nombre" style="color:black;border-radius:unset !important;background-color:${data.color} !important;">${data.name}</div>
+                                    <img class="perfil" src="${data.avatar}" width="65px" height="65px;" />
+                                    <div class="nombre" style="color:#${contra.toString(16)};border-radius:unset !important;background-color:${data.color} !important;">${data.name}</div>
                                     <div class="cargo">${data.title}</div>
                                     <div class="departamento">${data.office}</div>
                                     <div class="dotacion">${data.dotacion}</div>

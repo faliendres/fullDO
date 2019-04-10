@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Cargo;
 use App\Empresa;
+use App\Holding;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class CargoController extends Controller
@@ -47,20 +47,58 @@ class CargoController extends Controller
 
     public function getEstructura(Request $request)
     {
-        $empresa = $request->get('e');
-        if (!isset($empresa)) {
-            $empresa = Empresa::first()->id;
+        $user = auth()->user();
+        $holding_id=$request->get("holding_id");
+        if(!$holding_id)
+            $holding_id=$user->holding_id;
+
+        $query = Cargo::join("ma_gerencia", "id_gerencia", "=", "ma_gerencia.id")
+            ->join("ma_empresa", "id_empresa", "=", "ma_empresa.id")
+            ->where('id_jefatura', null)
+            ->select(["ma_cargo.*","id_empresa"]);
+
+        if ($holding_id) {
+            $query = $query->where("ma_empresa.id_holding", $holding_id);
         }
-        $data = $request->only('id');
-        if (count($data) && $data['id'] != 'null')
-            $cargo = Cargo::where('id', $data['id'])->first();
-        else {
-            $cargo = Cargo::whereIn('id_gerencia', function ($q) use ($empresa) {
-                $q->from('ma_gerencia')->select('id')->where('id_empresa', $empresa);
-            })->where('id_jefatura', null)->first();
+        $holding=Holding::find($holding_id);
+        if(!$holding)
+            return response()->json();
+        $query= $query->get()->groupBy("id_empresa");
+        $result=array(
+            'id' => $holding->id ,
+            'avatar' =>  $holding->logo ,
+            'name' =>  $holding->nombre,
+            'title' => "",
+            'color' => $holding->color,
+            'office' => "",
+            'dotacion' =>"",
+            'tipo' => "holdings",
+            'children' => []
+        );
+        foreach($query as $empresa_id => $cargos)
+        {
+            if ($request->get("showEmpresas")) {
+                $empresa = Empresa::find($empresa_id);
+                $empresa = array(
+                    'id' => $empresa->id,
+                    'avatar' => $empresa->logo,
+                    'name' => $empresa->nombre,
+                    'title' => "",
+                    'color' => $empresa->color,
+                    'office' => "",
+                    'dotacion' => "",
+                    'tipo' => "empresas",
+                    'children' => []
+                );
+                foreach ($cargos as $cargo)
+                    $empresa['children'][] = $this->getArbol($cargo);
+                $result['children'][] = $empresa;
+            } else {
+                foreach ($cargos as $cargo)
+                    $result['children'][] = $this->getArbol($cargo);
+            }
         }
-        $result = $this->getArbol($cargo);
-        return response()->json($result, 200);
+        return response()->json($result);
     }
 
     protected function getArbol($cargo)
@@ -79,9 +117,10 @@ class CargoController extends Controller
         $node = array(
             'id' => $cargo->id_funcionario ?: "-1",
             'avatar' => $avatar,
+            'tipo' => "avatar",
             'name' => $name,
             'title' => $cargo->nombre,
-            'office' => $cargo->area,
+            'office' => $cargo->area??"",
             'color' => $cargo->gerencia->color,
             'dotacion' => count($cargo->subCargos) > 0 ? ' (' . count($cargo->subCargos) . ')' : '',
             //'collapsed' => $collapsed,

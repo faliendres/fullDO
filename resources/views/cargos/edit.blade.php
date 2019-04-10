@@ -5,7 +5,7 @@
     $holdings=toOptions(\App\Holding::query());
     $empresas=toOptions(\App\Empresa::query()->where("id_holding",$instance->gerencia->empresa->id_holding));
     $gerencias=toOptions(\App\Gerencia::query()->where("id_empresa",$instance->gerencia->id_empresa));
-    $cargos=toOptions(\App\Cargo::query()->where("id_gerencia",$instance->id_gerencia)->where("id","!=",$instance->id));
+    $options=\App\Cargo::options();
 @endphp
 
 
@@ -22,7 +22,44 @@
     @include("partials.select",["required"=>true,"value"=>$instance->gerencia->id_empresa,
      "name"=>"id_empresa","title"=>"Empresa","stable"=>$user->perfil>1,"options"=>$empresas ])
     @include("partials.select",["required"=>true,"name"=>"id_gerencia","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias ])
-    @include("partials.select",["name"=>"id_jefatura","title"=>"Jefatura","options"=>$cargos ])
+    @php
+        $auxId=uniqid("id_jefatura");
+    @endphp
+    <div class="row form-group">
+        <div class="col col-md-3">
+            <label for="{{$auxId}}" class=" form-control-label">Jefatura</label></div>
+        <div class="col-12 col-md-9">
+            <select name="id_jefatura" id="{{$auxId}}" class="form-control-lg form-control {{ $errors->has("id_jefatura") ? ' is-invalid' : '' }}">
+                <option selected value="" {{(isset($required)&&$required)?"disabled":""}} >{{$placeholder??"Seleccione por favor"}}
+                </option>
+                @foreach($options as $holding_id=>$empresas)
+                    <optgroup label="{{$holding_id}}">
+                        @foreach($empresas as $empresa_id=>$gerencias)
+                            <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;{{$empresa_id}}">
+                                @foreach($gerencias as $gerencia_id=>$cargos)
+                                    <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;{{$gerencia_id}}">
+                                        @foreach($cargos as $cargo)
+                                            <option value="{{$cargo->id}}"
+                                                    {{($cargo->id==$instance->id_jefatura)?"selected":""}}>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$cargo->text}}
+                                            </option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
+                            </optgroup>
+                        @endforeach
+                    </optgroup>
+                @endforeach
+            </select>
+            @if ($errors->has("id_jefatura"))
+                <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first("id_jefatura") }}</strong>
+                    </span>
+            @endif
+        </div>
+    </div>
+
+
     @include("partials.switch",["name"=>"estado","title"=>"Estado"])
     @include("partials.file",["name"=>"adjuntos","title"=>"Descripción de Cargo","multiple"=>false ])
 @endsection
@@ -84,6 +121,7 @@
                 });
             });
             $form.find("select[name='id_gerencia']").change(function (e) {
+                return;
                 let $select = $form.find("select[name='id_jefatura']");
                 $select.empty();
                 $select.trigger("change");

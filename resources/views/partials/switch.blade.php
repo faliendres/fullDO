@@ -21,8 +21,7 @@
                 <label for="{{$auxId}}" class=" form-control-label"> {{$title??""}}</label>
             </div>
             <div class="col-12 col-md-9">
-                <input type="hidden" id="{{$auxId}}" name="{{$name}}" value="0" />
-                <label class="switch">
+                <label   class="switch">
                 <input type="{{$type??"checkbox"}}" id="{{$auxId}}" name="{{$name}}"
                        {{($required??false)?"required":""}} placeholder="{{$placeholder??""}}"
                        class="switch form-control{{ $errors->has("$name") ? ' is-invalid' : '' }}" value="1" {{$value==1?"checked":""}}>
