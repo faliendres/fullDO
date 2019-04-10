@@ -55,7 +55,7 @@ class Controller extends BaseController
                     $q->where('name', "LIKE", '%' . $f["value"] . '%')
                         ->orWhere('apellido', "LIKE", '%' . $f["value"] . '%');
                 });
-                if (auth()->user()->holding_id)
+                if (auth()->user()->perfil > 0)
                     $query = $query->where('holding_id', auth()->user()->holding_id);
             }
             if($request->getPathInfo()=='/solicitudes/buzon')

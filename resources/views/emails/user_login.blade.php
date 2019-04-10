@@ -1,8 +1,7 @@
 @component('mail::message')
 # Login User
 
-Bienvenido FALTA AGREGAR EL NOMBRE
-a fullDo
+Bienvenido a FullDO
 
 
 Thanks,<br>
