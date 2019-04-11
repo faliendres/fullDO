@@ -74,7 +74,7 @@
                     datasource = result;
                     var nodeTemplate = function (data) {
                         let link;
-                        if(data.id=='-1'){
+                        if(data.id=='-1' || data.tipo!='avatar'){
                             link = "#";
                         }else{
                             link = "{!! route('perfil') !!}"+"?id="+data.id;
