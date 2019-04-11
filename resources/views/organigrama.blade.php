@@ -18,37 +18,38 @@
         </div>
     </div>
     <!--  /All Contente -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="box-title">Select Holding</h4>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card-body">
-                            <form  >
-                                @include("partials.select",["required"=>true,
-        "name"=>"holding_id","title"=>"Holding","options"=>toOptions(\App\Holding::query()),
-        "value"=>request()->get("holding_id") ])
-                                @include("partials.switch",["name"=>"showEmpresas","title"=>"Empresas","value"=>request()->get("showEmpresas")])
-
-
-
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-search"></i> Buscar
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+    @if(!isset(auth()->user()->perfil) || auth()->user()->perfil < 1)
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="box-title">Seleccione Holding</h4>
                     </div>
-                </div> <!-- /.row -->
-                <div class="card-body"></div>
-            </div>
-        </div><!-- /# column -->
-    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card-body">
+                                <form  >
+                                    @include("partials.select",["required"=>true,
+            "name"=>"holding_id","title"=>"Holding","options"=>toOptions(\App\Holding::query()),
+            "value"=>request()->get("holding_id") ])
+                                    @include("partials.switch",["name"=>"showEmpresas","title"=>"Empresas","value"=>request()->get("showEmpresas")])
 
+
+
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-search"></i> Buscar
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div> <!-- /.row -->
+                    <div class="card-body"></div>
+                </div>
+            </div><!-- /# column -->
+        </div>
+    @endif
     <div class="clearfix"></div>
 
 @endsection
