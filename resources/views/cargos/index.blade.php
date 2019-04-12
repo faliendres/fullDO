@@ -1,4 +1,8 @@
 @extends("default.index")
+
+@section("import.buttons")
+    <a href="{{route("$resource.create.import")}}" class="btn btn-primary">Importar</a>
+@endsection
 @section("index_scripts")
     <script type="text/javascript">
         var base_logos = "{{image_asset($resource)}}";

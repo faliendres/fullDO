@@ -7,6 +7,7 @@ use App\Empresa;
 use App\Holding;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class CargoController extends Controller
@@ -150,4 +151,18 @@ class CargoController extends Controller
         }
         throw new \RuntimeException("El id especificado tiene " . $counter . " registros asociados ");
     }
+
+    public function import( Request $request){
+        if(strtoupper($request->getMethod())=="GET"){
+            return view("$this->resource.import")->with(["resource" => $this->resource]);
+        }else{
+            $file=$request->file("file_file");
+            $filename=uniqid().".xlsx";
+            $file->move("/tmp/",$filename);
+            $import=new \App\Imports\CargosImport();
+            $import->queue("/tmp/$filename");
+            return redirect()->route("$this->resource.index");
+        }
+    }
+
 }

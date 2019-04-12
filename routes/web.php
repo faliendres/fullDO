@@ -12,6 +12,17 @@
 */
 Auth::routes();
 
+//Route::get('/import', function () {
+////    return response()->json((new \App\Imports\CargosImport())->toArray('/home/hp/Escritorio/cargos.xlsx'));
+//    $import=new \App\Imports\CargosImport();
+//    $import->queue('/home/hp/Escritorio/cargos.xlsx');
+//    $despues=$import->creados;
+//
+//    //    dd($import->failures(),$import->errors());
+//    return response()->json($despues);
+////    return response()->json(Excel::queueImport(new \App\Imports\CargosImport(),'/home/hp/Escritorio/cargos.xlsx'));
+//});
+
 Route::get('/', function () {
     if (auth()->guest())
         return view('auth.login');
@@ -65,6 +76,8 @@ Route::group(['middleware' => ['auth','check.permission','save-back']], function
     Route::get('/organigrama', 'HomeController@organigrama')->name('organigrama');
     Route::get('/organigrama/tree', 'CargoController@getEstructura')->name('getEstructura');
 
+    Route::get("/cargos/import", "CargoController@import")->name('cargos.create.import');
+    Route::post("/cargos/import", "CargoController@import")->name('cargos.import');
     Route::delete("/cargos/{id}", "CargoController@destroy")->name('cargos.destroy');
     Route::get("/cargos", "CargoController@index")->name('cargos.index');
     Route::get("/cargos/create", "CargoController@create")->name('cargos.create');
