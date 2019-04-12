@@ -17,7 +17,7 @@
 
             <input type="file" id="{{$auxId}}" {{$multiple?"multiple":""}} name="{{$name}}_file{{$multiple?"[]":""}}"
                    {{($required??false)?"required":""}}
-                   accept="{{$accept?:"*"}}" >
+                   accept="{{ $accept??"*" }}" >
             @if ($errors->has("$name"))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first("$name") }}</strong>
