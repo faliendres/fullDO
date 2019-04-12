@@ -19,7 +19,7 @@
                                       enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     @include("partials.file",["name"=>"file","title"=>"Archivo para Importar",
-                                    "accept"=>"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"])
+                                    "accept"=>".xlsx"])
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fa fa-save"></i> Guardar
