@@ -1,10 +1,12 @@
 @component('mail::message')
-# Nueva Contraseña
+<img src="{{ asset('images/password.png') }}" alt="{{ config('app.name') }} Logo">
 
-Hola,
-
-Tu nueva contraseña es {{ $newPass }}
-
-Saludos,<br>
+<h1> Hola </h1>
+<h2>Tu nueva clave de acceso es {{ $newPass }}</h2>
+<center>
+<img src="{{ asset('images/pie.png') }}" alt="{{ config('app.name') }} Logo">
+</center>
 
 @endcomponent
+
+
