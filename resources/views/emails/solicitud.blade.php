@@ -5,7 +5,8 @@
 Hola <b>{{ $nombre }}</b>,<br>
 Te informamos que tienes una solitud de {{ $solicituTipo }}, con estado {{ $solicituEstado }}
 </p>
-<p class="content" style="width: 100%; text-align: center;"><button class="btn btn-primary" type="button">Ingresar</button></p>
+<br>
+<p class="content" style="width: 100%; text-align: center;"><button class="btn btn-primary" type="button">INGRESAR</button></p>
 
 <div class="row">
   <div class="column">
