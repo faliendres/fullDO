@@ -153,7 +153,8 @@ class UserController extends Controller
             $file->move("/tmp/",$filename);
             $import=new \App\Imports\UsuariosImport();
             $import->queue("/tmp/$filename");
-            return redirect()->route("$this->resource.index");
+            return redirect()->route("$this->resource.index")
+                ->with(["message"=>"La carga masiva se esta ejecutando en segundo plano"]);
         }
     }
 

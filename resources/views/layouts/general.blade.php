@@ -95,6 +95,9 @@
     <!-- /#header -->
     <!-- Content -->
     <div class="content">
+        @if ( session()->has('message') )
+            <div class="alert alert-success">{{ session()->get('message') }}</div>
+        @endif
         @include('partials.backButton')
         @yield("content")
     </div>

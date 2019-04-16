@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Cargo;
 use App\Empresa;
 use App\Holding;
+use App\Imports\CargosImport;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class CargoController extends Controller
@@ -155,9 +157,11 @@ class CargoController extends Controller
             $file=$request->file("file_file");
             $filename=uniqid().".xlsx";
             $file->move("/tmp/",$filename);
-            $import=new \App\Imports\CargosImport();
-            $import->queue("/tmp/$filename");
-            return redirect()->route("$this->resource.index");
+//            $import=new \App\Imports\CargosImport();
+//            $import->queue("/tmp/$filename");
+            Excel::import(new CargosImport, "/tmp/$filename");
+            return redirect()->route("$this->resource.index")
+                ->with(["message"=>"La carga masiva se esta ejecutando en segundo plano"]);
         }
     }
 

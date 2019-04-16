@@ -1,7 +1,9 @@
 @extends("default.index")
 
 @section("import.buttons")
-    <a href="{{route("$resource.create.import")}}" class="btn btn-primary">Importar</a>
+    @if(!auth()->user()->perfil)
+        <a href="{{route("$resource.create.import")}}" class="btn btn-primary">Importar</a>
+    @endif
 @endsection
 @section("index_scripts")
     <script type="text/javascript">
