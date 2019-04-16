@@ -112,9 +112,6 @@ class CargoController extends Controller
             $name = "Vacante";
             $avatar = 'nobody.png';
         }
-        //$collapsed = false;
-        //if($cargo->nombre == 'Gerente TI')
-        //$collapsed = true;
         $node = array(
             'id' => $cargo->id_funcionario ?: "-1",
             'avatar' => $avatar,
@@ -123,8 +120,7 @@ class CargoController extends Controller
             'title' => $cargo->nombre,
             'office' => $cargo->area??"",
             'color' => $cargo->gerencia->color,
-            'dotacion' => count($cargo->subCargos) > 0 ? ' (' . count($cargo->subCargos) . ')' : '',
-            //'collapsed' => $collapsed,
+            'dotacion' => count($cargo->subCargos) > 0 ? ' (' . count($cargo->subCargos) . ')' : ''
         );
         $childrens = Cargo::where('id_jefatura', $cargo->id)->get();
         if (count($childrens) > 0)

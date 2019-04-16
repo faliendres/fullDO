@@ -8,6 +8,7 @@ use App\Empresa;
 use App\Gerencia;
 use App\Holding;
 use App\User;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToArray;
@@ -16,7 +17,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class CargosImport implements ToArray, WithHeadingRow, ShouldQueue,WithChunkReading
 {
-    use Importable;
+    use Importable,Queueable;
 
     static $info = [];
     public $creados=[];
@@ -134,7 +135,6 @@ class CargosImport implements ToArray, WithHeadingRow, ShouldQueue,WithChunkRead
                 "nombre" => $row["nombre"],
                 "descripcion" => $row["descripcion"],
                 "area" => $row["area"],
-                "color" => $row["color"],
                 "estado" => $row["estado"],
                 "id_gerencia" => $gerencia->id,
                 "id_jefatura" => $jefatura->id ?? null,

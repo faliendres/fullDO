@@ -12,16 +12,6 @@
 */
 Auth::routes();
 
-//Route::get('/import', function () {
-////    return response()->json((new \App\Imports\CargosImport())->toArray('/home/hp/Escritorio/cargos.xlsx'));
-//    $import=new \App\Imports\CargosImport();
-//    $import->queue('/home/hp/Escritorio/cargos.xlsx');
-//    $despues=$import->creados;
-//
-//    //    dd($import->failures(),$import->errors());
-//    return response()->json($despues);
-////    return response()->json(Excel::queueImport(new \App\Imports\CargosImport(),'/home/hp/Escritorio/cargos.xlsx'));
-//});
 
 Route::get('/', function () {
     if (auth()->guest())
@@ -36,8 +26,8 @@ Route::group(['middleware' => ['auth','check.unread']], function () {
     Route::get('/home', 'HomeController@index')->middleware("save-back")->name('home');
 
 Route::group(['middleware' => ['auth','check.permission','save-back']], function () {
-    
-
+    Route::get("/usuarios/import", "UserController@import")->name('users.create.import');
+    Route::post("/usuarios/import", "UserController@import")->name('users.import');
     Route::delete("/usuarios/{id}", "UserController@destroy")->name('users.destroy');
     Route::get("/usuarios", "UserController@index")->name('users.index');
     Route::get("/usuarios/create", "UserController@create")->name('users.create');

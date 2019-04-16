@@ -144,5 +144,17 @@ class UserController extends Controller
     }
 
 
+    public function import( Request $request){
+        if(strtoupper($request->getMethod())=="GET"){
+            return view("$this->resource.import")->with(["resource" => $this->resource]);
+        }else{
+            $file=$request->file("file_file");
+            $filename=uniqid().".xlsx";
+            $file->move("/tmp/",$filename);
+            $import=new \App\Imports\UsuariosImport();
+            $import->queue("/tmp/$filename");
+            return redirect()->route("$this->resource.index");
+        }
+    }
 
 }
