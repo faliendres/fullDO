@@ -16,7 +16,6 @@
 
 @section("form")
     @include("partials.field",["required"=>true,"name"=>"nombre","title"=>"Nombre", "value"=>old('name')])
-    @include("partials.textArea",["name"=>"descripcion","title"=>"Descripcion", "value"=>old('descripcion')])
     @include("partials.field",["name"=>"area","title"=>"Area", "value"=>old('area')])
     @include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde", "value"=>old('desde')])
     @include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta", "value"=>old('hasta')])

@@ -42,7 +42,6 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
                      "estado",
                      "color",
                      "area",
-                     "descripcion",
                      "nombre"
                  ] as $tipo) {
             if (!isset($row[$tipo])) {
@@ -137,7 +136,6 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
 
         $cargo = Cargo::firstOrNew([
             "nombre" => $row["nombre"],
-            "descripcion" => $row["descripcion"],
             "area" => $row["area"],
             "estado" => $row["estado"],
             "id_gerencia" => $gerencia->id,
