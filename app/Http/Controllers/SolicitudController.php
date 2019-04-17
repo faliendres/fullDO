@@ -19,7 +19,7 @@ class SolicitudController extends Controller
     public function __construct()
     {
         $this->rules = [
-            "tipo" => ["required", Rule::in(Solicitud::TIPOS)],
+            "tipo" => ["required", Rule::in(array_keys(Solicitud::TIPOS))],
             "destinatario_id" => "required|exists:users,id",
             "asunto" => "required|max:190",
             "descripcion" => "required|max:255",
