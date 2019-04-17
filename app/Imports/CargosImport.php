@@ -40,7 +40,6 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
                      "empresa",
                      "gerencia",
                      "estado",
-                     "color",
                      "area",
                      "nombre"
                  ] as $tipo) {
