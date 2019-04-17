@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Http\Request;
+use App\User;
 
 class NewPasswordEmail extends Mailable
 {
@@ -18,9 +19,10 @@ class NewPasswordEmail extends Mailable
      * @return void
      */
 
-    public function __construct($newpass)
+    public function __construct($newpass,$id)
     {
         $this->newpass = $newpass ;
+        $this->id = $id ;
     }
     //
 
@@ -31,11 +33,14 @@ class NewPasswordEmail extends Mailable
      */
     public function build()
     {
-       return $this->subject('Nueva Contraseña')
+        $user = User::where('id',$this->id)->first();
+        return $this->subject('Nueva Contraseña')
                    ->from('example@fulldo.com')
                    ->markdown('emails.newpass')
                    ->with([
                     'newPass' => $this->newpass,
+                    'nombre' => $user->name . ' ' . $user->apellido,
+                    'logoEmpresa' => $user->empresa->logo
         ]);
     }
 }

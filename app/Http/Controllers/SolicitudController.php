@@ -46,7 +46,9 @@ class SolicitudController extends Controller
                         $solicitud->estado = $value;
                         try{
                             Mail::to($request->user()->email)
-                            ->cc(User::findOrFail($solicitud->remitente_id)->email)
+                            ->send(new SolicitudEmail($solicitud));
+
+                            Mail::to(User::findOrFail($solicitud->remitente_id)->email)
                             ->send(new SolicitudEmail($solicitud));
                             \Log::info('Envio correctamente el email');
                         }

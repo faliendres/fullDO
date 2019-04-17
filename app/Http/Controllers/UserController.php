@@ -52,7 +52,7 @@ class UserController extends Controller
         $this->validate($request, [
             'password' => 'confirmed',
         ]);
-
+        $passw = $request->get("password");
         $request->merge(["password" => Hash::make($request->get("password", "123456"))]);
         $result = parent::store($request);
         $cargo = Cargo::find($request->get("cargo_id"));
@@ -62,7 +62,7 @@ class UserController extends Controller
         }
 
         try{
-            Mail::to($request->get("email"))->send(new EmailUserLogin());
+            Mail::to($request->get("email"))->send(new EmailUserLogin($request->get("email"),$passw) );
         }
         catch(\Exception $e){
             \Log::info('Error Sending Mail: '.$e->getMessage());
@@ -81,7 +81,7 @@ class UserController extends Controller
             $request->merge(["password" => Hash::make($new_pass)]);
             try{
                 Mail::to($request->get("email"))
-                ->send(new NewPasswordEmail($new_pass));
+                ->send(new NewPasswordEmail($new_pass,$id));
             }
             catch(\Exception $e){ 
                 \Log::info('-------Error Sending Mail: '.$e->getMessage());

@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\User;
 
 class EmailUserLogin extends Mailable
 {
@@ -17,11 +18,12 @@ class EmailUserLogin extends Mailable
      * @return void
      */
 
-   // public $user; 
+   // public $email; 
 
-    public function __construct(  )
+    public function __construct( $email, $password )
     {
-       // $this->$user = $user;
+        $this->email = $email;
+        $this->password = $password;
     }
 
     /**
@@ -31,8 +33,16 @@ class EmailUserLogin extends Mailable
      */
     public function build()
     {
-
-        return $this->from('example@fulldo.com')->markdown('emails.user_login');
+        $user = User::where('email',$this->email)->first();
+        return $this->from('example@fulldo.com')
+                    ->subject('Bienvenid@')
+                    ->markdown('emails.user_login')
+                    ->with([
+                    'password' => $this->password,
+                    'usuario' => $user->rut,
+                    'nombre' => $user->name . ' ' . $user->apellido,
+                    'logoEmpresa' => $user->empresa->logo
+        ]);
 
     }
 }
