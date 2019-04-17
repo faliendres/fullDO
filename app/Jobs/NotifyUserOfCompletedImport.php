@@ -15,16 +15,21 @@ class NotifyUserOfCompletedImport implements ShouldQueue
 
     public $user;
     protected $creados;
+    protected $class;
     protected $type;
-    public function __construct(User $user,array $creados,$type)
+
+    public function __construct(User $user, $antes, $class, $resource)
     {
         $this->user = $user;
-        $this->creados=$creados;
-        $this->type=$type;
+        $this->class = $class;
+        $this->creados = $antes;
+        $this->type = __($resource);
     }
 
     public function handle()
     {
-//        $this->user->notify(new ImportReadyNotification($this->creados,$this->type));
+        $despues = $this->class::count();
+        $this->creados = $despues-$this->creados;
+        $this->user->notify(new ImportReadyNotification($this->creados, $this->type));
     }
 }

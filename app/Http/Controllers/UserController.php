@@ -29,6 +29,7 @@ class UserController extends Controller
         'cargo_id' => 'nullable|exists:ma_cargo,id',
         'foto_file' => 'file|image| max:1000',
     ];
+    protected $importer= \App\Imports\UsuariosImport::class;
 
     /**
      * @param Request $request
@@ -152,9 +153,10 @@ class UserController extends Controller
             $file=$request->file("file_file");
             $filename=uniqid().".xlsx";
             $file->move("/tmp/",$filename);
-            $import=new \App\Imports\UsuariosImport();
+            $import=new $this->importer;
+            $antes=$this->clazz::count();
             $import->queue("/tmp/$filename")->chain([
-                new NotifyUserOfCompletedImport(auth()->user(),$import->creados,"Usuarios"),
+                new NotifyUserOfCompletedImport(auth()->user(),$antes,$this->clazz,$this->resource),
             ]);
 
             return redirect()->route("$this->resource.index")

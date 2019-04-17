@@ -23,6 +23,7 @@ class CargoController extends Controller
         'desde' => 'nullable|date',
         'hasta' => 'nullable|date',
     ];
+    protected $importer=CargosImport::class;
 
     public function index(Request $request, $query = null)
     {
@@ -128,20 +129,21 @@ class CargoController extends Controller
         throw new \RuntimeException("El id especificado tiene " . $counter . " registros asociados ");
     }
 
-    public function import(Request $request)
-    {
-        if (strtoupper($request->getMethod()) == "GET") {
+    public function import( Request $request){
+        if(strtoupper($request->getMethod())=="GET"){
             return view("$this->resource.import")->with(["resource" => $this->resource]);
-        } else {
-            $file = $request->file("file_file");
-            $filename = uniqid() . ".xlsx";
-            $file->move("/tmp/", $filename);
-            $import = new  CargosImport();
+        }else{
+            $file=$request->file("file_file");
+            $filename=uniqid().".xlsx";
+            $file->move("/tmp/",$filename);
+            $import=new $this->importer;
+            $antes=$this->clazz::count();
             $import->queue("/tmp/$filename")->chain([
-                new NotifyUserOfCompletedImport(auth()->user(), $import->creados, "Cargos"),
+                new NotifyUserOfCompletedImport(auth()->user(),$antes,$this->clazz,$this->resource),
             ]);
+
             return redirect()->route("$this->resource.index")
-                ->with(["message" => "La carga masiva se esta ejecutando en segundo plano"]);
+                ->with(["message"=>"La carga masiva se esta ejecutando en segundo plano"]);
         }
     }
 

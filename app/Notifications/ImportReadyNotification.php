@@ -16,7 +16,7 @@ class ImportReadyNotification extends Notification
      * ImportReadyNotification constructor.
      * @param array $creados
      */
-    public function __construct(array $creados, $type)
+    public function __construct( $creados, $type)
     {
         $this->creados = $creados;
         $this->type = $type;
@@ -44,7 +44,7 @@ class ImportReadyNotification extends Notification
         $mail= (new MailMessage)
             ->subject('Carga masiva realizada')
             ->greeting('Hola ' . $notifiable->name)
-            ->line("Se registraron ". count($this->creados)." $this->type nuevos")
+            ->line("Se registraron ". ($this->creados)." $this->type nuevos")
             ->salutation('Saludos!');
         return $mail;
     }
