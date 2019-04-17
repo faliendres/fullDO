@@ -2,8 +2,14 @@
 @section("index_scripts")
     <script type="text/javascript">
         var base_logos="{{image_asset($resource)}}";
+        var tipos=JSON.parse('{!! json_encode(\App\Solicitud::TIPOS)  !!}');
         var columns = [
-            {"data": "tipo", "title": "Tipo"},
+            {"data": "tipo", "title": "Tipo",
+                "render": function (data,row){
+                    debugger;
+                    return `<span>${tipos[data]}</span>`;
+                }
+            },
             {"data": "asunto", "title": "Asunto"},
             {"data": "destinatario.name", "title": "Destinatario","orderable": false},
             {"data": "estado", "title": "Estado",
