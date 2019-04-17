@@ -57,14 +57,13 @@ class ResetPasswordNotification extends Notification
         if (static::$toMailCallback) {
             return call_user_func(static::$toMailCallback, $notifiable, $this->token);
         }
-
         return (new MailMessage)
         ->subject('Solicitud de reestablecimiento de contraseña')
-        ->greeting('Hola '. $notifiable->name)
-         ->line('Recibes este email porque se solicito un reestablecimiento de contraseña para tu cuenta')
-         ->action('Restablecer contraseña', url(config('app.url').route('password.reset', $this->token, false)))
-            ->line('Si no realizaste esta peticion, puedes ignorar este correo')
-            ->salutation('Saludos!');
+        ->markdown('emails.olvidopass',[
+                    'token' => $this->token,
+                    'nombre' => $notifiable->name . ' ' . $notifiable->apellido,
+                    'logoEmpresa' => $notifiable->empresa->logo
+        ]);
     }
 
     /**
