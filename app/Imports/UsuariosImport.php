@@ -52,11 +52,23 @@ class UsuariosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkR
 
         if (!$usuario) {
             $usuario = User::where("email", $row["email"])->get()->first();
-            if ($usuario->exists){
+            if ($usuario) {
                 static::$info[json_encode([$row["email"] => ["email" => $row["email"]]])] = $usuario;
                 return null;
             }
         }
+
+        $usuario = isset(static::$info[json_encode([$row["rut"] => ["rut" => $row["rut"]]])]) ?
+            static::$info[json_encode([$row["rut"] => ["rut" => $row["rut"]]])] : null;
+
+        if (!$usuario) {
+            $usuario = User::where("rut", $row["rut"])->get()->first();
+            if ($usuario) {
+                static::$info[json_encode([$row["rut"] => ["rut" => $row["rut"]]])] = $usuario;
+                return null;
+            }
+        }
+
         $holding =
             isset(static::$info[json_encode([$row["holding"] => ["nombre" => $row["holding"]]])]) ?
                 static::$info[json_encode([$row["holding"] => ["nombre" => $row["holding"]]])] : null;
@@ -97,10 +109,41 @@ class UsuariosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkR
                 ["nombre" => $row["gerencia"], "id_empresa" => $empresa->id]
             ])] = $gerencia;
         }
-        if (isset($row["fecha_nacimiento"]) && $row["fecha_nacimiento"])
-            $fecha_nacimiento = Carbon::parse($row["fecha_nacimiento"]);
-        else
+
+
+        if (isset($row["fecha_nacimiento"]) && $row["fecha_nacimiento"]) {
+
+            if(is_numeric($row["fecha_nacimiento"])){
+                $int = intval($row["fecha_nacimiento"]) - 2;
+                $date = Carbon::createFromDate(1900, 1, 1)->setTime(0, 0, 0);
+                $date->addDays($int);
+            }
+            else
+            {
+                $date = Carbon::createFromFormat("d/m/Y",$row["fecha_nacimiento"]);
+            }
+
+            $fecha_nacimiento = $date;
+        } else
             $fecha_nacimiento = null;
+
+
+        if (isset($row["fecha_inicio"]) && $row["fecha_inicio"]) {
+            if(is_numeric($row["fecha_inicio"])){
+                $int = intval($row["fecha_inicio"]) - 2;
+                $date = Carbon::createFromDate(1900, 1, 1)->setTime(0, 0, 0);
+                $date->addDays($int);
+            }
+            else
+            {
+                $date = Carbon::createFromFormat("d/m/Y",$row["fecha_inicio"]);
+            }
+
+            $fecha_inicio = $date;
+        } else
+            $fecha_inicio = null;
+
+
         $usuario = User::firstOrNew([
             "name" => $row["nombre"],
             "apellido" => $row["apellido"],
@@ -111,6 +154,7 @@ class UsuariosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkR
             "estado" => $row["estado"],
             "telefono" => $row["telefono"],
             "fecha_nacimiento" => $fecha_nacimiento,
+            "fecha_inicio" => $fecha_inicio,
             "holding_id" => $holding->id,
             "empresa_id" => $empresa->id,
             "gerencia_id" => $gerencia->id,
