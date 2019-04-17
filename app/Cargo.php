@@ -74,7 +74,7 @@ class Cargo extends Model
     public static function query()
     {
         //$query = (new static)->newQuery();
-        $query= (new static)->newQuery()->select(['ma_cargo.id', 'ma_cargo.nombre', 'ma_cargo.nombre as nombrecargo', 'ma_cargo.descripcion', 'id_gerencia','ma_cargo.estado','ma_cargo.area','id_jefatura','id_funcionario']);
+        $query= (new static)->newQuery()->select(['ma_cargo.id', 'ma_cargo.nombre', 'ma_cargo.nombre as nombrecargo', 'id_gerencia','ma_cargo.estado','ma_cargo.area','id_jefatura','id_funcionario']);
         $user = auth()->user();
         if ($user && $user->perfil > 2 && $user->holding_id && $user->empresa_id && $user->gerencia_id)
             $query = $query->where("id_gerencia", $user->gerencia_id);
