@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cargo;
 use App\Exceptions\SelfDeleteException;
+use App\Jobs\NotifyUserOfCompletedImport;
 use App\Mail\EmailUserLogin;
 use App\Mail\NewPasswordEmail;
 use App\User;
@@ -28,6 +29,7 @@ class UserController extends Controller
         'cargo_id' => 'nullable|exists:ma_cargo,id',
         'foto_file' => 'file|image| max:1000',
     ];
+    protected $importer= \App\Imports\UsuariosImport::class;
 
     /**
      * @param Request $request
@@ -144,5 +146,22 @@ class UserController extends Controller
     }
 
 
+    public function import( Request $request){
+        if(strtoupper($request->getMethod())=="GET"){
+            return view("$this->resource.import")->with(["resource" => $this->resource]);
+        }else{
+            $file=$request->file("file_file");
+            $filename=uniqid().".xlsx";
+            $file->move("/tmp/",$filename);
+            $import=new $this->importer;
+            $antes=$this->clazz::count();
+            $import->queue("/tmp/$filename")->chain([
+                new NotifyUserOfCompletedImport(auth()->user(),$antes,$this->clazz,$this->resource),
+            ]);
+
+            return redirect()->route("$this->resource.index")
+                ->with(["message"=>"La carga masiva se esta ejecutando en segundo plano"]);
+        }
+    }
 
 }

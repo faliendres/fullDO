@@ -13,6 +13,7 @@
                         @if(auth()->user()->perfil <= 3 || $resource == "solicitudes")
                             <a href="{{route("$resource.create")}}" class="btn btn-primary">Nuevo</a>
                         @endif
+                        @yield("import.buttons")
                     </div>                    
                     <div class="row card-body">
                         <div class="form-group col-md-offset-1 col-md-4 holding" style="display: none">

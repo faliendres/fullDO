@@ -12,6 +12,7 @@
 */
 Auth::routes();
 
+
 Route::get('/', function () {
     if (auth()->guest())
         return view('auth.login');
@@ -25,8 +26,8 @@ Route::group(['middleware' => ['auth','check.unread']], function () {
     Route::get('/home', 'HomeController@index')->middleware("save-back")->name('home');
 
 Route::group(['middleware' => ['auth','check.permission','save-back']], function () {
-    
-
+    Route::get("/usuarios/import", "UserController@import")->name('users.create.import');
+    Route::post("/usuarios/import", "UserController@import")->name('users.import');
     Route::delete("/usuarios/{id}", "UserController@destroy")->name('users.destroy');
     Route::get("/usuarios", "UserController@index")->name('users.index');
     Route::get("/usuarios/create", "UserController@create")->name('users.create');
@@ -65,6 +66,8 @@ Route::group(['middleware' => ['auth','check.permission','save-back']], function
     Route::get('/organigrama', 'HomeController@organigrama')->name('organigrama');
     Route::get('/organigrama/tree', 'CargoController@getEstructura')->name('getEstructura');
 
+    Route::get("/cargos/import", "CargoController@import")->name('cargos.create.import');
+    Route::post("/cargos/import", "CargoController@import")->name('cargos.import');
     Route::delete("/cargos/{id}", "CargoController@destroy")->name('cargos.destroy');
     Route::get("/cargos", "CargoController@index")->name('cargos.index');
     Route::get("/cargos/create", "CargoController@create")->name('cargos.create');
