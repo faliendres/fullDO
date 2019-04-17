@@ -17,7 +17,7 @@ class CheckInbox
      */
     public function handle($request, Closure $next)
     {
-        $unread = Solicitud::query()->where('destinatario_id',auth()->id())->where('estado',1)->get();
+        $unread = Solicitud::where('destinatario_id',auth()->id())->where('estado',1)->get();
         $request->session()->put('buzon', count($unread));
         return $next($request);
     }
