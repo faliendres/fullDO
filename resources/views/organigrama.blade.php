@@ -32,10 +32,6 @@
                                     @include("partials.select",["required"=>true,
             "name"=>"holding_id","title"=>"Holding","options"=>toOptions(\App\Holding::query()),
             "value"=>request()->get("holding_id") ])
-                                    @include("partials.switch",["name"=>"showEmpresas","title"=>"Empresas","value"=>request()->get("showEmpresas")])
-
-
-
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fa fa-search"></i> Buscar
@@ -63,8 +59,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const myParam = urlParams.get('id');
             let treeUrl = "{{route("getEstructura") }}"
-                + '?holding_id='+ (urlParams.get('holding_id')||'')
-                + '&showEmpresas='+ (urlParams.get('showEmpresas')||'');
+                + '?holding_id='+ (urlParams.get('holding_id')||'');
             jQuery.ajax({
                 type: "GET",
                 url: treeUrl,

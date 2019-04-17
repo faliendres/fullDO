@@ -78,28 +78,9 @@ class CargoController extends Controller
             'tipo' => "holdings",
             'children' => []
         );
-        foreach($query as $empresa_id => $cargos)
-        {
-            if ($request->get("showEmpresas")) {
-                $empresa = Empresa::find($empresa_id);
-                $empresa = array(
-                    'id' => $empresa->id,
-                    'avatar' => $empresa->logo,
-                    'name' => $empresa->nombre,
-                    'title' => "",
-                    'color' => $empresa->color,
-                    'office' => "",
-                    'dotacion' => "",
-                    'tipo' => "empresas",
-                    'children' => []
-                );
-                foreach ($cargos as $cargo)
-                    $empresa['children'][] = $this->getArbol($cargo);
-                $result['children'][] = $empresa;
-            } else {
-                foreach ($cargos as $cargo)
-                    $result['children'][] = $this->getArbol($cargo);
-            }
+        foreach($query as $empresa_id => $cargos){
+            foreach ($cargos as $cargo)
+                $result['children'][] = $this->getArbol($cargo);
         }
         return response()->json($result);
     }
