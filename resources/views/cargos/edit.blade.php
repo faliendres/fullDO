@@ -11,7 +11,6 @@
 
 @section("form")
     @include("partials.field",["required"=>true,"name"=>"nombre","title"=>"Nombre"])
-    @include("partials.textArea",["name"=>"descripcion","title"=>"Descripcion"])
     @include("partials.field",["name"=>"area","title"=>"Area"])
     @include("partials.field",["type"=>"date","name"=>"desde","title"=>"Desde", "value"=>$instance->desde ? Carbon\Carbon::parse($instance->desde)->format('Y-m-d') : ''])
     @include("partials.field",["type"=>"date","name"=>"hasta","title"=>"Hasta", "value"=>$instance->hasta ? Carbon\Carbon::parse($instance->hasta)->format('Y-m-d') : ''])
