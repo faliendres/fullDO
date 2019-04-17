@@ -20,12 +20,8 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
 {
     use Importable, Queueable;
 
-    static $info = [];
+    public static $info = [];
     public $creados = [];
-
-    /**
-     * @param array $array
-     */
 
     /**
      * @param array $row

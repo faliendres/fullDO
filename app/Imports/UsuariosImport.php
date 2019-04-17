@@ -56,7 +56,8 @@ class UsuariosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkR
                 static::$info[json_encode([$row["email"] => ["email" => $row["email"]]])] = $usuario;
                 return null;
             }
-        }
+        } else
+            return null;
 
         $usuario = isset(static::$info[json_encode([$row["rut"] => ["rut" => $row["rut"]]])]) ?
             static::$info[json_encode([$row["rut"] => ["rut" => $row["rut"]]])] : null;
@@ -67,7 +68,8 @@ class UsuariosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkR
                 static::$info[json_encode([$row["rut"] => ["rut" => $row["rut"]]])] = $usuario;
                 return null;
             }
-        }
+        } else
+            return null;
 
         $holding =
             isset(static::$info[json_encode([$row["holding"] => ["nombre" => $row["holding"]]])]) ?
@@ -110,38 +112,32 @@ class UsuariosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkR
             ])] = $gerencia;
         }
 
-
+        $fecha_nacimiento = null;
         if (isset($row["fecha_nacimiento"]) && $row["fecha_nacimiento"]) {
 
-            if(is_numeric($row["fecha_nacimiento"])){
+            if (is_numeric($row["fecha_nacimiento"])) {
                 $int = intval($row["fecha_nacimiento"]) - 2;
                 $date = Carbon::createFromDate(1900, 1, 1)->setTime(0, 0, 0);
                 $date->addDays($int);
-            }
-            else
-            {
-                $date = Carbon::createFromFormat("d/m/Y",$row["fecha_nacimiento"]);
+            } else {
+                $date = Carbon::createFromFormat("d/m/Y", $row["fecha_nacimiento"]);
             }
 
             $fecha_nacimiento = $date;
-        } else
-            $fecha_nacimiento = null;
+        }
 
-
+        $fecha_inicio = null;
         if (isset($row["fecha_inicio"]) && $row["fecha_inicio"]) {
-            if(is_numeric($row["fecha_inicio"])){
+            if (is_numeric($row["fecha_inicio"])) {
                 $int = intval($row["fecha_inicio"]) - 2;
                 $date = Carbon::createFromDate(1900, 1, 1)->setTime(0, 0, 0);
                 $date->addDays($int);
-            }
-            else
-            {
-                $date = Carbon::createFromFormat("d/m/Y",$row["fecha_inicio"]);
+            } else {
+                $date = Carbon::createFromFormat("d/m/Y", $row["fecha_inicio"]);
             }
 
             $fecha_inicio = $date;
-        } else
-            $fecha_inicio = null;
+        }
 
 
         $usuario = User::firstOrNew([

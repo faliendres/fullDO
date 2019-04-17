@@ -14,14 +14,17 @@ class NotifyUserOfCompletedImport implements ShouldQueue
     use Queueable, SerializesModels, Notifiable;
 
     public $user;
-
-    public function __construct(User $user)
+    protected $creados;
+    protected $type;
+    public function __construct(User $user,array $creados,$type)
     {
         $this->user = $user;
+        $this->creados=$creados;
+        $this->type=$type;
     }
 
     public function handle()
     {
-        $this->user->notify(new ImportReadyNotification());
+//        $this->user->notify(new ImportReadyNotification($this->creados,$this->type));
     }
 }

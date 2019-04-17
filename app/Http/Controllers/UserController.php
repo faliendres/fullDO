@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cargo;
 use App\Exceptions\SelfDeleteException;
+use App\Jobs\NotifyUserOfCompletedImport;
 use App\Mail\EmailUserLogin;
 use App\Mail\NewPasswordEmail;
 use App\User;
@@ -152,7 +153,10 @@ class UserController extends Controller
             $filename=uniqid().".xlsx";
             $file->move("/tmp/",$filename);
             $import=new \App\Imports\UsuariosImport();
-            $import->queue("/tmp/$filename");
+            $import->queue("/tmp/$filename")->chain([
+                new NotifyUserOfCompletedImport(auth()->user(),$import->creados,"Usuarios"),
+            ]);
+
             return redirect()->route("$this->resource.index")
                 ->with(["message"=>"La carga masiva se esta ejecutando en segundo plano"]);
         }

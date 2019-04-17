@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Cargo;
-use App\Empresa;
 use App\Holding;
 use App\Imports\CargosImport;
+use App\Jobs\NotifyUserOfCompletedImport;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class CargoController extends Controller
@@ -26,24 +24,23 @@ class CargoController extends Controller
         'hasta' => 'nullable|date',
     ];
 
-    public function index(Request $request, $query=null)
+    public function index(Request $request, $query = null)
     {
         if ($request->has("holding_id")) {
             $this->validate($request, [
                 "holding_id" => "nullable|exists:ma_holding,id"
             ]);
-            $query=null;
-            if ($request->ajax()&&$request->get("holding_id")) {
+            $query = null;
+            if ($request->ajax() && $request->get("holding_id")) {
                 $query = Cargo::query()
-                    ->join("ma_gerencia","ma_cargo.id_gerencia","=","ma_gerencia.id")
-                    ->join("ma_empresa","ma_gerencia.id_empresa","=","ma_empresa.id")
-                    ->where("ma_empresa.id_holding","=", \DB::raw($request->get("holding_id")))
-                ;
+                    ->join("ma_gerencia", "ma_cargo.id_gerencia", "=", "ma_gerencia.id")
+                    ->join("ma_empresa", "ma_gerencia.id_empresa", "=", "ma_empresa.id")
+                    ->where("ma_empresa.id_holding", "=", \DB::raw($request->get("holding_id")));
             }
-            return parent::index($request,$query);
+            return parent::index($request, $query);
         }
-        if($request->ajax())
-            return parent::index($request,$query);
+        if ($request->ajax())
+            return parent::index($request, $query);
         return view("holdings.select");
 
     }
@@ -51,34 +48,34 @@ class CargoController extends Controller
     public function getEstructura(Request $request)
     {
         $user = auth()->user();
-        $holding_id=$request->get("holding_id");
-        if(!$holding_id)
-            $holding_id=$user->holding_id;
+        $holding_id = $request->get("holding_id");
+        if (!$holding_id)
+            $holding_id = $user->holding_id;
 
         $query = Cargo::join("ma_gerencia", "id_gerencia", "=", "ma_gerencia.id")
             ->join("ma_empresa", "id_empresa", "=", "ma_empresa.id")
             ->where('id_jefatura', null)
-            ->select(["ma_cargo.*","id_empresa"]);
+            ->select(["ma_cargo.*", "id_empresa"]);
 
         if ($holding_id) {
             $query = $query->where("ma_empresa.id_holding", $holding_id);
         }
-        $holding=Holding::find($holding_id);
-        if(!$holding)
+        $holding = Holding::find($holding_id);
+        if (!$holding)
             return response()->json();
-        $query= $query->get()->groupBy("id_empresa");
-        $result=array(
-            'id' => $holding->id ,
-            'avatar' =>  $holding->logo ,
-            'name' =>  $holding->nombre,
+        $query = $query->get()->groupBy("id_empresa");
+        $result = array(
+            'id' => $holding->id,
+            'avatar' => $holding->logo,
+            'name' => $holding->nombre,
             'title' => "",
             'color' => $holding->color,
             'office' => "",
-            'dotacion' =>"",
+            'dotacion' => "",
             'tipo' => "holdings",
             'children' => []
         );
-        foreach($query as $empresa_id => $cargos){
+        foreach ($query as $empresa_id => $cargos) {
             foreach ($cargos as $cargo)
                 $result['children'][] = $this->getArbol($cargo);
         }
@@ -101,7 +98,7 @@ class CargoController extends Controller
             'tipo' => "avatar",
             'name' => $name,
             'title' => $cargo->nombre,
-            'office' => $cargo->area??"",
+            'office' => $cargo->area ?? "",
             'color' => $cargo->gerencia->color,
             'dotacion' => count($cargo->subCargos) > 0 ? ' (' . count($cargo->subCargos) . ')' : ''
         );
@@ -131,18 +128,20 @@ class CargoController extends Controller
         throw new \RuntimeException("El id especificado tiene " . $counter . " registros asociados ");
     }
 
-    public function import( Request $request){
-        if(strtoupper($request->getMethod())=="GET"){
+    public function import(Request $request)
+    {
+        if (strtoupper($request->getMethod()) == "GET") {
             return view("$this->resource.import")->with(["resource" => $this->resource]);
-        }else{
-            $file=$request->file("file_file");
-            $filename=uniqid().".xlsx";
-            $file->move("/tmp/",$filename);
-//            $import=new \App\Imports\CargosImport();
-//            $import->queue("/tmp/$filename");
-            Excel::import(new CargosImport, "/tmp/$filename");
+        } else {
+            $file = $request->file("file_file");
+            $filename = uniqid() . ".xlsx";
+            $file->move("/tmp/", $filename);
+            $import = new  CargosImport();
+            $import->queue("/tmp/$filename")->chain([
+                new NotifyUserOfCompletedImport(auth()->user(), $import->creados, "Cargos"),
+            ]);
             return redirect()->route("$this->resource.index")
-                ->with(["message"=>"La carga masiva se esta ejecutando en segundo plano"]);
+                ->with(["message" => "La carga masiva se esta ejecutando en segundo plano"]);
         }
     }
 
