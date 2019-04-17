@@ -1,10 +1,10 @@
 @extends("default.create")
 @php
     $users=toOptions(\App\User::get_nombre_cargo(),"id","full_name");
-    $tipos=collect(\App\Solicitud::TIPOS)->map(function ($item){
+    $tipos=collect(\App\Solicitud::TIPOS)->map(function ($item,$key){
         return [
             "text" => $item,
-            "id" => $item
+            "id" => $key
         ];
     });
 @endphp

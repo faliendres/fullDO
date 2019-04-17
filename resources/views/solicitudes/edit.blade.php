@@ -6,10 +6,10 @@
             "text" => auth()->user()->name.' '.auth()->user()->apellido,
             "id" => auth()->user()->id
         ]);
-    $tipos=collect(\App\Solicitud::TIPOS)->map(function ($item){
+    $tipos=collect(\App\Solicitud::TIPOS)->map(function ($item,$key){
         return [
         "text" => $item,
-        "id" => $item
+        "id" => $key
         ];
     });
     $estados=collect(\App\Solicitud::ESTADOS);

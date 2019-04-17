@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Solicitud extends Model
 {
-    const TIPOS = ["A", "B", "C"];
+    const TIPOS = ["A"=>"DEPENDENCIA", "B"=> "DATOS PERSONALES", "C"=>"CARGO"];
 
     const ESTADOS = array(
 		array(
