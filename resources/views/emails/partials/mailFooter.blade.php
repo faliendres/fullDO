@@ -3,7 +3,7 @@
     <img src="{{ image_asset('empresas','logofulldo.png')}}">
   </div>
   <div class="column">
-    <img src="{{ $logoEmpresa }}">
+    <img src="{{ image_asset('empresas',$logoEmpresa) }}">
   </div>
 </div>
 <div class="footer">

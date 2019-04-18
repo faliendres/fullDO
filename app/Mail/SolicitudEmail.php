@@ -23,9 +23,10 @@ class SolicitudEmail extends Mailable
 
     protected $solicitud ;
 
-    public function __construct(Solicitud $solicitud  )
+    public function __construct(Solicitud $solicitud, $id )
     {
         $this->solicitud = $solicitud ;
+        $this->id = $id ;
     }
     //
 
@@ -40,13 +41,13 @@ class SolicitudEmail extends Mailable
       //  \Log::info($this->solicitud->descripcion);
         $estados=collect(Solicitud::ESTADOS);
         $con_texto = ($estados->where('id',$this->solicitud->estado)->first())['text']; 
-        $user = User::where('id',$this->solicitud->destinatario_id)->first();
+        $user = User::where('id',$this->id)->first();
            return $this->subject($this->solicitud->asunto)
                        ->from('example@fulldo.com')
                        ->markdown('emails.solicitud')
                        ->with([
                         'solicituDescripcion' => $this->solicitud->descripcion,
-                        'solicituTipo' => $this->solicitud->tipo,
+                        'solicituTipo' => Solicitud::TIPOS[$this->solicitud->tipo],
                         'solicituEstado' => $con_texto,
                         'nombre' => $user->name . ' ' . $user->apellido,
                         'logoEmpresa' => $user->empresa->logo

@@ -46,10 +46,10 @@ class SolicitudController extends Controller
                         $solicitud->estado = $value;
                         try{
                             Mail::to($request->user()->email)
-                            ->send(new SolicitudEmail($solicitud));
+                            ->send(new SolicitudEmail($solicitud,$request->user()->id));
 
                             Mail::to(User::findOrFail($solicitud->remitente_id)->email)
-                            ->send(new SolicitudEmail($solicitud));
+                            ->send(new SolicitudEmail($solicitud,$solicitud->remitente_id));
                             \Log::info('Envio correctamente el email');
                         }
                         catch(\Exception $e){ 
@@ -73,8 +73,11 @@ class SolicitudController extends Controller
         $solicitud = Solicitud::findOrFail($request->get("new_id"));
         try{
             Mail::to($request->user()->email)
-            ->cc(User::findOrFail($solicitud->destinatario_id)->email)
-            ->send(new SolicitudEmail($solicitud));
+            ->send(new SolicitudEmail($solicitud,$request->user()->id));
+
+            Mail::to(User::findOrFail($solicitud->destinatario_id)->email)
+            ->send(new SolicitudEmail($solicitud,$solicitud->destinatario_id));
+
             \Log::info('Envio correctamente el email');
         }
         catch(\Exception $e){ 
