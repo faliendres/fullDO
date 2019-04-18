@@ -1,7 +1,7 @@
 @extends("default.index")
 
 @section("import.buttons")
-    @if(!auth()->user()->perfil)
+    @if(auth()->user()->perfil < 2)
         <a href="{{route("$resource.create.import")}}" class="btn btn-primary">Importar</a>
     @endif
 @endsection
