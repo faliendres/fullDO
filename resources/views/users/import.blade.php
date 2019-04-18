@@ -12,6 +12,10 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card-body">
+                                <a href="{{asset('files/plantillas/usuarios.xlsx')}}"><i class="fa fa-download"></i> Descargar archivo de ejemplo</a>
+                                <br>
+                            </div>
+                            <div class="card-body">
                                 <form id="create_form" action="{{route("$resource.import")}}" method="POST" enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     @include("partials.file",["name"=>"file","title"=>"Archivo para Importar",
