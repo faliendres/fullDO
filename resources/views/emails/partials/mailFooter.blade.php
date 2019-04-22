@@ -3,7 +3,9 @@
     <img src="{{ image_asset('empresas','logofulldo.png')}}">
   </div>
   <div class="column">
-    <img src="{{ image_asset('empresas',$logoEmpresa) }}">
+  	@if($logoEmpresa!='')
+    	<img src="{{ image_asset('empresas',$logoEmpresa) }}">
+    @endif
   </div>
 </div>
 <div class="footer">

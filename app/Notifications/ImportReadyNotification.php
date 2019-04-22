@@ -45,7 +45,7 @@ class ImportReadyNotification extends Notification
             ->subject('Carga masiva realizada')
             ->markdown('emails.import',[
                     'nombre' => $notifiable->name . ' ' . $notifiable->apellido,
-                    'logoEmpresa' => $notifiable->empresa->logo,
+                    'logoEmpresa' => "",
                     'creados' => $this->creados,
                     'type' => $this->type,
         ]);
