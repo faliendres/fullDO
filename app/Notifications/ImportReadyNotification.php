@@ -43,9 +43,12 @@ class ImportReadyNotification extends Notification
     {
         $mail= (new MailMessage)
             ->subject('Carga masiva realizada')
-            ->greeting('Hola ' . $notifiable->name)
-            ->line("Se registraron ". ($this->creados)." $this->type nuevos")
-            ->salutation('Saludos!');
+            ->markdown('emails.import',[
+                    'nombre' => $notifiable->name . ' ' . $notifiable->apellido,
+                    'logoEmpresa' => $notifiable->empresa->logo,
+                    'creados' => $this->creados,
+                    'type' => $this->type,
+        ]);
         return $mail;
     }
 
