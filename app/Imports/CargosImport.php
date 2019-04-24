@@ -21,7 +21,13 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
     use Importable, Queueable;
 
     public static $info = [];
-    public $creados = [];
+    public static $creados = [];
+
+    public function __construct()
+    {
+        static::$info = [];
+        static::$creados = [];
+    }
 
     /**
      * @param array $row
@@ -88,33 +94,73 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
             ])] = $gerencia;
         }
 
-        $gerencia_jefatura = isset(static::$info[json_encode([$row["gerencia_de_jefatura"] =>
-                ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
-            ])]) ?
-            static::$info[json_encode([$row["gerencia_de_jefatura"] =>
-                ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
-            ])] : null;
-        if (!$gerencia_jefatura) {
-            $gerencia_jefatura = Gerencia::firstOrNew(["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]);
-            if (!$gerencia_jefatura->exists)
-                return null;
-            static::$info[json_encode([$row["gerencia_de_jefatura"] =>
-                ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
-            ])] = ($gerencia_jefatura);
-        }
+        $jefatura = (object)["id" => null];
 
-        $jefatura =
-            isset(static::$info[json_encode([$row["jefatura_directa"] =>
-                    ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id]
+        if (
+            isset($row["gerencia_de_jefatura"]) &&
+            isset($row["jefatura_directa"]) &&
+            isset($row["rut_jefatura"])) {
+            $gerencia_jefatura = isset(static::$info[json_encode([$row["gerencia_de_jefatura"] =>
+                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
                 ])]) ?
-                static::$info[json_encode([$row["jefatura_directa"] =>
-                    ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id]
+                static::$info[json_encode([$row["gerencia_de_jefatura"] =>
+                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
                 ])] : null;
-        if (!$jefatura) {
-            $jefatura = Cargo::firstOrNew(["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id]);
-            static::$info[json_encode([$row["jefatura_directa"] =>
-                ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id]
-            ])] = $jefatura;
+            if (!$gerencia_jefatura) {
+                $gerencia_jefatura = Gerencia::firstOrNew(["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]);
+                if (!$gerencia_jefatura->exists)
+                    return null;
+                static::$info[json_encode([$row["gerencia_de_jefatura"] =>
+                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
+                ])] = ($gerencia_jefatura);
+            }
+            $jefe = isset(static::$info[json_encode([$row["rut_jefatura"] =>
+                    ["rut" => $row["rut_jefatura"]]
+                ])]) ?
+                static::$info[json_encode([$row["rut_jefatura"] =>
+                    ["rut" => $row["rut_jefatura"]]
+                ])] : null;
+            if (!$jefe) {
+                $jefe = User::firstOrNew(["rut" => $row["rut_jefatura"]]);
+                static::$info[json_encode([$row["rut_jefatura"] =>
+                    ["rut" => $row["rut_jefatura"]]
+                ])] = ($jefe);
+            }
+            if ($gerencia_jefatura->id && $jefe->id) {
+                $jefatura =
+                    isset(static::$info[json_encode([$row["jefatura_directa"] =>
+                            ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_funcionario" => $jefe->id]
+                        ])]) ?
+                        static::$info[json_encode([$row["jefatura_directa"] =>
+                            ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_funcionario" => $jefe->id]
+                        ])] : null;
+                if (!$jefatura) {
+                    $jefatura = Cargo::firstOrNew(
+                        ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_funcionario" => $jefe->id]);
+
+                    if (!$jefatura->id) {
+                        $list = collect(static::$creados)->filter(
+                            function ($item) use ($jefe, $row, $gerencia_jefatura) {
+                                if (
+                                    $item->id_funcionario === $jefe->id &&
+                                    $item->nombre === $row["jefatura_directa"]) {
+                                    return true;
+                                }
+                                return false;
+                            }
+                        );
+                        if (!$list->isEmpty()) {
+                            $jefatura = $list->first();
+                        }
+                        if (count(static::$creados) > 33) {
+                            dd($jefatura, static::$creados);
+                        }
+                    }
+                    static::$info[json_encode([$row["jefatura_directa"] =>
+                        ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_jefatura" => $jefe->id]
+                    ])] = $jefatura;
+                }
+            }
         }
         $funcionario = isset(static::$info[json_encode([$row["rut_funcionario"] =>
                 ["rut" => $row["rut_funcionario"]]
@@ -139,7 +185,7 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
         ]);
         if (!$cargo->exists) {
             $cargo->save();
-            $this->creados[] = $cargo;
+            static::$creados[] = $cargo;
             return $cargo;
         }
         return null;
