@@ -4,9 +4,8 @@
     <script type="text/javascript">
         var perfil = "{{ auth()->user()->perfil }}";
         var filterSelect = [];
-        if (perfil == "" || perfil == null) {
+        if (perfil < 1)
             var filterSelect = ["Holding"];
-        }
         var filterDropDown=
         {
             columns: [

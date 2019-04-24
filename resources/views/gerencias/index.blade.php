@@ -4,13 +4,10 @@
         var base_logos="{{image_asset($resource)}}";
         var perfil = "{{ auth()->user()->perfil }}";
         var filterSelect = [];
-
-        if (perfil == "" || perfil == null) {
+        if (perfil < 1)
             filterSelect = ["Holding", "Empresas"];
-        }
-        if (perfil == 1){
+        if (perfil == 1)
             filterSelect = ["Empresas"];
-        }
         var columns = [
 
             {"data": "nombre", "title": "Nombre","orderable": false},

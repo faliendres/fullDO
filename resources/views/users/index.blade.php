@@ -9,18 +9,13 @@
 @section("index_scripts")
     <script type="text/javascript">
         var base_logos = "{{image_asset($resource)}}";
-        var perfil = "{{ auth()->user()->perfil }}";
-        
-        if (perfil == "" || perfil == null) {
+        var perfil = "{{ auth()->user()->perfil }}";        
+        if (perfil < 1)
             filterSelect = ["Holding", "Empresas", "Gerencias"];
-        }
-        if (perfil == 1){
+        if (perfil == 1)
             filterSelect = ["Empresas", "Gerencias"];
-        }
-
-        if (perfil == 2){
+        if (perfil == 2)
             filterSelect = [ "Gerencias"];
-        }
         var columns = [
             {
                 "data": "foto", "title": "Avatar",
