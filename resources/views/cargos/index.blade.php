@@ -9,19 +9,10 @@
     <script type="text/javascript">
         var base_logos = "{{image_asset($resource)}}";
         var perfil = "{{ auth()->user()->perfil }}";
-        
-        if (perfil == "" || perfil == null) {
+        if (perfil < 2)
             filterSelect = ["Empresas", "Gerencias"];
-        }
-        if (perfil == 1){
-            filterSelect = ["Empresas", "Gerencias"];
-        }
-
-        if (perfil == 2){
+        if (perfil == 2)
             filterSelect = [ "Gerencias"];
-        }
-
-        //filterSelect = [];
         var columns = [
             {"data": "nombre", "title": "Nombre"},
             {"data": "gerencia.empresa.id_holding", "title": "Holding ID","orderable": false, visible: false, "searchable":false},
