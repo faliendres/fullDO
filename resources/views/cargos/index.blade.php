@@ -32,20 +32,20 @@
             {"data": "gerencia.empresa.nombre", "title": "Empresa","orderable": false, "searchable":false},
             {"data": "gerencia.empresa.holding.nombre", "title": "Holding","orderable": false, "searchable":false},
             {
-                "data": "jefatura", "title": "Jefatura",
-                "render": function (data, row) {
-                    if (!data)
+                "data": "id_jefatura", "title": "Jefatura",
+                "render": function (data, field, row) {
+                    if (!row.jefatura)
                         return "";
-                    return `<span>${data.nombre}</span>`;
+                    return `<span>${row.jefatura.nombre}</span>`;
                 }
                 , "searchable":false
             },
             {
-                "data": "funcionario", "title": "Funcionario",
-                "render": function (data, row) {
-                    if (!data)
+                "data": "id_funcionario", "title": "Funcionario",
+                "render": function (data, field, row) {
+                    if (!row.funcionario)
                         return "";
-                    return `<span>${data.name}</span>`;
+                    return `<span>${row.funcionario.name}</span>`;
                 }
                 , "searchable":false
             },
