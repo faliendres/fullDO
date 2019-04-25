@@ -3,7 +3,7 @@
 @section("form")
     @php
         $user=auth()->user();
-        $holdings=toOptions(\App\Holding::query());
+        $holdings=toOptions(\App\Holding::query()->where("id",$instance->holding_id));
         if($instance->holding_id)
             $empresas=toOptions(\App\Empresa::query()->where("id_holding",$instance->holding_id));
         else
