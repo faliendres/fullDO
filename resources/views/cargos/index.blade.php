@@ -16,9 +16,9 @@
         var columns = [
             {"data": "nombre", "title": "Nombre"},
             {"data": "gerencia.empresa.id_holding", "title": "Holding ID","orderable": false, visible: false, "searchable":false},
-            {"data": "gerencia.id_empresa", "title": "Empresa","orderable": false, visible:false},
+            {"data": "gerencia.id_empresa", "title": "Empresa","orderable": false, visible:false, "searchable":false},
             {"data": "area", "title": "area"},
-            {"data": "gerencia.id", "title": "Gerencia ID","orderable": false, visible: false},
+            {"data": "gerencia.id", "title": "Gerencia ID","orderable": false, visible: false, "searchable":false},
             {"data": "gerencia.nombre", "title": "Gerencia"},
             {"data": "gerencia.empresa.nombre", "title": "Empresa","orderable": false, "searchable":false},
             {"data": "gerencia.empresa.holding.nombre", "title": "Holding","orderable": false, "searchable":false},
@@ -33,15 +33,15 @@
             },
             {
                 "data": "id_funcionario", "title": "Funcionario",
+                "name": "funcionario.name",
                 "render": function (data, field, row) {
                     if (!row.funcionario)
                         return "";
                     return `<span>${row.funcionario.name}</span>`;
                 }
-                , "searchable":false
             },
             {
-                "data": "id", "title": "Acciones",
+                "data": "id", "title": "Acciones", "searchable":false,
                 "render": function (data, row) {
                     let show = "{{route("$resource.show",["_id"])}}".replace("_id", data);
                     let edit = "{{route("$resource.edit",["_id"])}}".replace("_id", data);

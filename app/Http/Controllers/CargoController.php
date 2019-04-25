@@ -8,6 +8,7 @@ use App\Imports\CargosImport;
 use App\Jobs\NotifyUserOfCompletedImport;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class CargoController extends Controller
@@ -23,7 +24,7 @@ class CargoController extends Controller
         'desde' => 'nullable|date',
         'hasta' => 'nullable|date',
     ];
-    protected $importer=CargosImport::class;
+    protected $importer = CargosImport::class;
 
     public function index(Request $request, $query = null)
     {
@@ -36,7 +37,7 @@ class CargoController extends Controller
                 $query = Cargo::query()
                     ->join("ma_gerencia", "ma_cargo.id_gerencia", "=", "ma_gerencia.id")
                     ->join("ma_empresa", "ma_gerencia.id_empresa", "=", "ma_empresa.id")
-                    ->where("ma_empresa.id_holding", "=", \DB::raw($request->get("holding_id")));
+                    ->where("ma_empresa.id_holding", "=", DB::raw($request->get("holding_id")));
             }
             return parent::index($request, $query);
         }
@@ -129,21 +130,22 @@ class CargoController extends Controller
         throw new \RuntimeException("El id especificado tiene " . $counter . " registros asociados ");
     }
 
-    public function import( Request $request){
-        if(strtoupper($request->getMethod())=="GET"){
+    public function import(Request $request)
+    {
+        if (strtoupper($request->getMethod()) == "GET") {
             return view("$this->resource.import")->with(["resource" => $this->resource]);
-        }else{
-            $file=$request->file("file_file");
-            $filename=uniqid().".xlsx";
-            $file->move("/tmp/",$filename);
-            $import=new $this->importer;
-            $antes=$this->clazz::count();
+        } else {
+            $file = $request->file("file_file");
+            $filename = uniqid() . ".xlsx";
+            $file->move("/tmp/", $filename);
+            $import = new $this->importer;
+            $antes = $this->clazz::count();
             $import->queue("/tmp/$filename")->chain([
-                new NotifyUserOfCompletedImport(auth()->user(),$antes,$this->clazz,$this->resource),
+                new NotifyUserOfCompletedImport(auth()->user(), $antes, $this->clazz, $this->resource),
             ]);
 
             return redirect()->route("$this->resource.index")
-                ->with(["message"=>"La carga masiva se esta ejecutando en segundo plano"]);
+                ->with(["message" => "La carga masiva se esta ejecutando en segundo plano"]);
         }
     }
 
