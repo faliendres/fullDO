@@ -152,9 +152,6 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
                         if (!$list->isEmpty()) {
                             $jefatura = $list->first();
                         }
-                        if (count(static::$creados) > 33) {
-                            dd($jefatura, static::$creados);
-                        }
                     }
                     static::$info[json_encode([$row["jefatura_directa"] =>
                         ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_jefatura" => $jefe->id]
