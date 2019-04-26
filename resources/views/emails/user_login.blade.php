@@ -6,12 +6,12 @@
 	        <td rowspan="3" style="text-align:justify;width: 60%;padding: 0 2em;">Hola <b>{{ $nombre }}</b>,<br>
 				Te damos la bienvenida al nuevo portal que te facilitará la información de todos y la organización de equipos dentro de tu empresa.</td>
 	        <td style="text-align:center;"><b>USUARIO</b><br>
-				<div class="outline-border" style="border: 1px solid #ddd;border-radius: 4px;">{{$usuario}}</div><br></td>
+				<div class="outline-border" style="border: 1px solid #ddd;border-radius: 4px;">{{$usuario}}</div></td>
 	    </tr>
 	    <tr>
 	        <td style="text-align:center;"><b>CLAVE</b><br>
 				<div class="outline-border" style="border: 1px solid #ddd;border-radius: 4px;">{{$password?:'123456'}}</div><br>
-				<br></td>
+				</td>
 	    </tr>
 	    <tr>
 	        <td><table style="width: 100%;text-align:center;" cellspacing="0" cellpadding="0">
