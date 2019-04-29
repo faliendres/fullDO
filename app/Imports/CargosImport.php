@@ -143,7 +143,7 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
                             function ($item) use ($jefe, $row, $gerencia_jefatura) {
                                 if (
                                     $item->id_funcionario === $jefe->id &&
-                                    $item->nombre === $row["jefatura_directa"]) {
+                                    strtolower($item->nombre) === strtolower($row["jefatura_directa"])) {
                                     return true;
                                 }
                                 return false;
