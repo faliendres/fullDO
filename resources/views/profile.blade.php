@@ -145,7 +145,7 @@
 @endsection
 <!-- Content -->
 @section("content")
-    <div class="container emp-profile">       
+    <div class="container emp-profile">
         <form method="post">
             <div class="row">
                 <div class="col-md-6">
@@ -156,7 +156,7 @@
                             <i class="fa fa-flag"></i><span>{{$user->gerencia ? $user->gerencia->nombre:'-'}}</span><br/>
                             <i class="fa fa-map-marker"></i><span>{{$user->empresa ? $user->empresa->nombre:'-'}}</span><br/>
                             <i class="fa fa-birthday-cake"></i><span>{{ $user->fecha_nacimiento ? ((new Date($user->fecha_nacimiento))->format('j F')) : '-' }}</span><br/>
-                            <i class="fa fa-trophy"></i><span>Comenzó el {{ $user->fecha_inicio ? ((new Date($user->fecha_inicio))->format('j F Y')) : '-' }}</span><br/>    
+                            <i class="fa fa-trophy"></i><span>Comenzó el {{ $user->fecha_inicio ? ((new Date($user->fecha_inicio))->format('j F Y')) : '-' }}</span><br/>
                         </div>
                     </div>
                     <div class="row m-t-20">
@@ -166,16 +166,16 @@
                             </div>
                         @endif
                         <div class="col-md-4">
-                            <a href="{{ route('organigrama') }}{{ isset($jefatura) ? ('?id='.$jefatura->id) : '' }} " class="btn btn-primary">Ver en Organigrama</a>
+                            <a href="{{ route('organigrama',[ 'id'=>$jefatura->id??null,"holding_id"=>$user->holding_id]) }}" class="btn btn-primary">Ver en Organigrama</a>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="card-body m-t-20">
                         <h5 class="box-title">Contacto</h5>
                     </div>
                     <div class="table-stats ov-h">
                         <table class="contact" id="reports-contacts">
                             <tbody>
-                                <tr class="contact"> 
+                                <tr class="contact">
                                     <td class="avatar">
                                         <i class="fa fa-envelope"></i>
                                     </td>
@@ -185,7 +185,7 @@
                                     </td>
                                 </tr>
                                 @if($user->telefono)
-                                    <tr class="contact"> 
+                                    <tr class="contact">
                                         <td class="avatar">
                                             <i class="fa fa-phone"></i>
                                         </td>
@@ -193,12 +193,12 @@
                                             <br>
                                             <span class="fontsize12 td-email">{{$user->telefono}}</span>
                                         </td>
-                                    </tr>   
-                                @endif        
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
-                    <div class="row">             
+                    <div class="row">
                         <div class="col-md-8">
                             <div class="profile-work m-t-20">
                                 @if(isset($cargo->adjuntos) 
@@ -210,7 +210,7 @@
                                         ||
                                         (Auth::user()->perfil < 4)
                                     )
-                                )                  
+                                )
                                     @include("partials.file",["readonly"=> "true", "name"=>"adjuntos","title"=>"","multiple"=>true, "value"=>$cargo->adjuntos, "resource" => "cargos", "mascara" => "Descripción de Cargo"  ])
                                 @endif
                             </div>
@@ -230,7 +230,7 @@
                         <div class="table-stats ov-h">
                             <table class="table" id="reports-contacts">
                                 <tbody>
-                                    <tr class="pb-0" data-url="{{ route('perfil') }}?id={{$jefatura->funcionario->id}}"> 
+                                    <tr class="pb-0" data-url="{{ route('perfil') }}?id={{$jefatura->funcionario->id}}">
                                         <td class="avatar">
                                             <div class="round-img">
                                                 <img class="rounded-circle" src="images/avatar/{{$jefatura->funcionario->foto}}" alt="">
@@ -241,7 +241,7 @@
                                             <span class="fontsize12">{{ $jefatura->funcionario?$jefatura->funcionario->name . ' ' . $jefatura->funcionario->apellido:'' }}</span>
                                         </td>
                                         <td><i class="fa fa-angle-right"></i></td>
-                                    </tr>           
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -256,7 +256,7 @@
                                 <tbody>
                                     @foreach ($cargo->subCargos as $subCargo)
                                         @if ($subCargo->funcionario != null)
-                                            <tr class="pb-0" data-url="{{ route('perfil') }}?id={{$subCargo->funcionario->id}}"> 
+                                            <tr class="pb-0" data-url="{{ route('perfil') }}?id={{$subCargo->funcionario->id}}">
                                                 <td class="avatar">
                                                     <div class="round-img">
                                                         <img class="rounded-circle" src="images/avatar/{{$subCargo->funcionario->foto}}" alt="">
@@ -267,7 +267,7 @@
                                                     <span class="fontsize12">{{ $subCargo->funcionario->name . ' ' . $subCargo->funcionario->apellido }}</span>
                                                 </td>
                                                 <td><i class="fa fa-angle-right"></i></td>
-                                            </tr>           
+                                            </tr>
                                         @endif
                                     @endforeach
                                 </tbody>
