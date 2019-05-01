@@ -23,10 +23,11 @@ class SolicitudEmail extends Mailable
 
     protected $solicitud ;
 
-    public function __construct(Solicitud $solicitud, $id, $remitente = false )
+    public function __construct(Solicitud $solicitud, $id,$type, $remitente = false )
     {
         $this->solicitud = $solicitud ;
         $this->id = $id ;
+        $this->type = $type;
         $this->remitente = $remitente;
     }
     //
@@ -43,17 +44,23 @@ class SolicitudEmail extends Mailable
         $estados=collect(Solicitud::ESTADOS);
         $con_texto = ($estados->where('id',$this->solicitud->estado)->first())['text']; 
         $user = User::where('id',$this->id)->first();
-           return $this->subject($this->solicitud->asunto)
-                       ->from('example@fulldo.com')
-                       ->markdown('emails.solicitud')
-                       ->with([
-                        'solicituDescripcion' => $this->solicitud->descripcion,
-                        'solicituTipo' => Solicitud::TIPOS[$this->solicitud->tipo],
-                        'solicituEstado' => $con_texto,
-                        'nombre' => $user->name . ' ' . $user->apellido,
-                        'remitente' => $this->remitente,
-                        'logoEmpresa' => $user->empresa->logo
-                ]);
+
+        if($this->remitente){
+            $sender = User::where('id',$this->remitente)->first();
+        }
+        return $this->subject($this->solicitud->asunto)
+                   ->from('example@fulldo.com')
+                   ->markdown('emails.solicitud')
+                   ->with([
+                    'solicituDescripcion' => $this->solicitud->descripcion,
+                    'solicituTipo' => Solicitud::TIPOS[$this->solicitud->tipo],
+                    'solicituEstado' => $con_texto,
+                    'nombre' => $user->name . ' ' . $user->apellido,
+                    'remitente' => isset($sender)?$sender->name . ' ' . $sender->apellido .' ('.$sender->email.')':'',
+                    'tipo' => $this->type,
+                    'logoEmpresa' => $user->empresa->logo
+            ]);
+        
 
     }
 }
