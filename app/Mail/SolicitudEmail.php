@@ -23,10 +23,11 @@ class SolicitudEmail extends Mailable
 
     protected $solicitud ;
 
-    public function __construct(Solicitud $solicitud, $id )
+    public function __construct(Solicitud $solicitud, $id, $remitente = false )
     {
         $this->solicitud = $solicitud ;
         $this->id = $id ;
+        $this->remitente = $remitente;
     }
     //
 
@@ -50,6 +51,7 @@ class SolicitudEmail extends Mailable
                         'solicituTipo' => Solicitud::TIPOS[$this->solicitud->tipo],
                         'solicituEstado' => $con_texto,
                         'nombre' => $user->name . ' ' . $user->apellido,
+                        'remitente' => $this->remitente,
                         'logoEmpresa' => $user->empresa->logo
                 ]);
 

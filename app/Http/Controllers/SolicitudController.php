@@ -49,7 +49,7 @@ class SolicitudController extends Controller
                             ->send(new SolicitudEmail($solicitud,$request->user()->id));
 
                             Mail::to(User::findOrFail($solicitud->remitente_id)->email)
-                            ->send(new SolicitudEmail($solicitud,$solicitud->remitente_id));
+                            ->send(new SolicitudEmail($solicitud,$solicitud->remitente_id,true));
                             \Log::info('Envio correctamente el email');
                         }
                         catch(\Exception $e){ 
