@@ -24,7 +24,7 @@ class Solicitud extends Model
 	);
 
     protected $table = "solicitudes";
-    protected $with = ["destinatario"];
+    protected $with = ["destinatario","remitente"];
     protected $fillable = ["tipo", "remitente_id", "destinatario_id", "asunto", "descripcion","adjuntos","comentarios","estado"];
 
     public static function query()
@@ -40,5 +40,9 @@ class Solicitud extends Model
     public function destinatario()
     {
         return $this->belongsTo(User::class);
+    }
+    public function remitente()
+    {
+        return $this->belongsTo(User::class,"remitente_id");
     }
 }

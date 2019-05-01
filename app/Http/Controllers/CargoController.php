@@ -49,6 +49,18 @@ class CargoController extends Controller
 
     public function getEstructura(Request $request)
     {
+
+
+        if ($request->has("id")) {
+            $data = $request->only('id');
+            if (count($data) && $data['id'] != 'null')
+                $cargo = Cargo::where('id', $data['id'])->first();
+
+            $result = $this->getArbol($cargo);
+            return response()->json($result, 200);
+        }
+
+
         $user = auth()->user();
         $holding_id = $request->get("holding_id");
         if (!$holding_id)

@@ -58,8 +58,7 @@
             let datasource;
             const urlParams = new URLSearchParams(window.location.search);
             const myParam = urlParams.get('id');
-            let treeUrl = "{{route("getEstructura") }}"
-                + '?holding_id='+ (urlParams.get('holding_id')||'');
+            let treeUrl = "{!!  route("getEstructura",request()->all()) !!}";
             jQuery.ajax({
                 type: "GET",
                 url: treeUrl,
