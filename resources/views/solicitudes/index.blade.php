@@ -21,7 +21,7 @@
                 "data": "remitente.name",
                 "title": "Remitente",
                 "render": function (data, field, row) {
-                    return `<span >${row.remitente.rut} ${row.remitente.name}</span>`;
+                    return `<span >${row.remitente.rut} ${row.remitente.name} ${row.remitente.apellido}</span>`;
                 },
                 "visible":isBuzon
             },
