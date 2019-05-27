@@ -97,23 +97,23 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
         $jefatura = (object)["id" => null];
 
         if (
-            isset($row["gerencia_de_jefatura"]) &&
+//            isset($row["gerencia_de_jefatura"]) &&
             isset($row["jefatura_directa"]) &&
             isset($row["rut_jefatura"])) {
-            $gerencia_jefatura = isset(static::$info[json_encode([$row["gerencia_de_jefatura"] =>
-                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
-                ])]) ?
-                static::$info[json_encode([$row["gerencia_de_jefatura"] =>
-                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
-                ])] : null;
-            if (!$gerencia_jefatura) {
-                $gerencia_jefatura = Gerencia::firstOrNew(["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]);
-                if (!$gerencia_jefatura->exists)
-                    return null;
-                static::$info[json_encode([$row["gerencia_de_jefatura"] =>
-                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
-                ])] = ($gerencia_jefatura);
-            }
+//            $gerencia_jefatura = isset(static::$info[json_encode([$row["gerencia_de_jefatura"] =>
+//                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
+//                ])]) ?
+//                static::$info[json_encode([$row["gerencia_de_jefatura"] =>
+//                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
+//                ])] : null;
+//            if (!$gerencia_jefatura) {
+//                $gerencia_jefatura = Gerencia::firstOrNew(["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]);
+//                if (!$gerencia_jefatura->exists)
+//                    return null;
+//                static::$info[json_encode([$row["gerencia_de_jefatura"] =>
+//                    ["nombre" => $row["gerencia_de_jefatura"], "id_empresa" => $empresa->id]
+//                ])] = ($gerencia_jefatura);
+//            }
             $jefe = isset(static::$info[json_encode([$row["rut_jefatura"] =>
                     ["rut" => $row["rut_jefatura"]]
                 ])]) ?
@@ -126,21 +126,21 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
                     ["rut" => $row["rut_jefatura"]]
                 ])] = ($jefe);
             }
-            if ($gerencia_jefatura->id && $jefe->id) {
+            if ($jefe->id) {
                 $jefatura =
                     isset(static::$info[json_encode([$row["jefatura_directa"] =>
-                            ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_funcionario" => $jefe->id]
+                            ["nombre" => $row["jefatura_directa"],  "id_funcionario" => $jefe->id]
                         ])]) ?
                         static::$info[json_encode([$row["jefatura_directa"] =>
-                            ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_funcionario" => $jefe->id]
+                            ["nombre" => $row["jefatura_directa"],  "id_funcionario" => $jefe->id]
                         ])] : null;
                 if (!$jefatura) {
                     $jefatura = Cargo::firstOrNew(
-                        ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_funcionario" => $jefe->id]);
+                        ["nombre" => $row["jefatura_directa"],  "id_funcionario" => $jefe->id]);
 
                     if (!$jefatura->id) {
                         $list = collect(static::$creados)->filter(
-                            function ($item) use ($jefe, $row, $gerencia_jefatura) {
+                            function ($item) use ($jefe, $row) {
                                 if (
                                     $item->id_funcionario === $jefe->id &&
                                     strtolower($item->nombre) === strtolower($row["jefatura_directa"])) {
@@ -154,7 +154,7 @@ class CargosImport implements ToModel, WithHeadingRow, ShouldQueue, WithChunkRea
                         }
                     }
                     static::$info[json_encode([$row["jefatura_directa"] =>
-                        ["nombre" => $row["jefatura_directa"], "id_gerencia" => $gerencia_jefatura->id, "id_jefatura" => $jefe->id]
+                        ["nombre" => $row["jefatura_directa"],  "id_jefatura" => $jefe->id]
                     ])] = $jefatura;
                 }
             }
