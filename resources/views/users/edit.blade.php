@@ -3,6 +3,7 @@
 @section("form")
     @php
         $user=auth()->user();
+        //dd($instance);
         $holdings=toOptions(\App\Holding::query()->where("id",$instance->holding_id));
         if($instance->holding_id)
             $empresas=toOptions(\App\Empresa::query()->where("id_holding",$instance->holding_id));
@@ -32,8 +33,8 @@
     @endphp
 
     @include("partials.field",["name"=>'validated',"type"=>"hidden","value"=>""])
-    @include("partials.select",["required"=>true, "name"=>"holding_id","title"=>"Holding","stable"=>true,"options"=>$holdings, "value"=> $instance->holding_id ])
-    @include("partials.select",["required"=>true, "name"=>"empresa_id","title"=>"Empresa","stable"=>true,"options"=>$empresas, "value"=> $instance->empresa_id])
+    @include("partials.field",["title"=>"Holding","value"=>$instance->holding->nombre,"name"=>"holding", "readonly"=>true])
+    @include("partials.field",["title"=>"Empresa","value"=>$instance->empresa->nombre,"name"=>"empresa", "readonly"=>true])
     @include("partials.select",["required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias, "value"=> $instance->gerencia_id])
     @include("partials.select",["name"=>"cargo_id","value"=>!$instance->cargo?"":$instance->cargo->id,"title"=>"Cargo","options"=>$cargos])
     @include("partials.select",["required"=>true, "name"=>"perfil","title"=>"Perfil de Usuario","options"=>$perfiles])
