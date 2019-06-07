@@ -33,6 +33,9 @@
     @endphp
 
     @include("partials.field",["name"=>'validated',"type"=>"hidden","value"=>""])
+    @include("partials.field",["name"=>'holding_id',"type"=>"hidden","value"=>"$instance->holding_id"])
+    @include("partials.field",["name"=>'empresa_id',"type"=>"hidden","value"=>"$instance->empresa_id"])
+
     @include("partials.field",["title"=>"Holding","value"=>$instance->holding->nombre,"name"=>"holding", "readonly"=>true])
     @include("partials.field",["title"=>"Empresa","value"=>$instance->empresa->nombre,"name"=>"empresa", "readonly"=>true])
     @include("partials.select",["required"=>true, "name"=>"gerencia_id","title"=>"Gerencia","stable"=>$user->perfil>2,"options"=>$gerencias, "value"=> $instance->gerencia_id])
