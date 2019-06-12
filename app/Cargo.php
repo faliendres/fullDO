@@ -110,10 +110,13 @@ class Cargo extends Model
             "ma_gerencia.nombre as gerencia",
             "ma_empresa.nombre as empresa",
             "ma_holding.nombre as holding",
-            ])
+            "users.name as name",
+            "users.apellido as apellido"
+        ])
             ->join("ma_gerencia", "id_gerencia", "=", "ma_gerencia.id")
             ->join("ma_empresa", "id_empresa", "=", "ma_empresa.id")
             ->join("ma_holding", "id_holding", "=", "ma_holding.id")
+            ->join("users", "id_funcionario", "=", "users.id")
             ->toBase()
             ->get()
             ->groupBy("holding")->map(function($holding){
@@ -121,6 +124,7 @@ class Cargo extends Model
                         return $empresa->groupBy("gerencia");
                     });
             });
+        //dd($cargos);
         return $cargos;
     }
 }

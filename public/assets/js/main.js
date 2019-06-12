@@ -85,6 +85,31 @@ jQuery(document).ready(function($) {
 		} 
 		
 	});
-  
+
+	// Load select2
+  	$(".select2").select2({
+		templateResult: formatList,
+		templateSelection: formatLine,
+		escapeMarkup: function(m) { return m; }
+	});
+
+
+	function formatList(item) {
+		var originalOption = item.element;
+		var originalText = item.text;
+		if($(originalOption).data('name'))
+			return originalText + ' ' + '<br><span class="user-name">' + $(originalOption).data('name') + '</span>';
+		else
+			return originalText;
+	}
+
+	function formatLine(item) {
+		var originalOption = item.element;
+		var originalText = item.text;
+		if($(originalOption).data('name'))
+			return originalText + ' - ' + '<span class="user-name">' + $(originalOption).data('name') + '</span>';
+		else
+			return originalText;
+	}
  
 });

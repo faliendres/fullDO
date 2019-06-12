@@ -27,7 +27,7 @@
         <div class="col col-md-3">
             <label for="{{$auxId}}" class=" form-control-label">Jefatura</label></div>
         <div class="col-12 col-md-9">
-            <select name="id_jefatura" id="{{$auxId}}" class="form-control-lg form-control {{ $errors->has("id_jefatura") ? ' is-invalid' : '' }}">
+            <select name="id_jefatura" id="{{$auxId}}" class="form-control-lg form-control select2 {{ $errors->has("id_jefatura") ? ' is-invalid' : '' }}">
                 <option selected value="" {{(isset($required)&&$required)?"disabled":""}} >{{$placeholder??"Seleccione por favor"}}
                 </option>
                 @foreach($options as $holding_id=>$empresas)
@@ -37,9 +37,9 @@
                                 @foreach($gerencias as $gerencia_id=>$cargos)
                                     <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;{{$gerencia_id}}">
                                         @foreach($cargos as $cargo)
-                                            <option value="{{$cargo->id}}"
+                                            <option value="{{$cargo->id}}" data-name="{{$cargo->name}} {{$cargo->apellido}}"
                                                     {{($cargo->id==$instance->id_jefatura)?"selected":""}}>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$cargo->text}}
+                                                {{$cargo->text}}
                                             </option>
                                         @endforeach
                                     </optgroup>

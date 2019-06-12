@@ -24,6 +24,7 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset("assets/css/cs-skin-elastic.css")}}">
     <link rel="stylesheet" href="{{asset("assets/css/style.css")}}">
 
@@ -127,6 +128,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="https://rawgit.com/dabeng/OrgChart/master/demo/js/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 <script src="{{asset("assets/js/main.js")}}"></script>
 <script type="text/javascript">
     $=jQuery;

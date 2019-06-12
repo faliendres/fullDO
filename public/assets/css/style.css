@@ -2219,6 +2219,11 @@ footer.site-footer {
     border-radius: 50%;
   }
 
+  .user-name{
+    font-style: italic;
+    color: #666;
+  }
+
 /*  End of Switch CSS  */
 
 @media (max-width: 1680px) {
