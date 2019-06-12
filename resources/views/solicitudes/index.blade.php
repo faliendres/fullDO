@@ -26,6 +26,10 @@
                 "visible":isBuzon
             },
             {
+                "data": "created_at",
+                "title": "Fecha de creación"
+            },
+            {
                 "data": "estado", "title": "Estado",
                 "render": function (data, field, row) {
                     let color = 'red';

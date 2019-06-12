@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Solicitud extends Model
@@ -44,5 +45,10 @@ class Solicitud extends Model
     public function remitente()
     {
         return $this->belongsTo(User::class,"remitente_id");
+    }
+
+    public function getCreatedAtAttribute($value){
+        if($value)
+            return Carbon::parse($value)->format('d-m-Y');
     }
 }
